@@ -1,7 +1,7 @@
 <template>
   <div class="sign-up">
     <v-app id="inspire" class="sign-up-v-app">
-      <div class="login-toolbar-sec">
+      <!-- <div class="login-toolbar-sec">
         <v-toolbar class="login-v-toolbar" color="primary">
           <v-toolbar-title class="headline text-uppercase">
             <span>Demo Project</span>
@@ -9,7 +9,7 @@
           <v-spacer></v-spacer>
           <v-btn to="/" class="mr-2" color="primary">Sign in</v-btn>
         </v-toolbar>
-      </div>
+      </div> -->
       <v-content>
         <v-container class="fill-height" fluid>
           <v-row align="center" justify="center">
@@ -163,13 +163,13 @@ export default {
 </script>
 
 <style scoped>
-.sign-up {
+/* .sign-up {
   position: absolute;
   top: 0;
   background: aqua;
   width: 100%;
   height: 100%;
-}
+} */
 .headline {
   color: #ffffff;
   font-size: 1.5rem !important;

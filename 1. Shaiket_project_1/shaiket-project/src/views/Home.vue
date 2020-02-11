@@ -1,5 +1,6 @@
 <template>
-  <div class="home" v-if="userIsAuthorized">
+  <!-- <div class="home" v-if="userIsAuthorized"> -->
+  <div class="home">
   <v-card class="v-card">
     <v-card-title>
       User List

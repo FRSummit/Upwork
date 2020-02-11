@@ -1,5 +1,6 @@
 <template>
-  <div class="navbar" v-if="userIsAuthorized">
+  <!-- <div class="navbar" v-if="userIsAuthorized"> -->
+  <div class="navbar">
     <v-toolbar style="background-color: #1976d2 !important; border-color: #1976d2 !important;">
       <v-toolbar-title class="headline text-uppercase">
         <span>{{ $route.name }}</span>
@@ -8,7 +9,8 @@
       <v-btn to="/home" class="mr-2">Home</v-btn>
       <v-btn to="/about" class="mr-2">About</v-btn>
       <v-btn class="mr-2">Contact</v-btn>
-      <v-btn class="mr-2" @click="logout">Logout</v-btn>
+      <v-btn class="mr-2" @click="logout" v-if="userIsAuthorized">Logout</v-btn>
+      <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn>
       <!-- <div>{{ $route.name }}</div> -->
       <!-- <v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn> -->
     </v-toolbar>
@@ -42,6 +44,7 @@ export default {
     logout() {
       localStorage.removeItem("upwork_project_shaiket_login_pass");
       router.replace('/');
+      window.location.reload();
     }
   },
   created() {

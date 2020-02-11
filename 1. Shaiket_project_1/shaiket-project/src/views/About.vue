@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="userIsAuthorized">
+  <div class="about">
     <p>How about your day?</p>
   </div>
 </template>
