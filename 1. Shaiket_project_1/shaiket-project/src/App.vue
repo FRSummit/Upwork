@@ -29,6 +29,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  /* background-image: url("./assets/images/gradient.png") !important;
+  background-repeat: repeat-x; */
+}
+
+body {
+  background-image: url("./assets/images/gradient.png") !important;
+  background-repeat: repeat-x;
 }
 
 #nav {
