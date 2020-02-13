@@ -32,3 +32,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.about {
+  background-color: #fff; 
+  border-radius: 4px; 
+}
+</style>

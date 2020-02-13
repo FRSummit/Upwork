@@ -80,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  background-color: #fff;
+  border-radius: 4px; 
+}
 h3 {
   margin: 40px 0 0;
 }

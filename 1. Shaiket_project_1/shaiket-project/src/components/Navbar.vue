@@ -15,19 +15,30 @@
       </dir>
     </dir>
     
-    <v-toolbar style="background-color: #1976d2 !important; border-color: #1976d2 !important;">
-      <v-toolbar-title class="headline text-uppercase">
-        <span>{{ $route.name }}</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn to="/home" class="mr-2">Home</v-btn>
-      <v-btn to="/about" class="mr-2">About</v-btn>
-      <v-btn class="mr-2">Contact</v-btn>
-      <v-btn class="mr-2" @click="logout" v-if="userIsAuthorized">Logout</v-btn>
-      <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn>
-      <!-- <div>{{ $route.name }}</div> -->
-      <!-- <v-btn @click="logout" v-if="this.$store.state.userIsAuthorized">Logout</v-btn> -->
-    </v-toolbar>
+    <!-- <v-toolbar style="background-color: #1976d2 !important; border-color: #1976d2 !important;"> -->
+      <div class="navbar-toolbar">
+        <!-- <div class="navbar-toolbar-route_name_sec">
+          <v-toolbar-title class="headline text-uppercase">
+            <span>{{ $route.name }}</span>
+          </v-toolbar-title>
+        </div> -->
+        <div class="navbar-toolbar-menu_sec">
+          <v-btn to="/home" class="mr-2">Home</v-btn>
+          <v-btn to="/register" class="mr-2">Register</v-btn>
+          <v-btn to="/standings" class="mr-2">Standings</v-btn>
+          <v-btn to="/schedules" class="mr-2">Schedules</v-btn>
+          <v-btn to="/admin" class="mr-2">Admin</v-btn>
+          <v-btn to="/about" class="mr-2">About us</v-btn>
+          <v-btn to="/award" class="mr-2">Award</v-btn>
+          <v-btn to="/contact" class="mr-2">Contact</v-btn>
+          <v-btn to="/community" class="mr-2">My Community</v-btn>
+          <v-btn class="mr-2" @click="logout" v-if="userIsAuthorized">Logout</v-btn>
+          <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn>
+        </div>
+        <!-- <v-spacer></v-spacer> -->
+
+      </div>
+    <!-- </v-toolbar> -->
     <!-- <router-view/> -->
   </div>
 </template>
@@ -69,29 +80,49 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+  /* width: 90%; */
+  margin: 0 auto;
+  height: 190px;
+  background-image: url("../assets/images/gradient.png") !important;
+  background-repeat: repeat-x;
+  padding: 5px 6px;
+  background-size: contain;
+}
 .headline.text-uppercase {
   color: #ffffff;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 14.4px;
 }
 .mr-2 {
-  background-color: #0b447d8c !important;
+  /* background-color: #0b447d8c !important; */
   border-color: #06192b !important;
   margin: 0 2px;
   color: #ffffff !important;
   font-weight: 700;
+  font-size: 14.4px;
+  text-transform: none;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0;
+  background-color: transparent !important;
+  box-shadow: none;
+  height: 24px !important;
+  padding: 0 14px !important;
 }
-.nav-head-top-section {
+.v-btn:before {
+  background-color: #690000;
+}
+/* .nav-head-top-section {
   background-image: url("../assets/images/gradient.png") !important;
   background-repeat: repeat-x;
   padding: 20px 30px;
-}
+} */
 .nav-head-text-section {
   width: 50%;
   display: inline-block;
   text-align: left;
   vertical-align: top;
-  padding: 4px 16px;
+  padding: 20px 16px 0;
 }
 .nav-head-img-section {
   width: 50%;
@@ -108,5 +139,18 @@ export default {
   color: #ffffff;
   font-size: 0.9rem;
   font-family: Arial, Helvetica, sans-serif;
+}
+.navbar-toolbar {
+  margin-top: 14px;
+  text-align: right;
+}
+/* .navbar-toolbar-route_name_sec {
+  display: inline-block; 
+  width: 20%; 
+  text-align: left;
+  vertical-align: middle;
+} */
+.navbar-toolbar-menu_sec {
+  text-align: center;
 }
 </style>
