@@ -159,15 +159,12 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
   props: {
-    msg: String
   },
   data () {
     return {
       users: [],
       userIsAuthorized: false,
-      // movies: ['thor', 'perfume']
     }
   },
   methods: {
