@@ -81,12 +81,12 @@ export default {
 
 <style scoped>
 .navbar {
-  /* width: 90%; */
+  width: 968px;
   margin: 0 auto;
   height: 190px;
   background-image: url("../assets/images/gradient.png") !important;
   background-repeat: repeat-x;
-  padding: 5px 6px;
+  padding: 5px 4px;
   background-size: contain;
 }
 .headline.text-uppercase {
