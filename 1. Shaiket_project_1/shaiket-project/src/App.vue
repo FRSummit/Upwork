@@ -40,7 +40,8 @@ html {
   text-align: center;
   color: #2c3e50;
   /* padding: 0 24px; */
-  width: 72%;
+  /* width: 72%; */
+  width: 968px;
   margin: 0 auto;
 }
 .v-btn--active:before {
