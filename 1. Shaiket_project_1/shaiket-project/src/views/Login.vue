@@ -1,20 +1,12 @@
 <template>
   <div class="login">
     <v-app id="inspire" class="login-v-app">
-      <!-- <div class="login-toolbar-sec">
-        <v-toolbar class="login-v-toolbar" color="primary">
-          <v-toolbar-title class="headline text-uppercase">
-            <span>Demo Project</span>
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn to="/signup" class="mr-2" color="primary">Sign up</v-btn>
-        </v-toolbar>
-      </div> -->
       <v-content>
-        <v-container class="fill-height" fluid>
+        <v-container class="" fluid>
           <v-row align="center" justify="center">
-            <v-col cols="12" sm="8" md="4">
-              <v-card class="elevation-12">
+            <!-- <v-col cols="12" sm="8" md="4"> -->
+            <v-col>
+              <v-card class="elevation-12" style="width: 50%; margin: 0 auto;">
                 <v-toolbar color="primary" dark flat>
                   <v-spacer />
                   <v-toolbar-title>Login here</v-toolbar-title>
@@ -101,8 +93,9 @@ export default {
   height: 100%;
 } */
 .login-v-app {
-  background-image: url("../assets/images/login-back.jpg") !important;
-  background-size: cover !important;
+  /* background-image: url("../assets/images/login-back.jpg") !important;
+  background-size: cover !important; */
+  background: transparent !important;
 }
 .headline {
   color: #ffffff;

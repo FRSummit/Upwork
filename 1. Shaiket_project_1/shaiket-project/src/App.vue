@@ -60,4 +60,7 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.v-application--wrap {
+  min-height: auto;
+}
 </style>

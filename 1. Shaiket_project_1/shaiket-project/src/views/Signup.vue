@@ -13,8 +13,9 @@
       <v-content>
         <v-container class="fill-height" fluid>
           <v-row align="center" justify="center">
-            <v-col cols="12" sm="8" md="4">
-              <v-card class="elevation-12">
+            <!-- <v-col cols="12" sm="8" md="4"> -->
+            <v-col>
+              <v-card class="elevation-12" style="width: 50%; margin: 0 auto;">
                 <v-toolbar color="primary" dark flat>
                   <v-spacer />
                   <v-toolbar-title>Sign up here</v-toolbar-title>
@@ -176,8 +177,9 @@ export default {
   font-weight: 700 !important;
 }
 .sign-up-v-app {
-  background-image: url("../assets/images/login-back.jpg") !important;
-  background-size: cover !important;
+  /* background-image: url("../assets/images/login-back.jpg") !important;
+  background-size: cover !important; */
+  background: transparent !important;
 }
 .signup-btn {
   width: 30%;
