@@ -39,10 +39,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* padding: 0 24px; */
-  /* width: 72%; */
   width: 968px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 .v-btn--active:before {
   background-color: red !important;
@@ -61,7 +60,4 @@ body {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
-/* body {
-  background-image: url("./assets/images/gradient.png");
-} */
 </style>
