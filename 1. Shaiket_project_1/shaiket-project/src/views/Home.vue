@@ -117,43 +117,6 @@
 				</div>			
 			</div>
     </div>
-  <!-- <v-card class="v-card">
-    <v-card-title>
-      User List
-      <v-spacer></v-spacer>
-      <v-text-field
-        placeholder="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-  </v-card>
-    
-  <v-simple-table height="300px">
-    <template v-slot:default>
-      <thead class="table-head">
-        <tr>
-          <th class="text-left">Name</th>
-          <th class="text-left">Email</th>
-          <th class="text-left">Address</th>
-          <th class="text-left">Phone</th>
-          <th class="text-left">Role</th>
-          <th class="text-left">Password</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr v-for="(user, key) in users" :key="key">
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.phone }}</td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.password }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table> -->
-
   </div>
 </template>
 
