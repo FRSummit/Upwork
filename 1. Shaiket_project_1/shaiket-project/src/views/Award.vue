@@ -71,7 +71,7 @@ export default {
 }
 </script>
 
-<style stcope>
+<style scoped>
 .award {
   background-color: #fff; 
   border-radius: 4px; 
