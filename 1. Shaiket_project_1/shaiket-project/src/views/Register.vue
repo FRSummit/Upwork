@@ -41,115 +41,114 @@
                   <v-row align="center" justify="center">
                     <v-col>
                         <!-- Personal Info -->
-                      <v-card class="elevation-12" style="width: 100%; margin: 0 auto;">
-                        <v-toolbar class="v-toolbar" color="primary" dark flat>
+                      <v-card class="elevation-12 v-card-personal-info" style="width: 100%; margin: 0 auto;">
+                        <v-toolbar class="v-toolbar" color="" dark flat>
                           <v-spacer />
                           <v-toolbar-title>Personal Info</v-toolbar-title>
                           <v-spacer />
                         </v-toolbar>
-                        <div class="name-field">
+                        <div class="personal-input-field">
                           <label class="field-label" for="fullName">Full Name</label>
                           <v-text-field class="field-input" v-model="fullName" id="fullName" placeholder="First and Last Name" name="fullName" type="text"/>
                         </div>
-                        <div class="email-field">
+                        <div class="personal-input-field">
                           <label class="field-label" for="streetAddress">Street Address</label>
                           <v-text-field class="field-input" v-model="streetAddress" id="streetAddress" placeholder="Street Address" name="streetAddress" type="text"/>
                         </div>
-                        <div class="address-field">
-                          <label class="field-label" for="address">Unit</label>
-                          <v-text-field class="field-input" v-model="address" id="address" placeholder="Banani, Dhaka" name="address" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="unit">Unit</label>
+                          <v-text-field class="field-input" v-model="unit" id="unit" placeholder="Unit" name="unit" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">City</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="city">City</label>
+                          <v-text-field class="field-input" v-model="city" id="city" placeholder="City" name="city" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Postal Code</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="postalCode">Postal Code</label>
+                          <v-text-field class="field-input" v-model="postalCode" id="postalCode" placeholder="Postal Code" name="postalCode" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Home Number</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="homeNumber">Home Number</label>
+                          <v-text-field class="field-input" v-model="homeNumber" id="homeNumber" placeholder="Home Number" name="homeNumber" type="text"/>
                         </div>
-                        <div class="phone-field">
+                        <div class="personal-input-field">
                           <label class="field-label" for="phone">Phone (Work)</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="Work/Mobile Number" name="phone" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">E-mail</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="email">E-mail</label>
+                          <v-text-field class="field-input" v-model="email" id="email" placeholder="E-mail" name="email" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Alterate E-Mail</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="alterateEMail">Alterate E-Mail</label>
+                          <v-text-field class="field-input" v-model="alterateEMail" id="alterateEMail" placeholder="Alterate E-Mail" name="alterateEMail" type="text"/>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Date of Birth</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="MM-DD-YYYY" name="phone" type="text"/>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="dob">Date of Birth</label>
+                          <v-text-field class="field-input" v-model="dob" id="dob" placeholder="MM-DD-YYYY" name="dob" type="text"/>
                         </div>
-                        <div class="phone-field">                              <label class="field-label" for="phone">Role</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="items" placeholder="Role" dense  v-model="role" id="role" name="role" type="text"></v-select>
+                        <div class="personal-input-field">
+                          <label class="field-label" for="heardAboutLeague" style="width: 40%;">I heard about this league</label>
+                          <v-col class="field-input" style="padding: 0px; width: 58%">
+                            <v-select :items="itemsHearAboutLeague" placeholder="How I heard about this league" dense  v-model="heardAboutLeague" id="heardAboutLeague" name="heardAboutLeague" type="text"></v-select>
                           </v-col>
                         </div>
                       </v-card>
                         <!-- Playing Experience -->
-                      <v-card class="elevation-12" style="width: 100%; margin: 10px auto; 0">
-                        <v-toolbar class="v-toolbar" color="primary" dark flat>
+                      <v-card class="elevation-12 v-card-playing-experience" style="width: 100%; margin: 10px auto; 0">
+                        <v-toolbar class="v-toolbar" color="" dark flat>
                           <v-spacer />
                           <v-toolbar-title>Playing Experience</v-toolbar-title>
                           <v-spacer />
                         </v-toolbar>
-                        <label class="field-label" for="phone" style="width: 100%; text-align: left;">The highest level of ball I have played is:</label>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">SPN/SPO/NSA Category</label>
+                        <div class="playing-experience-input-field" style="text-align: left; margin-left: 5%;">
+                          <label class="">The highest level of ball I have played is:</label>
+                        </div>
+                        <div class="playing-experience-input-field">
+                          <label class="field-label" for="SPN_SPO_NSA_Category">SPN/SPO/NSA Category</label>
                           <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="items" placeholder="Role" dense  v-model="role" id="role" name="role" type="text"></v-select>
+                            <v-select :items="itemsSPN_SPO_NSA_Category" placeholder="SPN/SPO/NSA Category" dense  v-model="SPN_SPO_NSA_Category" id="SPN_SPO_NSA_Category" name="SPN_SPO_NSA_Category" type="text"></v-select>
                           </v-col>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Preferred Position</label>
+                        <div class="playing-experience-input-field">
+                          <label class="field-label" for="preferredPosition">Preferred Position</label>
                           <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="items" placeholder="Role" dense  v-model="role" id="role" name="role" type="text"></v-select>
+                            <v-select :items="itemsPreferredPosition" placeholder="Preferred Position" dense  v-model="preferredPosition" id="preferredPosition" name="preferredPosition" type="text"></v-select>
                           </v-col>
                         </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Years of Experience</label>
+                        <div class="playing-experience-input-field">
+                          <label class="field-label" for="yearsOfExperience">Years of Experience</label>
                           <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="items" placeholder="Role" dense  v-model="role" id="role" name="role" type="text"></v-select>
+                            <v-select :items="itemsYearsOfExperience" placeholder="Years of Experience" dense  v-model="yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" type="text"></v-select>
                           </v-col>
                         </div>
-                        <div class="password-field">
-                          <label class="field-label" for="password">Comments on Experience</label>
-                          <v-text-field class="field-input" v-model="password" id="password" placeholder="Password" name="password" type="password"/>
+                        <div class="playing-experience-input-field">
+                          <label class="field-label" for="commentsOnPlayingExperience">Comments on Experience</label>
+                          <v-text-field class="field-input" v-model="commentsOnPlayingExperience" id="commentsOnPlayingExperience" placeholder="Comments on Playing Experience" name="commentsOnPlayingExperience" type="text"/>
                         </div>
                       </v-card>
                       <!-- Pitching Experience -->
-                      <v-card class="elevation-12" style="width: 100%; margin: 10px auto; 0">
-                        <v-toolbar class="v-toolbar" color="primary" dark flat>
+                      <v-card class="v-card-pitching-experience" style="width: 100%; margin: 10px auto; 0">
+                        <v-toolbar class="v-toolbar" color="" dark flat>
                           <v-spacer />
                           <v-toolbar-title>Pitching Experience</v-toolbar-title>
                           <v-spacer />
                         </v-toolbar>
-                        <div class="name-field">
-                          <label class="field-label" for="name">Name</label>
-                          <v-text-field class="field-input" v-model="name" id="name" placeholder="Name" name="name" type="text"/>
+                        <div class="pitch-experience-input-field">
+                          <label class="field-label" for="ableToPitch">I am able to Pitch</label>
+                          <v-col class="field-input" style="padding: 0px;">
+                            <v-select :items="itemsAbleToPitch" placeholder="Select Pitch ability" dense  v-model="ableToPitch" id="ableToPitch" name="ableToPitch" type="text"></v-select>
+                          </v-col>
                         </div>
-                        <div class="email-field">
-                          <label class="field-label" for="email">Email</label>
-                          <v-text-field class="field-input" v-model="email" id="email" placeholder="email@gmail.com" name="email" type="text"/>
+                        <div class="pitch-experience-input-field">
+                          <label class="field-label" for="yearsPitched">Years Pitched</label>
+                          <v-col class="field-input" style="padding: 0px;">
+                            <v-select :items="itemsYearsPitched" placeholder="Years Pitched" dense  v-model="yearsPitched" id="yearsPitched" name="yearsPitched" type="text"></v-select>
+                          </v-col>
                         </div>
-                        <div class="address-field">
-                          <label class="field-label" for="address">Address</label>
-                          <v-text-field class="field-input" v-model="address" id="address" placeholder="Banani, Dhaka" name="address" type="text"/>
-                        </div>
-                        <div class="phone-field">
-                          <label class="field-label" for="phone">Phone</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="+88 016XX XXXXXX" name="phone" type="text"/>
-                        </div>
-                        <div class="password-field">
-                          <label class="field-label" for="password">Password</label>
-                          <v-text-field class="field-input" v-model="password" id="password" placeholder="Password" name="password" type="password"/>
+                        <div class="pitch-experience-input-field">
+                          <label class="field-label" for="commentOnPitchingExperience">Comments on Experience</label>
+                          <v-text-field class="field-input" v-model="commentOnPitchingExperience" id="commentOnPitchingExperience" placeholder="Comment on Pitching Experience" name="commentOnPitchingExperience" type="text"/>
                         </div>
                       </v-card>
                     </v-col>
@@ -158,7 +157,8 @@
               </v-content>
               <v-card-actions>
                 <v-spacer />
-                <v-btn type="submit" class="create-btn" color="primary">Create</v-btn>
+                <v-btn type="submit" class="register-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Register</v-btn>
+                <v-btn @click="reset" class="reset-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Reset</v-btn>
                 <v-spacer />
               </v-card-actions>
             </v-form>
@@ -173,14 +173,87 @@
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      address: '',
+      // personal Info
+      fullName: '',
+      streetAddress: '',
+      unit: '',
+      city: '',
+      postalCode: '',
+      homeNumber: '',
       phone: '',
-      role: '',
-      password: '',
-      items: ['Admin', 'User'],
-      // myItems: ['Foo', 'Bar', 'Fizz', 'Buzz']
+      email: '',
+      alterateEMail: '',
+      dob: '',
+      heardAboutLeague: '',
+      // Playing Experience
+      SPN_SPO_NSA_Category: '',
+      preferredPosition: '',
+      yearsOfExperience: '',
+      commentsOnPlayingExperience: '',
+      // Pitching Experience
+      ableToPitch: '',
+      yearsPitched: '',
+      commentOnPitchingExperience: '',
+      // Selection Items
+      itemsHearAboutLeague: ['Internet search', 'Family League Member', 'Friend', 'Facebook', 'Ads Within Community', 'Online Ad'],
+      itemsSPN_SPO_NSA_Category: ['Not Sure', 'A', 'B', 'C', 'D', 'E / Rec'],
+      itemsPreferredPosition: ['No Preference', 'Infield', 'Outfield'],
+      itemsYearsOfExperience: ['0-3', '4-6', '7-9', '10 +'],
+      itemsAbleToPitch: ['No', 'On an occasional basis', 'As my primary position'],
+      itemsYearsPitched: ['0-3', '4-6', '7-9', '10 +'],
+    }
+  },
+  methods: {
+    onSubmit() {
+      const register = {
+        // Personal Info
+        fullName: this.fullName,
+        streetAddress: this.streetAddress,
+        unit: this.unit,
+        city: this.city,
+        postalCode: this.postalCode,
+        homeNumber: this.homeNumber,
+        phone: this.phone,
+        email: this.email,
+        alterateEMail: this.alterateEMail,
+        dob: this.dob,
+        heardAboutLeague: this.heardAboutLeague,
+        // Playing Experience
+        SPN_SPO_NSA_Category: this.SPN_SPO_NSA_Category,
+        preferredPosition: this.preferredPosition,
+        yearsOfExperience: this.yearsOfExperience,
+        commentsOnPlayingExperience: this.commentsOnPlayingExperience,
+        // Pitching Experience
+        ableToPitch: this.ableToPitch,
+        yearsPitched: this.yearsPitched,
+        commentOnPitchingExperience: this.commentOnPitchingExperience,
+      }
+      console.log(register);
+      console.log(JSON.stringify(register));
+    },
+    reset() {
+      console.log('reset');
+      // Personal Info
+      this.fullName = '',
+      this.streetAddress = '',
+      this.unit = '',
+      this.city = '',
+      this.postalCode = '',
+      this.homeNumber = '',
+      this.phone = '',
+      this.email = '',
+      this.alterateEMail = '',
+      this.dob = '',
+      this.heardAboutLeague = '',
+      // Playing Experience
+      this.SPN_SPO_NSA_Category = '',
+      this.preferredPosition = '',
+      this.yearsOfExperience = '',
+      this.commentsOnPlayingExperience = '',
+      // Pitching Experience
+      this.ableToPitch = '',
+      this.yearsPitched = '',
+      this.commentOnPitchingExperience = ''
     }
   }
 }
@@ -219,7 +292,6 @@ export default {
   padding-bottom: 30px;
 }
 .sidebar li li {
-  /* border-bottom: 1px solid #D2D4C9; */
   border-bottom:none;
   border-left: 1px solid #D2D4C9;
   border-right: 1px solid #D2D4C9;
@@ -228,6 +300,9 @@ export default {
   font-size: 12.96px;
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
+}
+.sidebar li li:last-child {
+  border-bottom: 1px solid #D2D4C9;
 }
 .content {
   float: right;
@@ -307,11 +382,12 @@ form {
 .register .v-toolbar__title {
   font-size: 14px;
 }
-.create-btn {
+.register-btn, .reset-btn {
   width: 30%;
 }
-.name-field, .email-field, .address-field, .phone-field, .password-field {
+.personal-input-field, .playing-experience-input-field, .pitch-experience-input-field {
   position: relative;
+  color: #787878;
 }
 .field-label {
   display: inline-block;
@@ -321,10 +397,23 @@ form {
   text-align: right;
   padding-right: 20px;
 }
+.v-card-playing-experience .field-label,
+.v-card-pitching-experience .field-label {
+  width: 40%;
+}
 .field-input {
   display: inline-block;
   width: 68%;
   font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+.v-card-playing-experience .field-input,
+.v-card-pitching-experience .field-input {
+  width: 58%;
+}
+.v-input__slot {
+  margin: 0;
 }
 .v-card__actions > .v-btn.v-btn {
     padding: 0 8px;
