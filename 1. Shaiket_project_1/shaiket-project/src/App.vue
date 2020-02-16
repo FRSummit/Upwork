@@ -63,4 +63,20 @@ body {
 .v-application--wrap {
   min-height: auto;
 }
+/* About Us page -> For carousel*/
+.v-window__next {
+  right: 0;
+}
+.v-carousel .v-window-item {
+  background: #AA1111;
+  padding: 10px;
+}
+.v-responsive {
+  width: 640px;
+  height: 480px;
+  margin: 0 auto;
+}
+.v-image__image--cover {
+  background-size: contain;
+}
 </style>

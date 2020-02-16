@@ -14,5 +14,7 @@ export default {
 .community {
   background-color: #fff; 
   border-radius: 4px; 
+  overflow: hidden;
+  padding-bottom: 10px;
 }
 </style>
