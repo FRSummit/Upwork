@@ -143,14 +143,6 @@ export default {
     }
   },
   created() {
-    this.checkUserIsAuthorized();
-    firebase.database().ref('users').on('value', (snapshot)=> {
-      this.users = snapshot.val();
-      console.log('snapshot : ');
-      console.log(snapshot.val());
-      console.log('Users : ');
-      console.log(this.users);
-    });
   }
 }
 </script>

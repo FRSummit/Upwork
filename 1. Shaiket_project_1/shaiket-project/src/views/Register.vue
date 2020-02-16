@@ -23,148 +23,177 @@
 			</ul>
 		</div>
     <div class="content">
-			<div class="post">
-				<div class="menu">
-					<ul>
-						<li class="current"><a href="register.html">Registration Form</a></li>
-						<li><a href="register-list.html">2020 Registration List</a></li>
-					</ul>
-				</div>			
-			</div>
-			<div class="post">
-				<h2 class="title">Registration Form</h2>
-				<div class="entry">
-          <v-app id="inspire" class="register-v-app">
-            <v-form @submit.prevent="onSubmit">
-              <v-content class="v-content">
-                <v-container class="v-container">
-                  <v-row align="center" justify="center">
-                    <v-col>
-                        <!-- Personal Info -->
-                      <v-card class="elevation-12 v-card-personal-info" style="width: 100%; margin: 0 auto;">
-                        <v-toolbar class="v-toolbar" color="" dark flat>
+      <div class="swip-tab">
+        <v-tabs v-model="tab" grow class="v-tabs">
+          <v-tab v-for="item in items" :key="item" class="v-tab">{{ item }}</v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="tab">
+          <v-tab-item v-for="item in items" :key="item">
+            <v-card>
+              <v-card v-if="item == 'Registration Form'">
+                <div class="post">
+                  <h2 class="title">Registration Form</h2>
+                  <div class="entry">
+                    <v-app id="inspire" class="register-v-app">
+                      <v-form @submit.prevent="onSubmit">
+                        <v-content class="v-content">
+                          <v-container class="v-container">
+                            <v-row align="center" justify="center">
+                              <v-col>
+                                  <!-- Personal Info -->
+                                <v-card class="elevation-12 v-card-personal-info" style="width: 100%; margin: 0 auto;">
+                                  <v-toolbar class="v-toolbar" color="" dark flat>
+                                    <v-spacer />
+                                    <v-toolbar-title>Personal Info</v-toolbar-title>
+                                    <v-spacer />
+                                  </v-toolbar>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="fullName">Full Name</label>
+                                    <v-text-field class="field-input" v-model="fullName" id="fullName" placeholder="First and Last Name" name="fullName" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="streetAddress">Street Address</label>
+                                    <v-text-field class="field-input" v-model="streetAddress" id="streetAddress" placeholder="Street Address" name="streetAddress" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="unit">Unit</label>
+                                    <v-text-field class="field-input" v-model="unit" id="unit" placeholder="Unit" name="unit" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="city">City</label>
+                                    <v-text-field class="field-input" v-model="city" id="city" placeholder="City" name="city" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="postalCode">Postal Code</label>
+                                    <v-text-field class="field-input" v-model="postalCode" id="postalCode" placeholder="Postal Code" name="postalCode" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="homeNumber">Home Number</label>
+                                    <v-text-field class="field-input" v-model="homeNumber" id="homeNumber" placeholder="Home Number" name="homeNumber" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="phone">Phone (Work)</label>
+                                    <v-text-field class="field-input" v-model="phone" id="phone" placeholder="Work/Mobile Number" name="phone" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="email">E-mail</label>
+                                    <v-text-field class="field-input" v-model="email" id="email" placeholder="E-mail" name="email" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="alterateEMail">Alterate E-Mail</label>
+                                    <v-text-field class="field-input" v-model="alterateEMail" id="alterateEMail" placeholder="Alterate E-Mail" name="alterateEMail" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="dob">Date of Birth</label>
+                                    <v-text-field class="field-input" v-model="dob" id="dob" placeholder="MM-DD-YYYY" name="dob" type="text"/>
+                                  </div>
+                                  <div class="personal-input-field">
+                                    <label class="field-label" for="heardAboutLeague" style="width: 40%;">I heard about this league</label>
+                                    <v-col class="field-input" style="padding: 0px; width: 58%">
+                                      <v-select :items="itemsHearAboutLeague" placeholder="How I heard about this league" dense  v-model="heardAboutLeague" id="heardAboutLeague" name="heardAboutLeague" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                </v-card>
+                                  <!-- Playing Experience -->
+                                <v-card class="elevation-12 v-card-playing-experience" style="width: 100%; margin: 10px auto; 0">
+                                  <v-toolbar class="v-toolbar" color="" dark flat>
+                                    <v-spacer />
+                                    <v-toolbar-title>Playing Experience</v-toolbar-title>
+                                    <v-spacer />
+                                  </v-toolbar>
+                                  <div class="playing-experience-input-field" style="text-align: left; margin-left: 5%;">
+                                    <label class="">The highest level of ball I have played is:</label>
+                                  </div>
+                                  <div class="playing-experience-input-field">
+                                    <label class="field-label" for="SPN_SPO_NSA_Category">SPN/SPO/NSA Category</label>
+                                    <v-col class="field-input" style="padding: 0px;">
+                                      <v-select :items="itemsSPN_SPO_NSA_Category" placeholder="SPN/SPO/NSA Category" dense  v-model="SPN_SPO_NSA_Category" id="SPN_SPO_NSA_Category" name="SPN_SPO_NSA_Category" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                  <div class="playing-experience-input-field">
+                                    <label class="field-label" for="preferredPosition">Preferred Position</label>
+                                    <v-col class="field-input" style="padding: 0px;">
+                                      <v-select :items="itemsPreferredPosition" placeholder="Preferred Position" dense  v-model="preferredPosition" id="preferredPosition" name="preferredPosition" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                  <div class="playing-experience-input-field">
+                                    <label class="field-label" for="yearsOfExperience">Years of Experience</label>
+                                    <v-col class="field-input" style="padding: 0px;">
+                                      <v-select :items="itemsYearsOfExperience" placeholder="Years of Experience" dense  v-model="yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                  <div class="playing-experience-input-field">
+                                    <label class="field-label" for="commentsOnPlayingExperience">Comments on Experience</label>
+                                    <v-text-field class="field-input" v-model="commentsOnPlayingExperience" id="commentsOnPlayingExperience" placeholder="Comments on Playing Experience" name="commentsOnPlayingExperience" type="text"/>
+                                  </div>
+                                </v-card>
+                                <!-- Pitching Experience -->
+                                <v-card class="v-card-pitching-experience" style="width: 100%; margin: 10px auto; 0">
+                                  <v-toolbar class="v-toolbar" color="" dark flat>
+                                    <v-spacer />
+                                    <v-toolbar-title>Pitching Experience</v-toolbar-title>
+                                    <v-spacer />
+                                  </v-toolbar>
+                                  <div class="pitch-experience-input-field">
+                                    <label class="field-label" for="ableToPitch">I am able to Pitch</label>
+                                    <v-col class="field-input" style="padding: 0px;">
+                                      <v-select :items="itemsAbleToPitch" placeholder="Select Pitch ability" dense  v-model="ableToPitch" id="ableToPitch" name="ableToPitch" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                  <div class="pitch-experience-input-field">
+                                    <label class="field-label" for="yearsPitched">Years Pitched</label>
+                                    <v-col class="field-input" style="padding: 0px;">
+                                      <v-select :items="itemsYearsPitched" placeholder="Years Pitched" dense  v-model="yearsPitched" id="yearsPitched" name="yearsPitched" type="text"></v-select>
+                                    </v-col>
+                                  </div>
+                                  <div class="pitch-experience-input-field">
+                                    <label class="field-label" for="commentOnPitchingExperience">Comments on Experience</label>
+                                    <v-text-field class="field-input" v-model="commentOnPitchingExperience" id="commentOnPitchingExperience" placeholder="Comment on Pitching Experience" name="commentOnPitchingExperience" type="text"/>
+                                  </div>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </v-container>
+                        </v-content>
+                        <v-card-actions>
                           <v-spacer />
-                          <v-toolbar-title>Personal Info</v-toolbar-title>
+                          <v-btn type="submit" class="register-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Register</v-btn>
+                          <v-btn @click="reset" class="reset-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Reset</v-btn>
                           <v-spacer />
-                        </v-toolbar>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="fullName">Full Name</label>
-                          <v-text-field class="field-input" v-model="fullName" id="fullName" placeholder="First and Last Name" name="fullName" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="streetAddress">Street Address</label>
-                          <v-text-field class="field-input" v-model="streetAddress" id="streetAddress" placeholder="Street Address" name="streetAddress" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="unit">Unit</label>
-                          <v-text-field class="field-input" v-model="unit" id="unit" placeholder="Unit" name="unit" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="city">City</label>
-                          <v-text-field class="field-input" v-model="city" id="city" placeholder="City" name="city" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="postalCode">Postal Code</label>
-                          <v-text-field class="field-input" v-model="postalCode" id="postalCode" placeholder="Postal Code" name="postalCode" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="homeNumber">Home Number</label>
-                          <v-text-field class="field-input" v-model="homeNumber" id="homeNumber" placeholder="Home Number" name="homeNumber" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="phone">Phone (Work)</label>
-                          <v-text-field class="field-input" v-model="phone" id="phone" placeholder="Work/Mobile Number" name="phone" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="email">E-mail</label>
-                          <v-text-field class="field-input" v-model="email" id="email" placeholder="E-mail" name="email" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="alterateEMail">Alterate E-Mail</label>
-                          <v-text-field class="field-input" v-model="alterateEMail" id="alterateEMail" placeholder="Alterate E-Mail" name="alterateEMail" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="dob">Date of Birth</label>
-                          <v-text-field class="field-input" v-model="dob" id="dob" placeholder="MM-DD-YYYY" name="dob" type="text"/>
-                        </div>
-                        <div class="personal-input-field">
-                          <label class="field-label" for="heardAboutLeague" style="width: 40%;">I heard about this league</label>
-                          <v-col class="field-input" style="padding: 0px; width: 58%">
-                            <v-select :items="itemsHearAboutLeague" placeholder="How I heard about this league" dense  v-model="heardAboutLeague" id="heardAboutLeague" name="heardAboutLeague" type="text"></v-select>
-                          </v-col>
-                        </div>
-                      </v-card>
-                        <!-- Playing Experience -->
-                      <v-card class="elevation-12 v-card-playing-experience" style="width: 100%; margin: 10px auto; 0">
-                        <v-toolbar class="v-toolbar" color="" dark flat>
-                          <v-spacer />
-                          <v-toolbar-title>Playing Experience</v-toolbar-title>
-                          <v-spacer />
-                        </v-toolbar>
-                        <div class="playing-experience-input-field" style="text-align: left; margin-left: 5%;">
-                          <label class="">The highest level of ball I have played is:</label>
-                        </div>
-                        <div class="playing-experience-input-field">
-                          <label class="field-label" for="SPN_SPO_NSA_Category">SPN/SPO/NSA Category</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="itemsSPN_SPO_NSA_Category" placeholder="SPN/SPO/NSA Category" dense  v-model="SPN_SPO_NSA_Category" id="SPN_SPO_NSA_Category" name="SPN_SPO_NSA_Category" type="text"></v-select>
-                          </v-col>
-                        </div>
-                        <div class="playing-experience-input-field">
-                          <label class="field-label" for="preferredPosition">Preferred Position</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="itemsPreferredPosition" placeholder="Preferred Position" dense  v-model="preferredPosition" id="preferredPosition" name="preferredPosition" type="text"></v-select>
-                          </v-col>
-                        </div>
-                        <div class="playing-experience-input-field">
-                          <label class="field-label" for="yearsOfExperience">Years of Experience</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="itemsYearsOfExperience" placeholder="Years of Experience" dense  v-model="yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" type="text"></v-select>
-                          </v-col>
-                        </div>
-                        <div class="playing-experience-input-field">
-                          <label class="field-label" for="commentsOnPlayingExperience">Comments on Experience</label>
-                          <v-text-field class="field-input" v-model="commentsOnPlayingExperience" id="commentsOnPlayingExperience" placeholder="Comments on Playing Experience" name="commentsOnPlayingExperience" type="text"/>
-                        </div>
-                      </v-card>
-                      <!-- Pitching Experience -->
-                      <v-card class="v-card-pitching-experience" style="width: 100%; margin: 10px auto; 0">
-                        <v-toolbar class="v-toolbar" color="" dark flat>
-                          <v-spacer />
-                          <v-toolbar-title>Pitching Experience</v-toolbar-title>
-                          <v-spacer />
-                        </v-toolbar>
-                        <div class="pitch-experience-input-field">
-                          <label class="field-label" for="ableToPitch">I am able to Pitch</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="itemsAbleToPitch" placeholder="Select Pitch ability" dense  v-model="ableToPitch" id="ableToPitch" name="ableToPitch" type="text"></v-select>
-                          </v-col>
-                        </div>
-                        <div class="pitch-experience-input-field">
-                          <label class="field-label" for="yearsPitched">Years Pitched</label>
-                          <v-col class="field-input" style="padding: 0px;">
-                            <v-select :items="itemsYearsPitched" placeholder="Years Pitched" dense  v-model="yearsPitched" id="yearsPitched" name="yearsPitched" type="text"></v-select>
-                          </v-col>
-                        </div>
-                        <div class="pitch-experience-input-field">
-                          <label class="field-label" for="commentOnPitchingExperience">Comments on Experience</label>
-                          <v-text-field class="field-input" v-model="commentOnPitchingExperience" id="commentOnPitchingExperience" placeholder="Comment on Pitching Experience" name="commentOnPitchingExperience" type="text"/>
-                        </div>
-                      </v-card>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-content>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn type="submit" class="register-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Register</v-btn>
-                <v-btn @click="reset" class="reset-btn" color="primary" style="background-color: #333333 !important; border-color: #333333 !important;">Reset</v-btn>
-                <v-spacer />
-              </v-card-actions>
-            </v-form>
-          </v-app>
-				</div>
-			</div>
+                        </v-card-actions>
+                      </v-form>
+                    </v-app>
+                  </div>
+                </div>
+              </v-card>
+              <v-card v-if="item == '2020 Registration List'">
+                <div class="post">
+                  <h2 class="title">2020 Registration List</h2>
+                  <div class="entry" style="padding: 12px; background: #FDFDFD;">
+                    <v-simple-table dark>
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class="text-left">Player</th>
+                            <th class="text-left">Note</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="item in regPlayers" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.note }}</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </div>
+                </div>
+              </v-card>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+      </div>
 		</div>
   </div>
 </template>
@@ -201,6 +230,25 @@ export default {
       itemsYearsOfExperience: ['0-3', '4-6', '7-9', '10 +'],
       itemsAbleToPitch: ['No', 'On an occasional basis', 'As my primary position'],
       itemsYearsPitched: ['0-3', '4-6', '7-9', '10 +'],
+      tab: null,
+      items: [
+        'Registration Form', '2020 Registration List',
+      ],
+      text: 'This is the text',
+      regPlayers: [
+        {
+          name: 'Player 1',
+          note: 'Faltu',
+        },
+        {
+          name: 'Player 2',
+          note: 'Bolod',
+        },
+        {
+          name: 'Player 3',
+          note: 'haram khor',
+        }
+      ]
     }
   },
   methods: {
@@ -310,6 +358,29 @@ export default {
   padding: 20px 20px 0 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
+}
+.v-slide-group__content {
+  background-color: #EBEBEB;
+  padding: 6px !important;
+}
+.v-tabs-slider {
+  background-color: #AA1111 !important;
+}
+.v-tab {
+  font-weight: bold !important;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14.4px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  margin: 0 6px;
+}
+.v-tab--active {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
+}
+.v-tab:hover {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
 }
 .post {
   margin-bottom: 8px;
@@ -421,5 +492,11 @@ form {
     border-color: #1976d2 !important;
     font-weight: bold;
     font-family: Roboto, sans-serif;
+}
+.v-data-table th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14.4px !important;
+  color: #FFFFFF !important;
+  font-weight: normal;
 }
 </style>
