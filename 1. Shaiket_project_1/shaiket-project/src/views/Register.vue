@@ -177,11 +177,13 @@
                           <tr>
                             <th class="text-left">Player</th>
                             <th class="text-left">Note</th>
+                            <th class="text-left">Note</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr v-for="item in regPlayers" :key="item.name">
                             <td>{{ item.name }}</td>
+                            <td>{{ item.note }}</td>
                             <td>{{ item.note }}</td>
                           </tr>
                         </tbody>
@@ -493,10 +495,12 @@ form {
     font-weight: bold;
     font-family: Roboto, sans-serif;
 }
-.v-data-table th {
+.v-data-table th, .v-data-table td {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14.4px !important;
   color: #FFFFFF !important;
   font-weight: normal;
+  padding: 10px 0 !important;
+  height: auto !important;
 }
 </style>
