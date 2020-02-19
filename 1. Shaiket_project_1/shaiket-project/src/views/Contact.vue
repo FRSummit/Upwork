@@ -3,15 +3,22 @@
     <div class="sidebar">
 			<ul>
 				<li>
-					<h2>Mailing Address</h2>
-					<ul>						
-						<li>Markham Men's Slo-Pitch League<br><br>
+          <v-card class="contact-v-card">
+            <v-toolbar class="v-toolbar" color="" dark flat>
+              <v-spacer />
+              <v-toolbar-title style="font-size: 17.28px; font-weight: bold;">Mailing Address</v-toolbar-title>
+              <v-spacer />
+            </v-toolbar>
+            <div class="contact-input-field">
+              <label class="field-label" for="contact_name">
+                Markham Men's Slo-Pitch League<br><br>
                 6579 Highway 7 <br>
                 PO Box 77073 <br>
                 Markham, ON <br>
                 L3P 0C8 <br>
-            </li>
-					</ul>
+              </label>
+            </div>
+          </v-card>
 				</li>
 			</ul>
 		</div>
@@ -21,13 +28,12 @@
         <!-- <h2 class="title">SEND AN EMAIL TO MMSPL</h2> -->
         <div class="entry">
           <v-app id="inspire" class="register-v-app">
-            <v-form @submit.prevent="onSubmit">
+            <v-form @submit.prevent="onSubmit" class="v-form">
               <v-content class="v-content">
-                <v-container class="v-container">
-                  <v-row align="center" justify="center">
-                    <v-col>
+                <v-container class="v-container" style="padding: 0;">
+                  <v-row align="center" justify="center" style="width: 100%; margin: 0;">
                       <!-- Pitching Experience -->
-                      <v-card class="contact-v-card" style="width: 80%; margin: 10px auto; 0">
+                      <v-card class="contact-v-card" style="width: 80%; margin: 0 auto;">
                         <v-toolbar class="v-toolbar" color="" dark flat>
                           <v-spacer />
                           <v-toolbar-title>SEND AN EMAIL TO MMSPL</v-toolbar-title>
@@ -46,7 +52,6 @@
                           <v-text-field class="field-input" v-model="contact_message" id="contact_message" placeholder="Type your message" name="contact_message" type="text"/>
                         </div>
                       </v-card>
-                    </v-col>
                   </v-row>
                 </v-container>
               </v-content>
@@ -114,10 +119,27 @@ export default {
 .contact .sidebar li li:last-child {
   border-bottom: 1px solid #D2D4C9;
 }
+.contact .sidebar .v-toolbar {
+  height: auto !important;
+}
+.contact .sidebar .v-toolbar__content {
+  height: auto !important;
+  padding: 8px 0;
+}
+.contact .sidebar  .field-label {
+  width: 100%;
+  font-size: 11.52px;
+  text-align: left;
+  padding: 10px;
+}
 .contact .content {
   float: right;
   width: 720px;
   padding: 20px 20px 0 0;
+}
+.contact .v-form {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
 }
 .contact .contact-v-card {
   color: #787878 !important;
