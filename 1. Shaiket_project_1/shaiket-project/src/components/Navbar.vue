@@ -4,7 +4,7 @@
     <dir class="nav-head-top-section">
       <div class="nav-head-text-section">
         <div class="nav-head-title">
-          <span>Basket Ball Organization</span>
+          <span>Mississauga Men's Senior Slo-Pitch</span>
         </div>
         <div class="nav-head-subtitle">
           <span>Established 1968</span>
@@ -15,13 +15,7 @@
       </dir>
     </dir>
     
-    <!-- <v-toolbar style="background-color: #1976d2 !important; border-color: #1976d2 !important;"> -->
       <div class="navbar-toolbar">
-        <!-- <div class="navbar-toolbar-route_name_sec">
-          <v-toolbar-title class="headline text-uppercase">
-            <span>{{ $route.name }}</span>
-          </v-toolbar-title>
-        </div> -->
         <div class="navbar-toolbar-menu_sec">
           <v-btn to="/home" class="mr-2">Home</v-btn>
           <v-btn to="/register" class="mr-2">Register</v-btn>
@@ -35,11 +29,12 @@
           <v-btn class="mr-2" @click="logout" v-if="userIsAuthorized">Logout</v-btn>
           <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn>
         </div>
-        <!-- <v-spacer></v-spacer> -->
 
       </div>
     <!-- </v-toolbar> -->
     <!-- <router-view/> -->
+
+
   </div>
 </template>
 
@@ -75,7 +70,7 @@ export default {
   created() {
     this.checkUserIsAuthorized();
     console.log('This component name : ' + this.$route.name);
-  }
+  },
 };
 </script>
 
@@ -118,14 +113,14 @@ export default {
   padding: 20px 30px;
 } */
 .nav-head-text-section {
-  width: 50%;
+  width: 60%;
   display: inline-block;
   text-align: left;
   vertical-align: top;
   padding: 20px 16px 0;
 }
 .nav-head-img-section {
-  width: 50%;
+  width: 40%;
   display: inline-block;
   text-align: right;
 }
