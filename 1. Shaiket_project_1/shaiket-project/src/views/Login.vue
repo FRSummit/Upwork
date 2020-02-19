@@ -72,7 +72,8 @@ export default {
             console.log('pass');
             var loginPass = {'login_auth_value': 'authorized'};
             localStorage.setItem('upwork_project_shaiket_login_pass', JSON.stringify(loginPass));
-            router.replace('/home');
+            // router.replace('/home');
+            this.$router.push('/home')
             window.location.reload();
           } else {
             console.log('fail');
@@ -86,29 +87,18 @@ export default {
 </script>
 
 <style scoped>
-/* .login {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-} */
-.login-v-app {
-  /* background-image: url("../assets/images/login-back.jpg") !important;
-  background-size: cover !important; */
+.login .login-v-app {
   background: transparent !important;
 }
-.headline {
+.login .headline {
   color: #ffffff;
   font-size: 1.5rem !important;
   font-weight: 700 !important;
 }
-.login-v-toolbar {
+.login .login-v-toolbar {
   background: #81c6d68f;
 }
-.login-btn {
+.login .login-btn {
   width: 30%;
 }
-/* .container.fill-height {
-  display: block;
-} */
 </style>

@@ -76,31 +76,32 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.sidebar {
+.contact .sidebar {
   font-size: 80%;
   float: left;
   padding: 20px 0 0 20px;
   width: 240px;
 }
-.sidebar ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.contact .sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.sidebar li {
-    margin: 0;
-    padding: 0;
+.contact .sidebar li {
+  margin: 0;
+  padding: 0;
 }
-.sidebar h2, .sidebar h3 {
-    padding: 10px;
-    background-color: #333333;
-    color: #FFFFFF;
+.contact .sidebar h2, 
+.contact .sidebar h3 {
+  padding: 10px;
+  background-color: #333333;
+  color: #FFFFFF;
   font-size: 17.28px;
 }
-.sidebar li ul {
-    padding-bottom: 30px;
+.contact .sidebar li ul {
+  padding-bottom: 30px;
 }
-.sidebar li li {
+.contact .sidebar li li {
   border-bottom: none;
   border-left: 1px solid #D2D4C9;
   border-right: 1px solid #D2D4C9;
@@ -110,24 +111,39 @@ export default {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar li li:last-child {
+.contact .sidebar li li:last-child {
   border-bottom: 1px solid #D2D4C9;
 }
-.content {
+.contact .content {
   float: right;
   width: 720px;
   padding: 20px 20px 0 0;
 }
-.contact-v-card {
+.contact .contact-v-card {
   color: #787878 !important;
   font-size: 11.52px !important;
   text-align: left !important;
   font-family: Arial, Helvetica, sans-serif !important;
 }
-.v-card-pitching-experience .field-label {
+.contact .v-card-pitching-experience .field-label {
   width: 20%;
 }
-.v-card-pitching-experience .field-input {
+.contact .v-card-pitching-experience .field-input {
   width: 70%;
+}
+.contact .field-input {
+  display: inline-block;
+  width: 68%;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+.contact .field-label {
+  display: inline-block;
+  width: 30%;
+  text-align: left;
+  font-size: 14px;
+  text-align: right;
+  padding-right: 20px;
 }
 </style>

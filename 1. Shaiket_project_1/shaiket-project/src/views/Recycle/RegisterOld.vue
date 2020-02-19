@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="register_old">
     <div class="sidebar">
 			<ul>
 				<li>
@@ -412,38 +412,38 @@ export default {
 </script>
 
 <style stcope>
-.register {
+.register_old {
   background-color: #fff; 
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
 }
-.sidebar {
+.register_old .sidebar {
   width: 440px;
   font-size: 90%;
   padding: 20px 0 0 20px;
   text-align: left;
   float: left;
 }
-.sidebar ul {
+.register_old .sidebar ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.sidebar li {
+.register_old .sidebar li {
   margin: 0;
   padding: 0;
 }
-.sidebar h2, .sidebar h3 {
+.register_old .sidebar h2, .sidebar h3 {
   padding: 10px;
   background-color: #333333;
   color: #FFFFFF;
   font-size:15.1632px;
 }
-.sidebar li ul {
+.register_old .sidebar li ul {
   padding-bottom: 30px;
 }
-.sidebar li li {
+.register_old .sidebar li li {
   border-bottom:none;
   border-left: 1px solid #D2D4C9;
   border-right: 1px solid #D2D4C9;
@@ -453,24 +453,24 @@ export default {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar li li:last-child {
+.register_old .sidebar li li:last-child {
   border-bottom: 1px solid #D2D4C9;
 }
-.content {
+.register_old .content {
   float: right;
   width: 520px;
   padding: 20px 20px 0 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
 }
-.v-slide-group__content {
+.register_old .v-slide-group__content {
   background-color: #EBEBEB;
   padding: 6px !important;
 }
-.v-tabs-slider {
+.register_old .v-tabs-slider {
   background-color: #AA1111 !important;
 }
-.v-tab {
+.register_old .v-tab {
   font-weight: bold !important;
   font-family:Arial, Helvetica, sans-serif;
   font-size:14.4px !important;
@@ -478,93 +478,96 @@ export default {
   text-transform: none !important;
   margin: 0 6px;
 }
-.v-tab--active {
+.register_old .v-tab--active {
   background-color: #AA1111;
   color: #FFFFFF !important;
 }
-.v-tab:hover {
+.register_old .v-tab:hover {
   background-color: #AA1111;
   color: #FFFFFF !important;
 }
-.post {
+.register_old .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .menu {
+.register_old .post .menu {
   background-color: #EBEBEB;
 }
-.menu {
+.register_old .menu {
   height: 50px;
   margin: 0 auto;
   padding: 0;
 }
-.menu ul {
+.register_old .menu ul {
   margin: 0;
   padding: 0;
   padding-left: 10px;
   list-style: none;
 }
-.menu li {
+.register_old .menu li {
   float: left;
   height: 50px;
 }
-.post .menu a:hover,
-.post .menu li.current a {
+.register_old .post .menu a:hover,
+.register_old .post .menu li.current a {
   color: #FFFFFF;
   font-size:14.4px;
 }
-.menu a:hover, .menu li.current a {
+.register_old .menu a:hover, 
+.register_old .menu li.current a {
   background-color: #AA1111;
 }
-.post .menu a {
+.register_old .post .menu a {
   color: #000000;
   font-weight: bold;
   border: 1px solid #D2D4C9;
   font-size:14.4px;
 }
-.menu a {
+.register_old .menu a {
   display: block;
   margin-top: 10px;
   margin-right: 5px;
   padding: 7px 18px;
   text-decoration: none;
 }
-.post .title {
+.register_old .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
   text-align: left;
   font-size:21.6px;
 }
-.post .entry {
+.register_old .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 0;
 }
-form {
+.register_old form {
   margin: 0;
   padding: 0;
 }
-.v-container {
+.register_old .v-container {
   padding: 0 10px;
 }
-.register .v-toolbar {
+.register_old .v-toolbar {
   height: auto !important;
 }
-.register .v-toolbar__content {
+.register_old .v-toolbar__content {
   height: auto !important;
 }
-.register .v-toolbar__title {
+.register_old .v-toolbar__title {
   font-size: 14px;
 }
-.register-btn, .reset-btn {
+.register_old.register-btn, .reset-btn {
   width: 30%;
 }
-.personal-input-field, .playing-experience-input-field, .pitch-experience-input-field {
+.register_old .personal-input-field, 
+.register_old .playing-experience-input-field, 
+.register_old .pitch-experience-input-field {
   position: relative;
   color: #787878;
 }
-.field-label {
+.register_old .field-label {
   display: inline-block;
   width: 30%;
   text-align: left;
@@ -572,25 +575,25 @@ form {
   text-align: right;
   padding-right: 20px;
 }
-.v-card-playing-experience .field-label,
-.v-card-pitching-experience .field-label {
+.register_old .v-card-playing-experience .field-label,
+.register_old .v-card-pitching-experience .field-label {
   width: 40%;
 }
-.field-input {
+.register_old .field-input {
   display: inline-block;
   width: 68%;
   font-size: 14px;
   padding: 0;
   margin: 0;
 }
-.v-card-playing-experience .field-input,
-.v-card-pitching-experience .field-input {
+.register_old .v-card-playing-experience .field-input,
+.register_old .v-card-pitching-experience .field-input {
   width: 58%;
 }
-.v-input__slot {
+.register_old .v-input__slot {
   margin: 0;
 }
-.v-card__actions > .v-btn.v-btn {
+.register_old .v-card__actions > .v-btn.v-btn {
     padding: 0 8px;
     background-color: #1976d2 !important;
     border-color: #1976d2 !important;

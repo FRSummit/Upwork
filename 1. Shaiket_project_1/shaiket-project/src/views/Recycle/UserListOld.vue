@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">
+  <div class="admin_old">
     <v-simple-table height="300px">
       <template v-slot:default>
         <thead class="table-head">
@@ -63,19 +63,19 @@ export default {
 </script>
 
 <style stcope>
-.admin {
+.admin_old {
   background-color: #fff; 
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
 }
-.admin .v-card {
+.admin_old .v-card {
   background: #c2d0de;
 }
-.admin .table-head {
+.admin_old .table-head {
   background: #b1cde8;
 }
-.admin .table-body {
+.admin_old .table-body {
   background: #e3f0fd;
 }
 </style>

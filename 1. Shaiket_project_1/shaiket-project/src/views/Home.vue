@@ -154,17 +154,17 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-h3 {
+.home h3 {
   margin: 40px 0 0;
 }
-ul {
+.home ul {
   list-style-type: none;
   padding: 0;
 }
-li {
+.home li {
   margin: 0 10px;
 }
-a {
+.home a {
   color: #42b983;
 }
 .home .v-card {
@@ -176,7 +176,7 @@ a {
 .home .table-body {
   background: #e3f0fd;
 }
-.sidebar {
+.home .sidebar {
   font-size: 80%;
   float: left;
   padding: 20px 0 0 20px;
@@ -184,22 +184,20 @@ a {
   width: 240px;
   text-align: left;
 }
-.sidebar-parent-ul {
-}
-.sidebar-parent-li {
+.home .sidebar-parent-li {
   margin: 0;
 }
-.sidebar h2, .sidebar h3 {
+.home .sidebar h2, .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
   background-color: #333333;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar-child-ul {
+.home .sidebar-child-ul {
   padding-bottom: 10px;
 }
-.sidebar-child-ul li {
+.home .sidebar-child-ul li {
   font-size:11.52px;
   border-bottom: 1px solid #D2D4C9;
   border-left: 1px solid #D2D4C9;
@@ -208,7 +206,7 @@ a {
   margin: 0;
   color: #787878;
 }
-.sidebar-child-ul li span {
+.home .sidebar-child-ul li span {
   display: block;
   padding: 0;
   padding-top: 2px;
@@ -217,23 +215,23 @@ a {
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
 }
-.sidebar-child-ul li a {
+.home .sidebar-child-ul li a {
   color: #417FDA;
   text-decoration: none;
 }
-.content {
+.home .content {
   float: right;
   /* width: 700px; */
   width: 720px;
   padding: 20px 20px 0 0;
 }
-.post {
+.home .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
   text-align: left;
 }
-.post .title {
+.home .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
@@ -241,20 +239,20 @@ a {
   font-size:16.848px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.post .entry {
+.home .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size:14.4px;
   color: #787878;
 }
-.post .entry p {
+.home .post .entry p {
   margin-bottom: 14.4px;
 }
-.post .entry a {
+.home .post .entry a {
   color: #417FDA;
   text-decoration: none;
 }
-.pictureframe {
+.home .pictureframe {
   background-color: #AA1111;
   padding: 10px;
   text-align: center;
@@ -264,17 +262,17 @@ a {
   height: 212.92px;
   vertical-align: bottom;
 }
-.pictureframe.full-width {
+.home .pictureframe.full-width {
   width: 100%;
   height: 352px;
 }
-.pictureframe img {
+.home .pictureframe img {
   width: 290px; 
 }
-.pictureframe.full-width img {
+.home .pictureframe.full-width img {
   width: 630px;
 }
-.pictureframe span {
+.home .pictureframe span {
   display: block;
   color: #FFFFFF;
   padding-top: 8px;

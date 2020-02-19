@@ -120,39 +120,39 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.content {
+.standings .content {
   float: right;
   width: 948px;
   padding: 20px 20px 0 0;
   text-align: left;
 }
-.post {
+.standings .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .title {
+.standings .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
 }
-.post .menu {
+.standings .post .menu {
   background-color: #EBEBEB;
   height: 70px;
 }
-.post .entry {
+.standings .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
 }
-.entry ul {
+.standings .entry ul {
   margin-bottom: 14.4px;
   padding: 0;
   padding-left: 40px;
   color: #787878;
 }
-.admin {
+.standings .admin {
   table-layout: fixed;
   width: 100%;
   border-spacing: 0px 0px;
@@ -160,71 +160,75 @@ export default {
   color: #000000;
   text-align: center;
 }
-.admin td {
+.standings .admin td {
   padding: 10px;
   border: 1px solid #000000;
   background-color: #FFFFFF;
 }
-.admin td span.top {
+.standings .admin td span.top {
   font-weight: bold;
 }
-.v-tabs-items {
+.standings .v-tabs-items {
   margin-top: 10px;
 }
-.v-slide-group__content {
-  width: 100%;
-  padding: 14px 6px !important;
-}
-.v-slide-group {
+.standings .v-slide-group {
   height: 70px;
 }
-.v-tab {
+.standings .v-tab {
   text-align: left;
   color: #222 !important;
   border: 1px solid #D2D4C9;
   padding: 0 20px;
   max-width: 120px !important;
 }
-.v-tab--active {
+.standings .v-tab--active {
   color: #FFFFFF !important;
 }
-.v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
+.standings .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
   display: none;
 }
-.entry p {
+.standings .entry p {
   margin: 0 1px 14px;
   color: #787878;
 }
-.pictureframe {
+.standings .pictureframe {
   background-color: #AA1111;
   padding: 10px;
   text-align: center;
 }
-.pictureframe span {
+.standings .pictureframe span {
   display: block;
   color: #FFFFFF;
   padding-top: 10px;
   font-weight: bold;
 }
-.headerRow {
+.standings .headerRow {
   background-color: #333333 !important;
   color: #FFFFFF !important;
 }
-.dataTable td {
+.standings .dataTable td {
   padding: 3px;
 }
-.hiliteRow {
+.standings .hiliteRow {
   background-color: #AA1111;
   color: #FFFFFF;
 }
-.zebra tr:nth-child(odd), .oddRow {
+.standings .zebra tr:nth-child(odd), .oddRow {
   background-color: #FFFFFF;
 }
-.zebra tr:nth-child(even), .evenRow {
+.standings .zebra tr:nth-child(even), .evenRow {
   background-color: #D4D4D4;
 }
-ol {
-  color: #787878;
-  padding-left: 40px;
+.standings ol {
+  color: #787878 !important;
+  padding-left: 40px !important;
+}
+.standings .v-tab--active {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
+}
+.standings .v-tab:hover {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
 }
 </style>

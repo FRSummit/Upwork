@@ -79,4 +79,31 @@ body {
 .v-image__image--cover {
   background-size: contain;
 }
+.v-slide-group__content {
+  background-color: #EBEBEB;
+  padding: 6px !important;
+}
+/* About Us page -> For carousel*/
+/* ---------------------------- */
+/* Register, Standing, Award page */
+.v-tabs-slider {
+  background-color: #AA1111 !important;
+}
+.v-tab {
+  font-weight: bold !important;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:14.4px !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  margin: 0 6px;
+}
+.v-tab--active {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
+}
+.v-tab:hover {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
+}
+/* Register, Standing, Award page */
 </style>

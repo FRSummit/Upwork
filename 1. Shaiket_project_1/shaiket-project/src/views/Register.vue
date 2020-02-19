@@ -316,134 +316,112 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.sidebar {
+.register .sidebar {
   width: 440px;
   font-size: 90%;
   padding: 20px 0 0 20px;
   text-align: left;
   float: left;
 }
-.sidebar ul {
+.register .sidebar ul {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.sidebar li {
+.register .sidebar li {
   margin: 0;
   padding: 0;
 }
-.sidebar h2, .sidebar h3 {
+.register .sidebar h2,
+.register .sidebar h3 {
   padding: 10px;
   background-color: #333333;
   color: #FFFFFF;
   font-size:15.1632px;
 }
-.sidebar li ul {
+.register .sidebar li ul {
   padding-bottom: 30px;
 }
-.sidebar li li {
+.register .sidebar li li {
   border-bottom:none;
   border-left: 1px solid #D2D4C9;
   border-right: 1px solid #D2D4C9;
-  padding: 10px;
+  padding: 10px !important;
   color: #787878;
   font-size: 12.96px;
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar li li:last-child {
+.register .sidebar li li:last-child {
   border-bottom: 1px solid #D2D4C9;
 }
-.content {
+.register .content {
   float: right;
   width: 520px;
   padding: 20px 20px 0 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
 }
-.v-slide-group__content {
-  background-color: #EBEBEB;
-  padding: 6px !important;
+.register form {
+  margin: 0;
+  padding: 0;
 }
-.v-tabs-slider {
-  background-color: #AA1111 !important;
-}
-.v-tab {
-  font-weight: bold !important;
-  font-family:Arial, Helvetica, sans-serif;
-  font-size:14.4px !important;
-  letter-spacing: 0 !important;
-  text-transform: none !important;
-  margin: 0 6px;
-}
-.v-tab--active {
-  background-color: #AA1111;
-  color: #FFFFFF !important;
-}
-.v-tab:hover {
-  background-color: #AA1111;
-  color: #FFFFFF !important;
-}
-.post {
+.register .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .menu {
+.register .post .menu {
   background-color: #EBEBEB;
 }
-.menu {
+.register .menu {
   height: 50px;
   margin: 0 auto;
   padding: 0;
 }
-.menu ul {
+.register .menu ul {
   margin: 0;
   padding: 0;
   padding-left: 10px;
   list-style: none;
 }
-.menu li {
+.register .menu li {
   float: left;
   height: 50px;
 }
-.post .menu a:hover,
-.post .menu li.current a {
+.register .post .menu a:hover,
+.register .post .menu li.current a {
   color: #FFFFFF;
   font-size:14.4px;
 }
-.menu a:hover, .menu li.current a {
+.register .menu a:hover, .menu li.current a {
   background-color: #AA1111;
 }
-.post .menu a {
+.register .post .menu a {
   color: #000000;
   font-weight: bold;
   border: 1px solid #D2D4C9;
   font-size:14.4px;
 }
-.menu a {
+.register .menu a {
   display: block;
   margin-top: 10px;
   margin-right: 5px;
   padding: 7px 18px;
   text-decoration: none;
 }
-.post .title {
+.register .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
   text-align: left;
   font-size:21.6px;
 }
-.post .entry {
+.register .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 0;
 }
-form {
-  margin: 0;
-  padding: 0;
-}
-.v-container {
+.register .v-container {
   padding: 0 10px;
 }
 .register .v-toolbar {
@@ -455,14 +433,17 @@ form {
 .register .v-toolbar__title {
   font-size: 14px;
 }
-.register-btn, .reset-btn {
+.register .register-btn, 
+.register .reset-btn {
   width: 30%;
 }
-.personal-input-field, .playing-experience-input-field, .pitch-experience-input-field {
+.register .personal-input-field, 
+.register .playing-experience-input-field, 
+.register .pitch-experience-input-field {
   position: relative;
   color: #787878;
 }
-.field-label {
+.register .field-label {
   display: inline-block;
   width: 30%;
   text-align: left;
@@ -470,32 +451,33 @@ form {
   text-align: right;
   padding-right: 20px;
 }
-.v-card-playing-experience .field-label,
-.v-card-pitching-experience .field-label {
+.register .v-card-playing-experience .field-label,
+.register .v-card-pitching-experience .field-label {
   width: 40%;
 }
-.field-input {
+.register .field-input {
   display: inline-block;
   width: 68%;
   font-size: 14px;
   padding: 0;
   margin: 0;
 }
-.v-card-playing-experience .field-input,
-.v-card-pitching-experience .field-input {
+.register .v-card-playing-experience .field-input,
+.register .v-card-pitching-experience .field-input {
   width: 58%;
 }
-.v-input__slot {
+.register .v-input__slot {
   margin: 0;
 }
-.v-card__actions > .v-btn.v-btn {
+.register .v-card__actions > .v-btn.v-btn {
     padding: 0 8px;
     background-color: #1976d2 !important;
     border-color: #1976d2 !important;
     font-weight: bold;
     font-family: Roboto, sans-serif;
 }
-.v-data-table th, .v-data-table td {
+.register .v-data-table th, 
+.register .v-data-table td {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14.4px !important;
   color: #FFFFFF !important;

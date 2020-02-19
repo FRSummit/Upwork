@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="home" v-if="userIsAuthorized"> -->
-  <div class="schedules">
+  <div class="admin">
     <div class="sidebar">
       <ul class="sidebar-parent-ul">
         <li>
@@ -44,7 +44,7 @@
 				<div class="post">
 					<h2 class="title">2020 League Executive</h2>
 					<div class="entry">
-						<table border="0" cellspacing="0" class="admin">
+						<table border="0" cellspacing="0" class="admin_table">
 							<tbody><tr>
 								<td><span class="top">President</span><br>Sean Bansavatar<br><span class="bottom">S+H Raiders</span><br><a href="mailto:president@mmspl.ca?subject=Message to MMSPL President">Email</a></td>
 								<td><span class="top">1st Vice-President</span><br>Jay Mclean<br><span class="bottom">Beavers</span><br><a href="mailto:first-vice-president@mmspl.ca?subject=Message to MMSPL 1st Vice President">Email</a></td>
@@ -61,7 +61,7 @@
 				<div class="post">
 					<h2 class="title">2020 Executive Council - Team Representatives</h2>
 					<div class="entry">
-						<table border="0" cellspacing="0" class="admin">
+						<table border="0" cellspacing="0" class="admin_table">
 							<tbody><tr>
 								<td><span class="top">RJ Clements</span><br>Ace Pools Moose</td>
 								<td><span class="top">Kirby Kuindersma</span><br>Duchess Beavers</td>
@@ -135,33 +135,33 @@ export default {
 </script>
 
 <style scoped>
-.schedules {
+.admin {
   background-color: #fff; 
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
 }
-.sidebar {
+.admin .sidebar {
   font-size: 80%;
   float: left;
   padding: 20px 0 0 20px;
   width: 240px;
   text-align: left;
 }
-.sidebar li {
+.admin .sidebar li {
   margin: 0;
 }
-.sidebar h2, .sidebar h3 {
+.admin .sidebar h2, .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
   background-color: #333333;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar li ul {
+.admin .sidebar li ul {
   padding-bottom: 30px;
 }
-.sidebar li ul li {
+.admin .sidebar li ul li {
   font-size:11.52px;
   border-bottom: 1px solid #D2D4C9;
   border-left: 1px solid #D2D4C9;
@@ -170,7 +170,7 @@ export default {
   margin: 0;
   color: #787878;
 }
-.sidebar li ul li span {
+.admin .sidebar li ul li span {
   display: block;
   padding: 0;
   padding-top: 2px;
@@ -179,45 +179,45 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
 }
-.sidebar li ul li a {
+.admin .sidebar li ul li a {
   color: #417FDA;
   text-decoration: none;
 }
-.sidebar li ul li a:hover {
+.admin .sidebar li ul li a:hover {
   text-decoration: underline;
 }
-.content {
+.admin .content {
   float: right;
   width: 720px;
   padding: 20px 20px 0 0;
 }
-.post {
+.admin .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .title {
+.admin .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
 }
-.post .entry {
+.admin .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
 }
-.entry p {
+.admin .entry p {
   margin-bottom: 14px;
 }
-.entry a {
+.admin .entry a {
   text-decoration: none;
   color: #417FDA;
 }
-.entry a:hover {
+.admin .entry a:hover {
   text-decoration: underline;
 }
-.admin {
+.admin .admin_table {
   table-layout: fixed;
   width: 100%;
   border-spacing: 0px 0px;
@@ -225,12 +225,17 @@ export default {
   color: #000000;
   text-align: center;
 }
-.admin td {
+.admin .admin_table td {
   padding: 10px;
   border: 1px solid #000000;
   background-color: #FFFFFF;
 }
-.admin td span.top {
+.admin .admin_table td span.top {
   font-weight: bold;
+}
+.admin .sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 </style>

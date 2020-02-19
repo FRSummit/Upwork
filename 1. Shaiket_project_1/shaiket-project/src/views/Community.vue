@@ -32,7 +32,6 @@
                         <img style="padding-left: 20px;" src="../assets/images/sibra.png" width="200px"/>
                       </a>
                     </div>
-                    <h1 style="padding-bottom:20px;">Sibra Kitchens</h1>
                     <p><strong>AS SEEN ON TV - Offering Home Improvements to your kitchen and household!</strong></p>
                     <p>Contact: Derek Krauss (Irish Holdings Shamrocks) at <a href="mailto:derek@sibrakitchens.com?Subject=MMSPL Community">derek@sibrakitchens.com</a></p>
                     <p>Website: <a target="_blank" href="http://www.sibrakitchens.com">www.sibrakitchens.com</a></p>
@@ -41,7 +40,7 @@
                 </v-card>
                 <v-card class="contact-v-card" style="width: 100%; margin-bottom: 10px;">
                   <v-toolbar class="v-toolbar" color="" dark flat>
-                    <v-toolbar-title>MMSPL COMMUNITY</v-toolbar-title>
+                    <v-toolbar-title>Healthy Home Makeover <br> Co Zzz Sleep</v-toolbar-title>
                     <v-spacer />
                   </v-toolbar>
                   <div class="entry">
@@ -53,7 +52,6 @@
                         <img style="padding-left: 20px;" src="../assets/images/cozzzsleep.png" width="200px"/>
                       </a>
                     </div>
-                      <h1 style="padding-bottom:20px;">Healthy Home Makeover<br>Co Zzz Sleep</h1>
                       <p><strong>On Air AM 640 Every other Saturdays at noon!</strong></p>
                       <p>Contact: Brian Latinville (Pilkey Glass Pirates) at 647-212-4837</p>
                       <p>Website: <a target="_blank" href="http://www.healthyhomemakeovers.ca">www.healthyhomemakeovers.ca</a></p>
@@ -82,20 +80,33 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.content {
+.community .content {
   float: right;
   width: 100%;
   padding: 20px 20px;
 }
-.v-container {
+.community .v-container {
   margin: 0;
   max-width: 100%;
   padding: 0;
 }
-.entry {
+.community .entry {
   padding: 10px !important;
 }
-.entry p {
+.community .entry p {
   font-size: 14.4px
+}
+
+.community .contact-v-card {
+  color: #787878 !important;
+  font-size: 11.52px !important;
+  text-align: left !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+.community .v-card-pitching-experience .field-label {
+  width: 20%;
+}
+.community .v-card-pitching-experience .field-input {
+  width: 70%;
 }
 </style>

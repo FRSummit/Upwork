@@ -102,38 +102,39 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.content {
+.about .content {
   float: right;
   width:948px;
   padding: 20px 20px 0 0;
+  color: #787878;
 }
-.post {
+.about .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .title {
+.about .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
 }
-.post .entry {
+.about .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
 }
-.entry p {
+.about .entry p {
   margin-bottom: 14px;
 }
-.entry a {
+.about .entry a {
   text-decoration: none;
   color: #417FDA;
 }
-.entry a:hover {
+.about .entry a:hover {
   text-decoration: underline;
 }
-.entry ul {
+.about .entry ul {
   padding-left: 40px;
   margin-bottom: 14.4px;
 }

@@ -78,43 +78,43 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.content {
+.award .content {
   float: right;
   width: 948px;
   padding: 20px 20px 0 0;
   text-align: left;
 }
-.post {
+.award .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .title {
+.award .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
 }
-.post .menu {
+.award .post .menu {
   background-color: #EBEBEB;
   height: 70px;
 }
-.post .entry {
+.award .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
 }
-.entry p {
+.award .entry p {
   margin-bottom: 14px;
   color: #787878;
 }
-.entry ul {
+.award .entry ul {
   margin-bottom: 14.4px;
   padding: 0;
   padding-left: 40px;
   color: #787878;
 }
-.admin {
+.award .admin {
   table-layout: fixed;
   width: 100%;
   border-spacing: 0px 0px;
@@ -122,35 +122,39 @@ export default {
   color: #000000;
   text-align: center;
 }
-.admin td {
+.award .admin td {
   padding: 10px;
   border: 1px solid #000000;
   background-color: #FFFFFF;
 }
-.admin td span.top {
+.award .admin td span.top {
   font-weight: bold;
 }
-.v-tabs-items {
+.award .v-tabs-items {
   margin-top: 10px;
 }
-.v-slide-group__content {
-  width: 100%;
-  padding: 14px 6px !important;
-}
-.v-slide-group {
+.award .v-slide-group {
   height: 70px;
 }
-.v-tab {
+.award .v-tab {
   text-align: left;
   color: #222 !important;
   border: 1px solid #D2D4C9;
   padding: 0 20px;
   max-width: 120px !important;
 }
-.v-tab--active {
+.award .v-tab--active {
   color: #FFFFFF !important;
 }
-.v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
+.award .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
   display: none;
+}
+.award .v-tab--active {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
+}
+.award .v-tab:hover {
+  background-color: #AA1111;
+  color: #FFFFFF !important;
 }
 </style>

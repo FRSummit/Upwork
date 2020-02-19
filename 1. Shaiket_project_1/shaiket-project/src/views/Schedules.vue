@@ -87,27 +87,28 @@ export default {
   overflow: hidden;
   padding-bottom: 10px;
 }
-.sidebar {
+.schedules .sidebar {
   font-size: 80%;
   float: left;
   padding: 20px 0 0 20px;
   width: 240px;
   text-align: left;
 }
-.sidebar li {
+.schedules .sidebar li {
   margin: 0;
 }
-.sidebar h2, .sidebar h3 {
+.schedules .sidebar h2,
+.schedules .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
   background-color: #333333;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar li ul {
+.schedules .sidebar li ul {
   padding-bottom: 10px;
 }
-.sidebar li ul li {
+.schedules .sidebar li ul li {
   font-size:11.52px;
   border-bottom: 1px solid #D2D4C9;
   border-left: 1px solid #D2D4C9;
@@ -116,7 +117,7 @@ export default {
   margin: 0;
   color: #787878;
 }
-.sidebar li ul li span {
+.schedules .sidebar li ul li span {
   display: block;
   padding: 0;
   padding-top: 2px;
@@ -125,42 +126,48 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
 }
-.sidebar li ul li a {
+.schedules .sidebar li ul li a {
   color: #417FDA;
   text-decoration: none;
 }
-.sidebar li ul li a:hover {
+.schedules .sidebar li ul li a:hover {
   text-decoration: underline;
 }
-.content {
+.schedules .content {
   float: right;
   width: 720px;
   padding: 20px 20px 0 0;
 }
-.post {
+.schedules .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
 }
-.post .title {
+.schedules .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
   color: #000000;
 }
-.post .entry {
+.schedules .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
+  color: #787878;
 }
-.entry p {
+.schedules .entry p {
   margin-bottom: 14px;
 }
-.entry a {
+.schedules .entry a {
   text-decoration: none;
   color: #417FDA;
 }
-.entry a:hover {
+.schedules .entry a:hover {
   text-decoration: underline;
+}
+.schedules .sidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 </style>
