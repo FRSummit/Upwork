@@ -92,7 +92,10 @@ export default {
 .award .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  background-color: #272727;
+  color: #FFFFFF;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .award .post .menu {
   background-color: #EBEBEB;
@@ -107,12 +110,13 @@ export default {
 .award .entry p {
   margin-bottom: 14px;
   color: #787878;
+  color: #222;
 }
 .award .entry ul {
   margin-bottom: 14.4px;
   padding: 0;
   padding-left: 40px;
-  color: #787878;
+  color: #222;
 }
 .award .admin {
   table-layout: fixed;
@@ -142,9 +146,11 @@ export default {
   border: 1px solid #D2D4C9;
   padding: 0 20px;
   max-width: 120px !important;
+  border-radius: 6px;
 }
 .award .v-tab--active {
   color: #FFFFFF !important;
+  border-radius: 6px;
 }
 .award .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
   display: none;
@@ -156,5 +162,10 @@ export default {
 .award .v-tab:hover {
   background-color: #AA1111;
   color: #FFFFFF !important;
+}
+.award .v-tabs-bar {
+  height: 60px;
+  padding-bottom: 2px;
+  border: 2px solid #222;
 }
 </style>

@@ -11,7 +11,7 @@
         </div>
       </div>
       <dir class="nav-head-img-section">
-        <img src="../assets/images/mmspl-logo.png" alt="">
+        <!-- <img src="../assets/images/mmspl-logo.png" alt=""> -->
       </dir>
     </dir>
     
@@ -79,8 +79,10 @@ export default {
   width: 968px;
   margin: 0 auto;
   height: 190px;
-  background-image: url("../assets/images/gradient.png") !important;
+  /* background-image: url("../assets/images/gradient.png") !important; */
+  /* background-image: url("../assets/images/back4.webp") !important; */
   background-repeat: repeat-x;
+  background-image: transparent;
   padding: 5px 4px;
   background-size: contain;
 }
@@ -107,11 +109,10 @@ export default {
 .v-btn:before {
   background-color: #690000;
 }
-/* .nav-head-top-section {
-  background-image: url("../assets/images/gradient.png") !important;
-  background-repeat: repeat-x;
-  padding: 20px 30px;
-} */
+.nav-head-top-section {
+  max-height: 130px;
+  min-height: 130px;
+}
 .nav-head-text-section {
   width: 60%;
   display: inline-block;
@@ -138,6 +139,9 @@ export default {
 .navbar-toolbar {
   margin-top: 14px;
   text-align: right;
+  background-color: #272727;
+  padding: 6px 0;
+  border-radius: 6px;
 }
 /* .navbar-toolbar-route_name_sec {
   display: inline-block; 

@@ -164,35 +164,32 @@ export default {
 </script>
 
 <style scoped>
-/* .sign-up {
-  position: absolute;
-  top: 0;
-  background: aqua;
-  width: 100%;
-  height: 100%;
-} */
 .headline {
   color: #ffffff;
   font-size: 1.5rem !important;
   font-weight: 700 !important;
 }
+.sign-up .theme--dark.v-toolbar.v-sheet {
+  background-color: #272727 !important;
+  border-color: #272727!important;
+}
 .sign-up-v-app {
-  /* background-image: url("../assets/images/login-back.jpg") !important;
-  background-size: cover !important; */
   background: transparent !important;
+}
+.sign-up .v-application .primary {
+  background-color: #272727 !important;
+  border-color: #272727!important;
 }
 .signup-btn {
   width: 30%;
 }
-.name-field, .email-field, .address-field, .phone-field, .password-field {
+.sign-up .name-field,
+.sign-up .email-field,
+.sign-up .address-field,
+.sign-up .phone-field,
+.sign-up .password-field {
   position: relative;
 }
-/* .name-field span, .email-field span, .address-field span, .phone-field span, .password-field span {
-  position: absolute;
-  top: 0;
-  left: 20%;
-  color: red;
-} */
 .field-label {
   display: inline-block;
   width: 20%;

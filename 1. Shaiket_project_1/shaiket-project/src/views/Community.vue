@@ -40,7 +40,7 @@
                 </v-card>
                 <v-card class="contact-v-card" style="width: 100%; margin-bottom: 10px;">
                   <v-toolbar class="v-toolbar" color="" dark flat>
-                    <v-toolbar-title>Healthy Home Makeover <br> Co Zzz Sleep</v-toolbar-title>
+                    <v-toolbar-title>Healthy Home Makeover Co Zzz Sleep</v-toolbar-title>
                     <v-spacer />
                   </v-toolbar>
                   <div class="entry">
@@ -96,9 +96,9 @@ export default {
 .community .entry p {
   font-size: 14.4px
 }
-
 .community .contact-v-card {
-  color: #787878 !important;
+  /* color: #787878 !important; */
+  color: #222 !important;
   font-size: 11.52px !important;
   text-align: left !important;
   font-family: Arial, Helvetica, sans-serif !important;
@@ -108,5 +108,12 @@ export default {
 }
 .community .v-card-pitching-experience .field-input {
   width: 70%;
+}
+.community header {
+  height: auto !important;
+}
+.community header .v-toolbar__content {
+  height: auto !important;
+  padding: 8px 16px;
 }
 </style>

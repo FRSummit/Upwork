@@ -98,6 +98,14 @@ export default {
 .login .login-v-toolbar {
   background: #81c6d68f;
 }
+.login .theme--dark.v-toolbar.v-sheet {
+  background-color: #272727 !important;
+  border-color: #272727!important;
+}
+.login .v-application .primary {
+  background-color: #272727 !important;
+  border-color: #272727!important;
+}
 .login .login-btn {
   width: 30%;
 }

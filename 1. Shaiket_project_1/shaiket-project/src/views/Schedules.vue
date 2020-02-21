@@ -101,9 +101,12 @@ export default {
 .schedules .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #272727;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .schedules .sidebar li ul {
   padding-bottom: 10px;
@@ -146,14 +149,18 @@ export default {
 .schedules .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  /* color: #000000; */
+  background-color: #272727;
+  color: #FFFFFF;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .schedules .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size: 14.4px;
   text-align: left;
-  color: #787878;
+  color: #222;
 }
 .schedules .entry p {
   margin-bottom: 14px;

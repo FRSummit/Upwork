@@ -47,8 +47,10 @@ html {
   background-color: red !important;
 }
 body {
-  background-image: url("./assets/images/gradient.png") !important;
-  background-repeat: repeat-x;
+  /* background-image: url("./assets/images/gradient.png") !important; */
+  background-image: url("./assets/images/back5.webp") !important;
+  background-repeat: repeat;
+  /* background-repeat: repeat-x; */
 }
 #nav {
   padding: 30px;
@@ -106,4 +108,9 @@ body {
   color: #FFFFFF !important;
 }
 /* Register, Standing, Award page */
+.award .v-tabs-bar {
+  height: 60px;
+  padding-bottom: 2px;
+  /* border: 2px solid #a11; */
+}
 </style>

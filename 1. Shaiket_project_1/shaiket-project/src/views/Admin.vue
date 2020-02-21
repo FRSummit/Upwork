@@ -154,9 +154,12 @@ export default {
 .admin .sidebar h2, .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #272727;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .admin .sidebar li ul {
   padding-bottom: 30px;
@@ -195,11 +198,16 @@ export default {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .admin .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  color: #FFFFFF;
+  background-color: #272727;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .admin .post .entry {
   border-top: 1px solid #D2D4C9;

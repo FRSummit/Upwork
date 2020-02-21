@@ -103,7 +103,7 @@
                                     <v-spacer />
                                   </v-toolbar>
                                   <div class="playing-experience-input-field" style="text-align: left; margin-left: 5%;">
-                                    <label class="">The highest level of ball I have played is:</label>
+                                    <label class="" style="color: #272727;">The highest level of ball I have played is:</label>
                                   </div>
                                   <div class="playing-experience-input-field">
                                     <label class="field-label" for="SPN_SPO_NSA_Category">SPN/SPO/NSA Category</label>
@@ -197,6 +197,11 @@
         </v-tabs-items>
       </div>
 		</div>
+    
+    <video autoplay muted loop id="myVideo">
+      <source src="https://www.youtube.com/watch?v=CZp6HjD8_sE" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
   </div>
 </template>
 
@@ -335,9 +340,12 @@ export default {
 .register .sidebar h2,
 .register .sidebar h3 {
   padding: 10px;
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #272727;
   color: #FFFFFF;
   font-size:15.1632px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .register .sidebar li ul {
   padding-bottom: 30px;
@@ -347,7 +355,8 @@ export default {
   border-left: 1px solid #D2D4C9;
   border-right: 1px solid #D2D4C9;
   padding: 10px !important;
-  color: #787878;
+  /* color: #787878; */
+  color: #222;
   font-size: 12.96px;
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
@@ -413,7 +422,9 @@ export default {
 .register .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  background-color: #222;
+  /* color: #000000; */
+  color: #FFFFFF;
   text-align: left;
   font-size:21.6px;
 }
@@ -450,6 +461,7 @@ export default {
   font-size: 14px;
   text-align: right;
   padding-right: 20px;
+  color: #272727;
 }
 .register .v-card-playing-experience .field-label,
 .register .v-card-pitching-experience .field-label {
@@ -484,5 +496,19 @@ export default {
   font-weight: normal;
   padding: 10px 0 !important;
   height: auto !important;
+}
+.register .v-tab.v-tab {
+  color: #222 !important;
+}
+.register .v-tab.v-tab:hover {
+  color: #FFFFFF !important;
+}
+.register .v-tab.v-tab.v-tab--active {
+  color: #FFFFFF !important;
+}
+.register .v-slide-group__content {
+  border: 2px solid #787878;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 </style>

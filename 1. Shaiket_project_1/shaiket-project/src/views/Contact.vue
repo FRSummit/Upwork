@@ -36,7 +36,7 @@
                       <v-card class="contact-v-card" style="width: 80%; margin: 0 auto;">
                         <v-toolbar class="v-toolbar" color="" dark flat>
                           <v-spacer />
-                          <v-toolbar-title>SEND AN EMAIL TO MMSPL</v-toolbar-title>
+                          <v-toolbar-title>Send an email to MMSPL</v-toolbar-title>
                           <v-spacer />
                         </v-toolbar>
                         <div class="contact-input-field">
@@ -119,10 +119,10 @@ export default {
 .contact .sidebar li li:last-child {
   border-bottom: 1px solid #D2D4C9;
 }
-.contact .sidebar .v-toolbar {
+.contact .v-toolbar {
   height: auto !important;
 }
-.contact .sidebar .v-toolbar__content {
+.contact .v-toolbar__content {
   height: auto !important;
   padding: 8px 0;
 }

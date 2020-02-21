@@ -112,11 +112,16 @@ export default {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .about .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  background-color: #272727;
+  color: #FFFFFF;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .about .post .entry {
   border-top: 1px solid #D2D4C9;
@@ -126,6 +131,7 @@ export default {
 }
 .about .entry p {
   margin-bottom: 14px;
+  color: #222;
 }
 .about .entry a {
   text-decoration: none;

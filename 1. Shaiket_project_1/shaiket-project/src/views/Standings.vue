@@ -134,7 +134,10 @@ export default {
 .standings .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  color: #FFFFFF;
+  background-color: #272727;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .standings .post .menu {
   background-color: #EBEBEB;
@@ -180,9 +183,7 @@ export default {
   border: 1px solid #D2D4C9;
   padding: 0 20px;
   max-width: 120px !important;
-}
-.standings .v-tab--active {
-  color: #FFFFFF !important;
+  border-radius: 6px;
 }
 .standings .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
   display: none;
@@ -226,6 +227,7 @@ export default {
 .standings .v-tab--active {
   background-color: #AA1111;
   color: #FFFFFF !important;
+  border-radius: 6px;
 }
 .standings .v-tab:hover {
   background-color: #AA1111;

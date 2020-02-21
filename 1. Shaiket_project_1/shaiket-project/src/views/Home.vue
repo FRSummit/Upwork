@@ -160,6 +160,7 @@ export default {
 .home ul {
   list-style-type: none;
   padding: 0;
+
 }
 .home li {
   margin: 0 10px;
@@ -190,9 +191,11 @@ export default {
 .home .sidebar h2, .sidebar h3 {
   padding: 10px;
   font-size:17.28px;
-  background-color: #333333;
+  background-color: #272727;
   color: #FFFFFF;
   font-family: Arial, Helvetica, sans-serif;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .home .sidebar-child-ul {
   padding-bottom: 10px;
@@ -204,7 +207,12 @@ export default {
   border-right: 1px solid #D2D4C9;
   padding: 10px;
   margin: 0;
-  color: #787878;
+  /* color: #787878; */
+  color: #222;
+}
+.home .sidebar-child-ul li:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .home .sidebar-child-ul li span {
   display: block;
@@ -214,9 +222,10 @@ export default {
   font-style: italic;
   font-family: Arial, Helvetica, sans-serif;
   color: #787878;
+  /* color: #222; */
 }
 .home .sidebar-child-ul li a {
-  color: #417FDA;
+  color: #003e9a;
   text-decoration: none;
 }
 .home .content {
@@ -230,30 +239,36 @@ export default {
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
   text-align: left;
+  border-radius: 6px;
 }
 .home .post .title {
   text-transform: uppercase;
   padding: 15px 20px 15px 20px;
-  color: #000000;
+  background-color: #272727;
+  color: #FFFFFF;
   margin: 0;
   font-size:16.848px;
   font-family: Arial, Helvetica, sans-serif;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .home .post .entry {
   border-top: 1px solid #D2D4C9;
   padding: 10px 20px 15px 20px;
   font-size:14.4px;
-  color: #787878;
+  /* color: #787878; */
+  color: #222;
 }
 .home .post .entry p {
   margin-bottom: 14.4px;
 }
 .home .post .entry a {
-  color: #417FDA;
+  color: #003e9a;
   text-decoration: none;
 }
 .home .pictureframe {
-  background-color: #AA1111;
+  /* background-color: #AA1111; */
+  background-color: #272727;
   padding: 10px;
   text-align: center;
   width: 320px;
@@ -261,6 +276,7 @@ export default {
   /* float: left; */
   height: 212.92px;
   vertical-align: bottom;
+  border-radius: 6px;
 }
 .home .pictureframe.full-width {
   width: 100%;
