@@ -3,12 +3,13 @@
   <div class="home">
     <div class="sidebar">
       <ul class="sidebar-parent-ul">
+        <!-- Important Dates -->
         <li class="sidebar-parent-li">
           <h2 class="sidebar-text-important-dates">{{ sidebarImportantDatesTitle }}</h2>
           <button class="edit-btn" @click="sidebarImpDatesEditClick" v-if="userIsAuthorized">Edit</button>
-          <button class="edit-btn" @click="sidebarImpDatesEditClick" 
-                                  v-if="userIsAuthorized && sidebarImpDateAuthorization" 
-                                  style="right: -395px; z-index: 10; padding: 0px 4px; background: red;">X</button>
+          <button class="close-btn" @click="sidebarImpDatesEditClick" 
+                                  v-if="userIsAuthorized && sidebarImpDateAuthorization">
+                                  X</button>
           <HomeEditImportantDates v-if="userIsAuthorized && sidebarImpDateAuthorization" 
                                   @dateAdded="addDateFromHomeEditImpDates"/>
           <ul class="sidebar-child-ul">
@@ -16,60 +17,51 @@
               {{ imp.date }}
               <span>{{ imp.description }}</span>
             </li>
-						<!-- <li>February 10, 2020<span>Captain's Meeting</span></li>
-						<li>March 18, 2020<span>Captain's Meeting (Rosters Due)</span></li>
-						<li>April TBD, 2020<span>Rookie Evaluation 1</span></li>
-						<li>April TBD, 2020<span>Rookie Evaluation 2</span></li>
-						<li>April TBD, 2020<span>Rookie Evaluation - Rain Date</span></li>
-            <li>April 27, 2020<span>Entry Draft</span></li>
-						<li>May 12, 2020<span>Opening Night</span></li>
-            <li>June 2 - June 7, 2020<span>Charity Tournament</span></li>
-            <li>September 10-13, 2020<span>McGregor Playoff Tournament</span></li>
-            <li>Late 2020<span>Awards Banquet</span></li>
-						<li>Late 2020<span>Annual General Meeting</span></li> -->
 					</ul>
         </li>
-        <!-- another li -->
+        <!-- Champions -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarChampionsTitle }}</h2>
           <button class="edit-btn" @click="sidebarChampionsEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarChampionsEditClick" 
+                                  v-if="userIsAuthorized && sidebarChampionsAuthorization">
+                                  X</button>
+          <HomeEditChampions v-if="userIsAuthorized && sidebarChampionsAuthorization"/>
 					<ul class="sidebar-child-ul">
 						<li v-for="(champions, i) in sidebarChampions" :key="i">
-              {{ champions.title }}
-              <span>{{ champions.details }}</span>
+              {{ champions.name }}
+              <span>{{ champions.description }}</span>
             </li>
-						<!-- <li>Regular Season Champion<span>Derek Houghton Century 21</span></li>
-						<li>Year End Tournament Champion<span>Derek Houghton Century 21</span></li>
-						<li>Year End Tournament Finalist<span>OK Braves</span></li>
-						<li>Charity Tournament Champion<span>The Classics</span></li>
-						<li>Charity Tournament Finalist<span>Red Hot Dawgs</span></li> -->
 					</ul>
 				</li>
-        <!-- another li -->
+        <!-- Award WInners -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarAwardWinnersTitle }}</h2>
           <button class="edit-btn" @click="sidebarAwardEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarAwardEditClick" 
+                                  v-if="userIsAuthorized && sidebarAwardWinnerAuthorization">
+                                  X</button>
+          <HomeEditAwardWinners v-if="userIsAuthorized && sidebarAwardWinnerAuthorization"/>
 					<ul class="sidebar-child-ul">
 						<li v-for="(award, i) in sidebarAwardWinners" :key="i">
-              {{ award.title }}
-              <span>{{ award.details }}</span>
+              {{ award.award }}
+              <span>{{ award.name }}</span>
             </li>
-						<!-- <li>The Kirkby Award<span>Nick Stewart</span></li>
-						<li>The Higgins-Sale Award<span>Scott Jackson</span></li>
-						<li>The Steve Bull Award<span>Sunil Vaidya</span></li> -->
 					</ul>
 				</li>
-        <!-- last li -->
+        <!-- Ball Parks -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarBallparksTitle }}</h2>
           <button class="edit-btn" @click="sidebarBallparksEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarBallparksEditClick" 
+                                  v-if="userIsAuthorized && sidebarBallParksAuthorization">
+                                  X</button>
+          <HomeEditBallParks v-if="userIsAuthorized && sidebarBallParksAuthorization"/>
 					<ul class="sidebar-child-ul">
 						<li v-for="(ballparks, i) in sidebarBallparks" :key="i">
-              <a target="_blank" href="http://g.co/maps/56h2p">{{ ballparks.title }}</a>
-              <span>{{ ballparks.details }}</span>
+              <a target="_blank" href="http://g.co/maps/56h2p">{{ ballparks.name }}</a>
+              <span>{{ ballparks.address }}</span>
             </li>
-						<!-- <li><a target="_blank" href="http://g.co/maps/56h2p">Centennial Park</a><span>Bullock and McCowan</span></li>
-						<li><a target="_blank" href="http://g.co/maps/74aza">Mintleaf Park</a><span>Fincham and Wootten Way N.</span></li> -->
 					</ul>
 				</li>
       </ul>
@@ -90,16 +82,6 @@
         <button class="edit-btn" @click="post2EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
 				<div class="entry">
 					<p>{{ post2_description }}</p>
-					<!-- <p class="pictureframe">
-						<img src="../assets/images/2019-finals-champions.jpg" width="290px" alt="2019 Final Tournament Champions">
-						<span>{{ post2_img1_desc1 }}</span>
-						<span>{{ post2_img1_desc2 }}</span>
-					</p>
-					<p class="pictureframe" style="margin-left:10px">
-						<img src="../assets/images/2019-finals-finalists.jpg" width="290px" alt="2019 Final Tournament Finalists">
-						<span>{{ post2_img2_desc1 }}</span>
-						<span>{{ post2_img2_desc2 }}</span>
-					</p> -->
 					<p class="pictureframe" v-for="(post2, i) in post2_img" :key="i">
 						<img :src="post2.img_src" width="290px" height="140px" alt="2019 Final Tournament Finalists">
 						<span>{{ post2.img_desc1 }}</span>
@@ -151,10 +133,16 @@
 
 <script>
 import HomeEditImportantDates from  '../components/HomeEditImportantDates'
+import HomeEditChampions from  '../components/HomeEditChampions'
+import HomeEditAwardWinners from  '../components/HomeEditAwardWinners'
+import HomeEditBallParks from  '../components/HomeEditBallParks'
 
 export default {
   components: {
     HomeEditImportantDates,
+    HomeEditChampions,
+    HomeEditAwardWinners,
+    HomeEditBallParks
   },
   props: {
   },
@@ -177,24 +165,27 @@ export default {
                 {date: 'Late 2020', description: 'Awards Banquet'},
                 {date: 'Late 2020', description: 'Annual General Meeting'}
               ],
+      sidebarChampionsAuthorization: false,
       sidebarChampionsTitle: '2019 Champions',
       sidebarChampions: [
-                {title: 'Regular Season Champion', details: 'Derek Houghton Century 21'},
-                {title: 'Year End Tournament Champion', details: 'Derek Houghton Century 21'},
-                {title: 'Year End Tournament Finalist', details: 'OK Braves'},
-                {title: 'Charity Tournament Champion', details: 'The Classics'},
-                {title: 'Charity Tournament Finalist', details: 'Red Hot Dawgs'},
+                {name: 'Regular Season Champion', description: 'Derek Houghton Century 21'},
+                {name: 'Year End Tournament Champion', description: 'Derek Houghton Century 21'},
+                {name: 'Year End Tournament Finalist', description: 'OK Braves'},
+                {name: 'Charity Tournament Champion', description: 'The Classics'},
+                {name: 'Charity Tournament Finalist', description: 'Red Hot Dawgs'},
               ],
+      sidebarAwardWinnerAuthorization: false,
       sidebarAwardWinnersTitle: '2019 Award Winners',
       sidebarAwardWinners: [
-                {title: 'The Kirkby Award', details: 'Nick Stewart'},
-                {title: 'The Higgins-Sale Award', details: 'Scott Jackson'},
-                {title: 'The Steve Bull Award', details: 'Sunil Vaidya'},
+                {award: 'The Kirkby Award', name: 'Nick Stewart'},
+                {award: 'The Higgins-Sale Award', name: 'Scott Jackson'},
+                {award: 'The Steve Bull Award', name: 'Sunil Vaidya'},
               ],
+      sidebarBallParksAuthorization: false,
       sidebarBallparksTitle: 'Ballparks',
       sidebarBallparks: [
-                {title: 'Centennial Park', details: 'Bullock and McCowan'},
-                {title: 'Mintleaf Park', details: 'Fincham and Wootten Way N.'},
+                {name: 'Centennial Park', address: 'Bullock and McCowan'},
+                {name: 'Mintleaf Park', address: 'Fincham and Wootten Way N.'},
               ],
       post1_title: '2020 SEASON REGISTRATION IS OPEN!',
       post1_description: 'There are still spots available to play in the 2020 season',
@@ -242,6 +233,7 @@ export default {
         }
       }
     },
+    // Important Dates
     sidebarImpDatesEditClick() {
       console.log('sidebarImpDates working' + this.sidebarImpDateAuthorization);
       if(this.sidebarImpDateAuthorization === true) {
@@ -254,14 +246,32 @@ export default {
       console.log('added date : ' + date.date + ' ' + date.description);
       this.sidebarImportantDates.push({date: date.date, details: date.description})
     },
+    // Champions
     sidebarChampionsEditClick() {
-      console.log('sidebarChampions working');
+      console.log('sidebarChampions working' + this.sidebarChampionsAuthorization);
+      if(this.sidebarChampionsAuthorization === true) {
+        this.sidebarChampionsAuthorization = false;
+      } else if(this.sidebarChampionsAuthorization === false) {
+        this.sidebarChampionsAuthorization = true;
+      }
     },
+    // Award Winners
     sidebarAwardEditClick() {
-      console.log('sidebarAward working');
+      console.log('sidebarAwardWinners working' + this.sidebarAwardWinnerAuthorization);
+      if(this.sidebarAwardWinnerAuthorization === true) {
+        this.sidebarAwardWinnerAuthorization = false;
+      } else if(this.sidebarAwardWinnerAuthorization === false) {
+        this.sidebarAwardWinnerAuthorization = true;
+      }
     },
+    // Ballparks
     sidebarBallparksEditClick() {
-      console.log('sidebarBallparks working');
+      console.log('sidebarBallParks working' + this.sidebarBallParksAuthorization);
+      if(this.sidebarBallParksAuthorization === true) {
+        this.sidebarBallParksAuthorization = false;
+      } else if(this.sidebarBallParksAuthorization === false) {
+        this.sidebarBallParksAuthorization = true;
+      }
     },
     post1EditClick() {
       console.log('post1EditClick click')
@@ -281,6 +291,18 @@ export default {
     // sidebar important dates
     firebase.database().ref('homeSidebarImportantDates').on('value', (snapshot)=> {
       this.sidebarImportantDates = snapshot.val();
+    });
+    // Sidebar Champions
+    firebase.database().ref('homeSidebarChampions').on('value', (snapshot)=> {
+      this.sidebarChampions = snapshot.val();
+    });
+    // Sidebar Award Winners
+    firebase.database().ref('homeSidebarAwardWinner').on('value', (snapshot)=> {
+      this.sidebarAwardWinners = snapshot.val();
+    });
+    // Sidebar Ball Parks
+    firebase.database().ref('homeSidebarBallParks').on('value', (snapshot)=> {
+      this.sidebarBallparks = snapshot.val();
     });
   }
 }
@@ -449,5 +471,18 @@ export default {
   border: 2px solid #FFFFFF;
   border-radius: 6px;
   background: green;
+}
+.close-btn {
+  position: absolute;
+  top: 6px;
+  right: -395px; 
+  z-index: 10; 
+  padding: 0px 4px; 
+  background: red;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
 }
 </style>
