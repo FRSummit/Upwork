@@ -10,9 +10,9 @@
           <span>Established 1968</span>
         </div>
       </div>
-      <dir class="nav-head-img-section">
+      <div class="nav-head-img-section">
         <!-- <img src="../assets/images/mmspl-logo.png" alt=""> -->
-      </dir>
+      </div>
     </dir>
     
       <div class="navbar-toolbar">

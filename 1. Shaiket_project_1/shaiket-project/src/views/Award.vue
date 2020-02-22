@@ -151,16 +151,18 @@ export default {
 .award .v-tab--active {
   color: #FFFFFF !important;
   border-radius: 6px;
+  /* background-color: #AA1111; */
+  background-color: #272727;
 }
 .award .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
   display: none;
 }
-.award .v-tab--active {
-  background-color: #AA1111;
-  color: #FFFFFF !important;
+.award .v-tabs-slider {
+  background-color: #272727;
 }
 .award .v-tab:hover {
-  background-color: #AA1111;
+  /* background-color: #AA1111; */
+  background-color: #272727;
   color: #FFFFFF !important;
 }
 .award .v-tabs-bar {
