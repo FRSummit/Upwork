@@ -5,10 +5,16 @@
       <ul class="sidebar-parent-ul">
         <li class="sidebar-parent-li">
           <h2 class="sidebar-text-important-dates">{{ sidebarImportantDatesTitle }}</h2>
+          <button class="edit-btn" @click="sidebarImpDatesEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="edit-btn" @click="sidebarImpDatesEditClick" 
+                                  v-if="userIsAuthorized && sidebarImpDateAuthorization" 
+                                  style="right: -395px; z-index: 10; padding: 0px 4px; background: red;">X</button>
+          <HomeEditImportantDates v-if="userIsAuthorized && sidebarImpDateAuthorization" 
+                                  @dateAdded="addDateFromHomeEditImpDates"/>
           <ul class="sidebar-child-ul">
-						<li v-for="imp in sidebarImportantDates" :key="imp">
+						<li v-for="(imp, i) in sidebarImportantDates" :key="i">
               {{ imp.date }}
-              <span>{{ imp.details }}</span>
+              <span>{{ imp.description }}</span>
             </li>
 						<!-- <li>February 10, 2020<span>Captain's Meeting</span></li>
 						<li>March 18, 2020<span>Captain's Meeting (Rosters Due)</span></li>
@@ -26,8 +32,9 @@
         <!-- another li -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarChampionsTitle }}</h2>
+          <button class="edit-btn" @click="sidebarChampionsEditClick" v-if="userIsAuthorized">Edit</button>
 					<ul class="sidebar-child-ul">
-						<li v-for="champions in sidebarChampions" :key="champions">
+						<li v-for="(champions, i) in sidebarChampions" :key="i">
               {{ champions.title }}
               <span>{{ champions.details }}</span>
             </li>
@@ -41,8 +48,9 @@
         <!-- another li -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarAwardWinnersTitle }}</h2>
+          <button class="edit-btn" @click="sidebarAwardEditClick" v-if="userIsAuthorized">Edit</button>
 					<ul class="sidebar-child-ul">
-						<li v-for="award in sidebarAwardWinners" :key="award">
+						<li v-for="(award, i) in sidebarAwardWinners" :key="i">
               {{ award.title }}
               <span>{{ award.details }}</span>
             </li>
@@ -54,8 +62,9 @@
         <!-- last li -->
         <li class="sidebar-parent-li">
 					<h2 class="sidebar-text-important-dates">{{ sidebarBallparksTitle }}</h2>
+          <button class="edit-btn" @click="sidebarBallparksEditClick" v-if="userIsAuthorized">Edit</button>
 					<ul class="sidebar-child-ul">
-						<li v-for="ballparks in sidebarBallparks" :key="ballparks">
+						<li v-for="(ballparks, i) in sidebarBallparks" :key="i">
               <a target="_blank" href="http://g.co/maps/56h2p">{{ ballparks.title }}</a>
               <span>{{ ballparks.details }}</span>
             </li>
@@ -69,6 +78,7 @@
     <div class="content">
       <div class="post">
         <h3 class="title">{{ post1_title }}</h3>
+        <button class="edit-btn" @click="post1EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
         <div class="entry">
           <p>{{ post1_description }}</p>
           <p><a :href="post1_url" target="_blank">{{ post1_url_text }} </a></p>
@@ -77,6 +87,7 @@
       <!-- another post -->
       <div class="post">
 				<h3 class="title">{{ post2_title }}</h3>
+        <button class="edit-btn" @click="post2EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
 				<div class="entry">
 					<p>{{ post2_description }}</p>
 					<!-- <p class="pictureframe">
@@ -89,7 +100,7 @@
 						<span>{{ post2_img2_desc1 }}</span>
 						<span>{{ post2_img2_desc2 }}</span>
 					</p> -->
-					<p class="pictureframe" v-for="post2 in post2_img" :key="post2">
+					<p class="pictureframe" v-for="(post2, i) in post2_img" :key="i">
 						<img :src="post2.img_src" width="290px" height="140px" alt="2019 Final Tournament Finalists">
 						<span>{{ post2.img_desc1 }}</span>
 						<span>{{ post2.img_desc2 }}</span>
@@ -103,9 +114,10 @@
       <!-- Post 3 -->
       <div class="post">
 				<h3 class="title">{{ post3_title }}</h3>
+        <button class="edit-btn" @click="post3EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
 				<div class="entry">
 					<p>{{ post3_description }}</p>
-					<p class="pictureframe full-width" v-for="post3 in post3_img" :key="post3">
+					<p class="pictureframe full-width" v-for="(post3, i) in post3_img" :key="i">
 						<img :src="post3.img_src" width="630" height="306px" alt="2019 Regular Season Champions">
 						<span>{{ post3.img_desc_1 }}</span>
 					</p>						
@@ -114,9 +126,10 @@
       <!-- Post 4 -->
       <div class="post">
 				<h3 class="title">{{ post4_title }}</h3>
+        <button class="edit-btn" @click="post4EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
 				<div class="entry">
 					<p>{{ post4_description }}</p>
-					<p class="pictureframe" v-for="post4 in post4_img" :key="post4" style="height: 257px">
+					<p class="pictureframe" v-for="(post4, i) in post4_img" :key="i" style="height: 257px">
 						<img :src="post4.img_src" width="290px" height="186px" alt="2019 Final Tournament Finalists">
 						<span>{{ post4.img_desc1 }}</span>
 						<span>{{ post4.img_desc2 }}</span>
@@ -137,26 +150,32 @@
 </template>
 
 <script>
+import HomeEditImportantDates from  '../components/HomeEditImportantDates'
+
 export default {
+  components: {
+    HomeEditImportantDates,
+  },
   props: {
   },
   data () {
     return {
       users: [],
       userIsAuthorized: false,
+      sidebarImpDateAuthorization: false,
       sidebarImportantDatesTitle: 'Important Dates',
       sidebarImportantDates: [
-                {date: 'February 10, 2020', details: 'Captain\'s Meeting'},
-                {date: 'March 18, 2020', details: 'Captain\'s Meeting (Rosters Due)'},
-                {date: 'April TBD, 2020', details: 'Rookie Evaluation 1'},
-                {date: 'April TBD, 2020', details: 'Rookie Evaluation 2'},
-                {date: 'April TBD, 2020', details: 'Rookie Evaluation - Rain Date'},
-                {date: 'April 27, 2020', details: 'Entry Draft'},
-                {date: 'May 12, 2020', details: 'Opening Night'},
-                {date: 'June 2 - June 7, 2020', details: 'Charity Tournament'},
-                {date: 'September 10-13, 2020', details: 'McGregor Playoff Tournament'},
-                {date: 'Late 2020', details: 'Awards Banquet'},
-                {date: 'Late 2020', details: 'Annual General Meeting'}
+                {date: 'February 10, 2020', description: 'Captain\'s Meeting'},
+                {date: 'March 18, 2020', description: 'Captain\'s Meeting (Rosters Due)'},
+                {date: 'April TBD, 2020', description: 'Rookie Evaluation 1'},
+                {date: 'April TBD, 2020', description: 'Rookie Evaluation 2'},
+                {date: 'April TBD, 2020', description: 'Rookie Evaluation - Rain Date'},
+                {date: 'April 27, 2020', description: 'Entry Draft'},
+                {date: 'May 12, 2020', description: 'Opening Night'},
+                {date: 'June 2 - June 7, 2020', description: 'Charity Tournament'},
+                {date: 'September 10-13, 2020', description: 'McGregor Playoff Tournament'},
+                {date: 'Late 2020', description: 'Awards Banquet'},
+                {date: 'Late 2020', description: 'Annual General Meeting'}
               ],
       sidebarChampionsTitle: '2019 Champions',
       sidebarChampions: [
@@ -222,9 +241,47 @@ export default {
           this.userIsAuthorized = true; 
         }
       }
+    },
+    sidebarImpDatesEditClick() {
+      console.log('sidebarImpDates working' + this.sidebarImpDateAuthorization);
+      if(this.sidebarImpDateAuthorization === true) {
+        this.sidebarImpDateAuthorization = false;
+      } else if(this.sidebarImpDateAuthorization === false) {
+        this.sidebarImpDateAuthorization = true;
+      }
+    },
+    addDateFromHomeEditImpDates(date) {
+      console.log('added date : ' + date.date + ' ' + date.description);
+      this.sidebarImportantDates.push({date: date.date, details: date.description})
+    },
+    sidebarChampionsEditClick() {
+      console.log('sidebarChampions working');
+    },
+    sidebarAwardEditClick() {
+      console.log('sidebarAward working');
+    },
+    sidebarBallparksEditClick() {
+      console.log('sidebarBallparks working');
+    },
+    post1EditClick() {
+      console.log('post1EditClick click')
+    },
+    post2EditClick() {
+      console.log('post2EditClick click')
+    },
+    post3EditClick() {
+      console.log('post3EditClick click')
+    },
+    post4EditClick() {
+      console.log('post4EditClick click')
     }
   },
   created() {
+    this.checkUserIsAuthorized();
+    // sidebar important dates
+    firebase.database().ref('homeSidebarImportantDates').on('value', (snapshot)=> {
+      this.sidebarImportantDates = snapshot.val();
+    });
   }
 }
 </script>
@@ -269,6 +326,7 @@ export default {
 }
 .home .sidebar-parent-li {
   margin: 0;
+  position: relative;
 }
 .home .sidebar h2, .sidebar h3 {
   padding: 10px;
@@ -322,6 +380,7 @@ export default {
   border: 1px solid #D2D4C9;
   text-align: left;
   border-radius: 6px;
+  position: relative;
 }
 .home .post .title {
   text-transform: uppercase;
@@ -378,5 +437,17 @@ export default {
 }
 .home .pictureframe:nth-child(odd) {
   margin-left: 10px;
+}
+.home .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>
