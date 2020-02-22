@@ -71,15 +71,25 @@
       <div class="post">
         <h3 class="title">{{ post1_title }}</h3>
         <button class="edit-btn" @click="post1EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
-        <div class="entry">
-          <p>{{ post1_description }}</p>
-          <p><a :href="post1_url" target="_blank">{{ post1_url_text }} </a></p>
+        <button class="close-btn-post" @click="post1EditClick" 
+                                  v-if="userIsAuthorized && editPost1Authorization">
+                                  X</button>
+        <HomeEditPost1 v-if="userIsAuthorized && editPost1Authorization"/>
+        <div class="entry" v-for="(post, i) in post1" :key="i">
+          <!-- <p>{{ post1_description }}</p> -->
+          <p>{{ post.title }}</p>
+          <!-- <p><a :href="post1_url" target="_blank">{{ post1_url_text }} </a></p> -->
+          <p><a :href="post.url" target="_blank">{{ post.urlText }} </a></p>
         </div>
       </div>
       <!-- another post -->
-      <div class="post">
+      <!-- <div class="post">
 				<h3 class="title">{{ post2_title }}</h3>
         <button class="edit-btn" @click="post2EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
+        <button class="close-btn-post" @click="post2EditClick" 
+                                  v-if="userIsAuthorized && editPost2Authorization">
+                                  X</button>
+        <HomeEditPost2 v-if="userIsAuthorized && editPost2Authorization"/>
 				<div class="entry">
 					<p>{{ post2_description }}</p>
 					<p class="pictureframe" v-for="(post2, i) in post2_img" :key="i">
@@ -92,16 +102,48 @@
 				<div class="entry" style="text-align:center;">
 					<a :href="post2_url" target="_blank">{{ post2_url_text }}</a>
 				</div>			
+			</div> -->
+      <!--  -->
+      <div class="post">
+				<h3 class="title">{{ post2_title }}</h3>
+        <button class="edit-btn" @click="post2EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
+        <button class="close-btn-post" @click="post2EditClick" 
+                                  v-if="userIsAuthorized && editPost2Authorization">
+                                  X</button>
+        <HomeEditPost2 v-if="userIsAuthorized && editPost2Authorization"/>
+				<div class="entry" v-for="(post, i) in post2" :key="i">
+					<p>{{ post.description }}</p>
+					<p class="pictureframe">
+						<img :src="post.img1_url" width="290px" height="140px" alt="2019 Final Tournament Finalists">
+						<span>{{ post.img1_desc1 }}</span>
+						<span>{{ post.img1_desc2 }}</span>
+					</p>
+					<p class="pictureframe">
+						<img :src="post.img2_url" width="290px" height="140px" alt="2019 Final Tournament Finalists">
+						<span>{{ post.img1_desc1 }}</span>
+						<span>{{ post.img2_desc2 }}</span>
+					</p>
+          <br style="clear:both;">
+				</div>					
+				<!-- <div class="entry" style="text-align:center;" v-for="(post, i) in post2" :key="i">
+					<a :href="post.url" target="_blank">{{ post.urlText }}</a>
+				</div>			 -->
 			</div>
       <!-- Post 3 -->
       <div class="post">
 				<h3 class="title">{{ post3_title }}</h3>
         <button class="edit-btn" @click="post3EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
-				<div class="entry">
-					<p>{{ post3_description }}</p>
-					<p class="pictureframe full-width" v-for="(post3, i) in post3_img" :key="i">
-						<img :src="post3.img_src" width="630" height="306px" alt="2019 Regular Season Champions">
-						<span>{{ post3.img_desc_1 }}</span>
+        <button class="close-btn-post" @click="post3EditClick" 
+                                  v-if="userIsAuthorized && editPost3Authorization">
+                                  X</button>
+        <HomeEditPost3 v-if="userIsAuthorized && editPost3Authorization"/>
+				<div class="entry" v-for="(post, i) in post3" :key="i">
+					<!-- <p>{{ post3_description }}</p> -->
+					<p>{{ post.description }}</p>
+					<p class="pictureframe full-width">
+						<!-- <img :src="post3.img_src" width="630" height="306px" alt="2019 Regular Season Champions"> -->
+						<img :src="post.img1_url" width="630" height="306px" alt="2019 Regular Season Champions">
+						<span>{{ post.img1_desc1 }}</span>
 					</p>						
 				</div>					
 			</div>
@@ -109,40 +151,61 @@
       <div class="post">
 				<h3 class="title">{{ post4_title }}</h3>
         <button class="edit-btn" @click="post4EditClick" style="top: 10px;" v-if="userIsAuthorized">Edit</button>
-				<div class="entry">
-					<p>{{ post4_description }}</p>
-					<p class="pictureframe" v-for="(post4, i) in post4_img" :key="i" style="height: 257px">
-						<img :src="post4.img_src" width="290px" height="186px" alt="2019 Final Tournament Finalists">
-						<span>{{ post4.img_desc1 }}</span>
-						<span>{{ post4.img_desc2 }}</span>
+        <button class="close-btn-post" @click="post4EditClick" 
+                                  v-if="userIsAuthorized && editPost4Authorization">
+                                  X</button>
+        <HomeEditPost4 v-if="userIsAuthorized && editPost4Authorization"/>
+				<div class="entry" v-for="(post, i) in post4" :key="i">
+					<!-- <p>{{ post4_description }}</p> -->
+					<p>{{ post.description }}</p>
+					<p class="pictureframe" style="height: 257px">
+						<img :src="post.img1_url" width="290px" height="186px" alt="2019 Final Tournament Finalists">
+						<span>{{ post.img1_desc1 }}</span>
+						<span>{{ post.img1_desc2 }}</span>
+					</p>
+					<p class="pictureframe" style="height: 257px">
+						<img :src="post.img2_url" width="290px" height="186px" alt="2019 Final Tournament Finalists">
+						<span>{{ post.img2_desc1 }}</span>
+						<span>{{ post.img2_desc2 }}</span>
 					</p>
           <br style="clear:both;">
-          <p><strong>{{ post4_subtitle1 }}</strong></p>
-          <p>{{ post4_subtitle1_desc1 }}</p>
-          <p>{{ post4_subtitle1_desc2 }}</p>
-          <p><strong>{{ post4_subtitle2 }}</strong></p>
-          <p>{{ post4_subtitle2_desc }}</p>
+          <p><strong>{{ post.subtitle1 }}</strong></p>
+          <p>{{ post.subtitleText1 }}</p>
+          <p>{{ post.subtitleText2 }}</p>
+          <p><strong>{{ post.subtitle2 }}</strong></p>
+          <p>{{ post.subtitleText3 }}</p>
 				</div>					
-				<div class="entry" style="text-align:center;">
+				<!-- <div class="entry" style="text-align:center;">
 					<a :href="post4_url" target="_blank">{{ post4_url_text }}</a>
-				</div>			
+				</div>	 -->
+				<div class="entry" style="text-align:center;" v-for="(post, i) in post4" :key="i">
+					<a :href="post.url" target="_blank">{{ post.urlText }}</a>
+				</div>	
 			</div>
     </div>
   </div>
 </template>
 
 <script>
-import HomeEditImportantDates from  '../components/HomeEditImportantDates'
-import HomeEditChampions from  '../components/HomeEditChampions'
-import HomeEditAwardWinners from  '../components/HomeEditAwardWinners'
-import HomeEditBallParks from  '../components/HomeEditBallParks'
+import HomeEditImportantDates from  '../components/homeEdit/HomeEditImportantDates'
+import HomeEditChampions from  '../components/homeEdit/HomeEditChampions'
+import HomeEditAwardWinners from  '../components/homeEdit/HomeEditAwardWinners'
+import HomeEditBallParks from  '../components/homeEdit/HomeEditBallParks'
+import HomeEditPost1 from  '../components/homeEdit/HomeEditPost1'
+import HomeEditPost2 from  '../components/homeEdit/HomeEditPost2'
+import HomeEditPost3 from  '../components/homeEdit/HomeEditPost3'
+import HomeEditPost4 from  '../components/homeEdit/HomeEditPost4'
 
 export default {
   components: {
     HomeEditImportantDates,
     HomeEditChampions,
     HomeEditAwardWinners,
-    HomeEditBallParks
+    HomeEditBallParks,
+    HomeEditPost1,
+    HomeEditPost2,
+    HomeEditPost3,
+    HomeEditPost4,
   },
   props: {
   },
@@ -187,11 +250,28 @@ export default {
                 {name: 'Centennial Park', address: 'Bullock and McCowan'},
                 {name: 'Mintleaf Park', address: 'Fincham and Wootten Way N.'},
               ],
+      editPost1Authorization: false,
+      post1: [],
       post1_title: '2020 SEASON REGISTRATION IS OPEN!',
       post1_description: 'There are still spots available to play in the 2020 season',
       post1_url_text: 'Click here to register now',
       post1_url: '/signup',
 
+      editPost2Authorization: false,
+      post2: [
+                {
+                  title: '2019 JIM MCGREGOR TOURNAMENT TEST',
+                  description: 'Congratulations to all for another exciting finals tournament!',
+                  img1_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM3Njd9&w=1000&q=80',
+                  img1_desc1: 'Derek Houghton Century 21',
+                  img1_desc2: '2019 Final Tournament Champions',
+                  img2_url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM3Njd9&w=1000&q=80',
+                  img2_desc1: 'Derek Houghton Century 21',
+                  img2_desc2: '2019 Final Tournament Finalists',
+                  urlText: 'Click here for the tournament schedule and results.',
+                  url: '/signup'
+                }
+      ],
       post2_title: '2019 JIM MCGREGOR TOURNAMENT',
       post2_description: 'Congratulations to all for another exciting finals tournament!',
       post2_img: [
@@ -201,12 +281,16 @@ export default {
       post2_url_text: 'Click here for the tournament schedule and results.',
       post2_url: '/signup',
 
+      editPost3Authorization: false,
+      post3: [],
       post3_title: '2019 REGULAR SEASON CHAMPIONS',
       post3_description: 'Congratulations to Derek Houghton Century 21 for winning the 2019 President\'s Trophy.',
       post3_img: [
                 {img_src: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjM3Njd9&w=1000&q=80', img_desc_1: '2019 Regular Season Champions - Derek Houghton Century 21'},
               ],
 
+      editPost4Authorization: false,
+      post4: [],
       post4_title: '2019 CHARITY TOURNAMENT',
       post4_description: 'Congratulations to all for another exciting charity tournament!',
       post4_img: [
@@ -273,17 +357,38 @@ export default {
         this.sidebarBallParksAuthorization = true;
       }
     },
+    // Post 1
     post1EditClick() {
-      console.log('post1EditClick click')
+      console.log('post1 working' + this.editPost1Authorization);
+      if(this.editPost1Authorization === true) {
+        this.editPost1Authorization = false
+      } else if(this.editPost1Authorization === false) {
+        this.editPost1Authorization = true
+      }
     },
     post2EditClick() {
-      console.log('post2EditClick click')
+      console.log('post2 working' + this.editPost2Authorization);
+      if(this.editPost2Authorization === true) {
+        this.editPost2Authorization = false
+      } else if(this.editPost2Authorization === false) {
+        this.editPost2Authorization = true
+      }
     },
     post3EditClick() {
-      console.log('post3EditClick click')
+      console.log('post3 working' + this.editPost3Authorization);
+      if(this.editPost3Authorization === true) {
+        this.editPost3Authorization = false
+      } else if(this.editPost3Authorization === false) {
+        this.editPost3Authorization = true
+      }
     },
     post4EditClick() {
-      console.log('post4EditClick click')
+      console.log('post4 working' + this.editPost4Authorization);
+      if(this.editPost4Authorization === true) {
+        this.editPost4Authorization = false
+      } else if(this.editPost4Authorization === false) {
+        this.editPost4Authorization = true
+      }
     }
   },
   created() {
@@ -303,6 +408,25 @@ export default {
     // Sidebar Ball Parks
     firebase.database().ref('homeSidebarBallParks').on('value', (snapshot)=> {
       this.sidebarBallparks = snapshot.val();
+    });
+    // Post 1
+    firebase.database().ref('homePost1').on('value', (snapshot)=> {
+      this.post1 = snapshot.val();
+    });
+    // Post 2
+    firebase.database().ref('homePost2').on('value', (snapshot)=> {
+      this.post2 = snapshot.val();
+      // console.log(this.post2)
+    });
+    // Post 3
+    firebase.database().ref('homePost3').on('value', (snapshot)=> {
+      this.post3 = snapshot.val();
+      // console.log(this.post3)
+    });
+    // Post 4
+    firebase.database().ref('homePost4').on('value', (snapshot)=> {
+      this.post4 = snapshot.val();
+      // console.log(this.post3)
     });
   }
 }
@@ -472,7 +596,8 @@ export default {
   border-radius: 6px;
   background: green;
 }
-.close-btn {
+.close-btn, 
+.close-btn-post {
   position: absolute;
   top: 6px;
   right: -395px; 
@@ -484,5 +609,9 @@ export default {
   font-weight: bold;
   border: 2px solid #FFFFFF;
   border-radius: 6px;
+} 
+.close-btn-post {
+  right: 6px;
+  top: 60px;
 }
 </style>
