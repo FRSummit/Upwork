@@ -4,8 +4,20 @@
 			<ul>
 				<li>
 					<h3>League Information</h3>
-					<ul>
-						<li>The Markham Men's Slo-Pitch League is a semi-competitive, slo-pitch league.  We have 16 teams with 15 players each.  We play 30 regular season games between mid-May to early-September.  Included in league fees are a Charity Tournament (early-June) and a Play-off Tournament (mid-September) in which each team is guaranteed 3 games.  Players range in age from 25-60+.</li>
+          <button class="edit-btn" @click="sidebarLeagueInfo" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarLeagueInfo" 
+                                  v-if="userIsAuthorized && sidebarLeagueInfoAuthorization">
+                                  X</button>
+          <LeagueInfo v-if="userIsAuthorized && sidebarLeagueInfoAuthorization"/>
+					<ul v-for="(info, ins) in leagueInfo" :key="ins">
+            <li>{{ info.info1 }}</li>
+            <li>{{ info.info2 }}</li>
+            <li>{{ info.info3 }}</li>
+            <li>{{ info.info4 }}</li>
+            <li>{{ info.info5 }}</li>
+            <li>{{ info.info6 }}</li>
+            <li>{{ info.info7 }}</li>
+						<!-- <li>The Markham Men's Slo-Pitch League is a semi-competitive, slo-pitch league.  We have 16 teams with 15 players each.  We play 30 regular season games between mid-May to early-September.  Included in league fees are a Charity Tournament (early-June) and a Play-off Tournament (mid-September) in which each team is guaranteed 3 games.  Players range in age from 25-60+.</li>
 						<li>Our key objective is to ensure that each of the 16 teams is competitive.  We attempt to do this by running a 'draft' at the start of each season.  New players are 'rated' in various ways (self-rating and practice) and then individually drafted to a team depending on need. We do not accept team or group registrations.</li>
 						<li>Players must be at least 25 years of age during the calendar year and reside within the City of Markham, or be a principle owner of a business that pays business taxes to the City of Markham.  PLEASE NOTE: players from outside of these boundaries can play should the league require additional players after March 1st.</li>                            
 						<li>FEES for new players for the 2020 season are $240.  Arrange an E-transfer to League president, or Cheques should be made out to MMSPL (Markham Men's Slo-Pitch League), post-dated to March 19th, 2019 and mailed to: </li>
@@ -17,7 +29,7 @@
               L3P 0C8 <br>
 						</li>
 						<li>New players are recruited on the basis of date of payment and attendance at the new player recruitment practices; for example, if the league requires 20 players, the first 20 to pay and attend at least one recruitment practice will be guaranteed placement on a team.</li>
-						<li>If all roster spots are filled, you may join the waiting / call-up list, and are then eligible to play in games when a team requires extra players.</li>						
+						<li>If all roster spots are filled, you may join the waiting / call-up list, and are then eligible to play in games when a team requires extra players.</li>						 -->
 					</ul>
 				</li>
 			</ul>
@@ -29,7 +41,7 @@
         </v-tabs>
 
         <v-tabs-items v-model="tab">
-          <v-tab-item v-for="item in items" :key="item">
+          <v-tab-item v-for="(item, idx) in items" :key="idx">
             <v-card>
               <v-card v-if="item == 'Registration Form'">
                 <div class="post">
@@ -181,10 +193,10 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="item in regPlayers" :key="item.name">
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.note }}</td>
-                            <td>{{ item.note }}</td>
+                          <tr v-for="item in regList" :key="item.name">
+                            <td>{{ item.fullName }}</td>
+                            <td>{{ item.homeNumber }}</td>
+                            <td>{{ item.phone }}</td>
                           </tr>
                         </tbody>
                       </template>
@@ -206,10 +218,17 @@
 </template>
 
 <script>
+import LeagueInfo from '../components/registerEdit/LeagueInfo'
+
 export default {
+  components: {
+    LeagueInfo,
+  },
   data() {
     return {
       // personal Info
+      userIsAuthorized: false,
+      sidebarLeagueInfoAuthorization: false,
       fullName: '',
       streetAddress: '',
       unit: '',
@@ -255,10 +274,31 @@ export default {
           name: 'Player 3',
           note: 'haram khor',
         }
-      ]
+      ],
+      leagueInfo: [],
+      regList: []
     }
   },
+  created() {
+    this.checkUserIsAuthorized()
+    firebase.database().ref('registerLeagueInfo').on('value', (snapshot)=> {
+      this.leagueInfo = snapshot.val();
+    });
+    firebase.database().ref('registerLeagueRegistrationList').on('value', (snapshot)=> {
+      this.regList = snapshot.val();
+    });
+  },
   methods: {
+    checkUserIsAuthorized() {
+      const userAuth = localStorage.getItem("upwork_project_shaiket_login_pass");
+      if(userAuth) {
+        const authValue = JSON.parse(userAuth).login_auth_value;
+        console.log(authValue);
+        if(authValue == 'authorized') {
+          this.userIsAuthorized = true; 
+        }
+      }
+    },
     onSubmit() {
       const register = {
         // Personal Info
@@ -283,6 +323,52 @@ export default {
         yearsPitched: this.yearsPitched,
         commentOnPitchingExperience: this.commentOnPitchingExperience,
       }
+      firebase.database().ref('registerLeagueRegistrationList').push({
+        fullName: this.fullName,
+        streetAddress: this.streetAddress,
+        unit: this.unit,
+        city: this.city,
+        postalCode: this.postalCode,
+        homeNumber: this.homeNumber,
+        phone: this.phone,
+        email: this.email,
+        alterateEMail: this.alterateEMail,
+        dob: this.dob,
+        heardAboutLeague: this.heardAboutLeague,
+        // Playing Experience
+        SPN_SPO_NSA_Category: this.SPN_SPO_NSA_Category,
+        preferredPosition: this.preferredPosition,
+        yearsOfExperience: this.yearsOfExperience,
+        commentsOnPlayingExperience: this.commentsOnPlayingExperience,
+        // Pitching Experience
+        ableToPitch: this.ableToPitch,
+        yearsPitched: this.yearsPitched,
+        commentOnPitchingExperience: this.commentOnPitchingExperience
+      })
+      .then((data)=>{
+        console.log(data)
+        this.fullName = '',
+        this.streetAddress = '',
+        this.unit = '',
+        this.city = '',
+        this.postalCode = '',
+        this.homeNumber = '',
+        this.phone = '',
+        this.email = '',
+        this.alterateEMail = '',
+        this.dob = '',
+        this.heardAboutLeague = '',
+        // Playing Experience
+        this.SPN_SPO_NSA_Category = '',
+        this.preferredPosition = '',
+        this.yearsOfExperience = '',
+        this.commentsOnPlayingExperience = '',
+        // Pitching Experience
+        this.ableToPitch = '',
+        this.yearsPitched = '',
+        this.commentOnPitchingExperience = ''
+      })
+      .catch((error)=>console.log(error))
       console.log(register);
       console.log(JSON.stringify(register));
     },
@@ -309,6 +395,13 @@ export default {
       this.ableToPitch = '',
       this.yearsPitched = '',
       this.commentOnPitchingExperience = ''
+    },
+    sidebarLeagueInfo() {
+      if(this.sidebarLeagueInfoAuthorization === true) {
+        this.sidebarLeagueInfoAuthorization = false;
+      } else if(this.sidebarLeagueInfoAuthorization === false) {
+        this.sidebarLeagueInfoAuthorization = true;
+      }
     }
   }
 }
@@ -336,6 +429,7 @@ export default {
 .register .sidebar li {
   margin: 0;
   padding: 0;
+  position: relative;
 }
 .register .sidebar h2,
 .register .sidebar h3 {
@@ -511,4 +605,29 @@ export default {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
+.register .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
+}
+.close-btn {
+  position: absolute;
+  top: 2px;
+  right: -500px; 
+  z-index: 12; 
+  padding: 0px 4px; 
+  background: red;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+} 
 </style>
