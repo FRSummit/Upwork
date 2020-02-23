@@ -178,9 +178,9 @@
 				<!-- <div class="entry" style="text-align:center;">
 					<a :href="post4_url" target="_blank">{{ post4_url_text }}</a>
 				</div>	 -->
-				<div class="entry" style="text-align:center;" v-for="(post, i) in post4" :key="i">
+				<!-- <div class="entry" style="text-align:center;" v-for="(post, i) in post4" :key="i">
 					<a :href="post.url" target="_blank">{{ post.urlText }}</a>
-				</div>	
+				</div>	 -->
 			</div>
     </div>
   </div>
