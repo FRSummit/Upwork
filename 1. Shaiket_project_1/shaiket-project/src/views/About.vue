@@ -3,6 +3,12 @@
     <div class="content">
 	  <div class="post">
 		<h2 class="title">Our League</h2>
+    <button class="edit-btn" @click="aboutPost1EditClick" v-if="userIsAuthorized">Edit</button>
+    <button class="close-btn" @click="aboutPost1EditClick" 
+                            v-if="userIsAuthorized && aboutPost1Auth"
+                            style="top: 44px; right: 4px;">
+                            X</button>
+    <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
 		<div class="entry">
 		  <p>The Markham Men's Slo-Pitch League is a semi-competitive, slo-pitch league with 16 teams of 15 players each. Players range in age from 25-60+.</p>
 		  <p>Established as a 4 team recreational softball league, the Markham Men's Slo-Pitch League (originally Markham Men's Fun League) played their first season in the summer of 1968.</p>
@@ -18,10 +24,16 @@
 	  </div>
 	  <div class="post">
 	  	<h2 class="title">In The Community</h2>
-		<div class="entry">
-		  <p>To date, the Markham Men's Slo-Pitch League has donated in excess of <span style="font-weight:bold">$110,000</span> to local Markham charities.</p>
-	  	  <p>In 1982, with the opening of Centennial Community Park, the Markham Men's Slo-Pitch League played their inaugural Inter Mural Community Fun Tournament to raise funds for local charities helping people directly in The Markham Community.</p>
-		</div>
+      <button class="edit-btn" @click="aboutPost2EditClick" v-if="userIsAuthorized">Edit</button>
+      <button class="close-btn" @click="aboutPost2EditClick" 
+                            v-if="userIsAuthorized && aboutPost2Auth"
+                            style="top: 44px; right: 4px;">
+                            X</button>
+      <AboutPost2Edit v-if="userIsAuthorized && aboutPost2Auth"/>
+      <div class="entry">
+        <p>To date, the Markham Men's Slo-Pitch League has donated in excess of <span style="font-weight:bold">$110,000</span> to local Markham charities.</p>
+          <p>In 1982, with the opening of Centennial Community Park, the Markham Men's Slo-Pitch League played their inaugural Inter Mural Community Fun Tournament to raise funds for local charities helping people directly in The Markham Community.</p>
+      </div>
 	    <div class="entry">
 		  <v-carousel>
 			<v-carousel-item v-for="(item,i) in items" :key="i" :src="item.src"
@@ -31,6 +43,12 @@
 	  </div>
 	  <div class="post">
 	    <h2 class="title">Celebrating 50 years in 2018</h2>
+      <button class="edit-btn" @click="aboutPost3EditClick" v-if="userIsAuthorized">Edit</button>
+      <button class="close-btn" @click="aboutPost3EditClick" 
+                              v-if="userIsAuthorized && aboutPost3Auth"
+                            style="top: 44px; right: 4px;">
+                              X</button>
+      <AboutPost3Edit v-if="userIsAuthorized && aboutPost3Auth"/>
 	    <div class="entry">
 	      <div style="text-align:center;">
             <img src="../assets/images/MMSP-LOGO-50-YRS.png" width="406" style="padding-bottom: 10px">
@@ -49,9 +67,17 @@
 </template>
 
 <script>
+import AboutPost1Edit from '../components/about/AboutPost1Edit'
+import AboutPost2Edit from '../components/about/AboutPost2Edit'
+import AboutPost3Edit from '../components/about/AboutPost3Edit'
 
 export default {
   name: 'About',
+  components: {
+    AboutPost1Edit,
+    AboutPost2Edit,
+    AboutPost3Edit
+  },
   data() {
     return {
       userIsAuthorized: false,
@@ -75,6 +101,9 @@ export default {
           src: 'http://mmspl.ca/res/img/2016-charity-presentation-sws.jpg',
         },
       ],
+      aboutPost1Auth: false,
+      aboutPost2Auth: false,
+      aboutPost3Auth: false,
     }
   },
   methods: {
@@ -86,6 +115,27 @@ export default {
         if(authValue == 'authorized') {
           this.userIsAuthorized = true; 
         }
+      }
+    },
+    aboutPost1EditClick() {
+      if(this.aboutPost1Auth === true) {
+        this.aboutPost1Auth = false;
+      } else if(this.aboutPost1Auth === false) {
+        this.aboutPost1Auth = true;
+      }
+    },
+    aboutPost2EditClick() {
+      if(this.aboutPost2Auth === true) {
+        this.aboutPost2Auth = false;
+      } else if(this.aboutPost2Auth === false) {
+        this.aboutPost2Auth = true;
+      }
+    },
+    aboutPost3EditClick() {
+      if(this.aboutPost3Auth === true) {
+        this.aboutPost3Auth = false;
+      } else if(this.aboutPost3Auth === false) {
+        this.aboutPost3Auth = true;
       }
     }
   },
@@ -114,6 +164,7 @@ export default {
   border: 1px solid #D2D4C9;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  position: relative;
 }
 .about .post .title {
   text-transform: uppercase;
@@ -143,5 +194,17 @@ export default {
 .about .entry ul {
   padding-left: 40px;
   margin-bottom: 14.4px;
+}
+.about .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>

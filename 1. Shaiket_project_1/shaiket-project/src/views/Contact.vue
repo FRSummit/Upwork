@@ -9,6 +9,12 @@
               <v-toolbar-title style="font-size: 17.28px; font-weight: bold;">Mailing Address</v-toolbar-title>
               <v-spacer />
             </v-toolbar>
+            <button class="edit-btn" @click="sidebarContactEditClick" v-if="userIsAuthorized">Edit</button>
+            <button class="close-btn" @click="sidebarContactEditClick" 
+                                    v-if="userIsAuthorized && sidebarContactAuth"
+                                    style="top: 6px; right: -396px;">
+                                    X</button>
+            <SidebarContactEdit1 v-if="userIsAuthorized && sidebarContactAuth"/>
             <div class="contact-input-field">
               <label class="field-label" for="contact_name">
                 Markham Men's Slo-Pitch League<br><br>
@@ -69,8 +75,42 @@
 </template>
 
 <script>
+import SidebarContactEdit1 from '../components/contact/SidebarContactEdit1'
+
 export default {
-    
+  components: {
+    SidebarContactEdit1,
+  },
+  props: {
+  },
+  data () {
+    return {
+      userIsAuthorized: false,
+      sidebarContactAuth: false,
+    }
+  },
+  methods: {
+    checkUserIsAuthorized() {
+      const userAuth = localStorage.getItem("upwork_project_shaiket_login_pass");
+      if(userAuth) {
+        const authValue = JSON.parse(userAuth).login_auth_value;
+        console.log(authValue);
+        if(authValue == 'authorized') {
+          this.userIsAuthorized = true; 
+        }
+      }
+    },
+    sidebarContactEditClick() {
+      if(this.sidebarContactAuth === true) {
+        this.sidebarContactAuth = false;
+      } else if(this.sidebarContactAuth === false) {
+        this.sidebarContactAuth = true;
+      }
+    },
+  },
+  created() {
+    this.checkUserIsAuthorized()
+  }
 }
 </script>
 
@@ -167,5 +207,17 @@ export default {
   font-size: 14px;
   text-align: right;
   padding-right: 20px;
+}
+.contact .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>

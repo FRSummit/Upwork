@@ -37,14 +37,14 @@
 				<h2 class="title">{{ post.title1 }}</h2>
 				<div class="entry">
 					<p>{{ post.desc1 }}</p>
-          <a :href="post.url1">{{ post.urlTitle1 }}</a>
+          <a :href="post.url1" target="_blank">{{ post.urlTitle1 }}</a>
 				</div>
 			</div>
 			<div class="post" v-if="defaultPostAuthentication">
 				<h2 class="title">{{ post.title2 }}</h2>
 				<div class="entry">
 					<p>{{ post.desc2 }}</p>
-          <a :href="post.url2">{{ post.urlTitle2 }}</a>
+          <a :href="post.url2" target="_blank">{{ post.urlTitle2 }}</a>
 				</div>
 			</div>
 			<!-- <div class="post" v-if="defaultPostAuthentication">

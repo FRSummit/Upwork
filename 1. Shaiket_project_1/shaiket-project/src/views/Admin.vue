@@ -5,6 +5,12 @@
       <ul class="sidebar-parent-ul">
         <li>
 			  	<h2>League Rules</h2>
+          <button class="edit-btn" @click="sidebarLeagueRuleEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarLeagueRuleEditClick" 
+                                  v-if="userIsAuthorized && sidebarLeagueRuleAuth"
+                                  style="right: -396px;">
+                                  X</button>
+          <SidebarEdit1 v-if="userIsAuthorized && sidebarLeagueRuleAuth"/>
           <ul>
 						<li><a href="res/docs/2019-constitution.pdf">2019 League Constitution</a></li>
 						<li><a href="res/docs/2019-house-rules.pdf">2019 MMSPL House Rules</a></li>
@@ -15,6 +21,12 @@
 				</li>
         <li>
 					<h2>Other Documents</h2>
+          <button class="edit-btn" @click="sidebarOtherDocsEditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="sidebarOtherDocsEditClick" 
+                                  v-if="userIsAuthorized && sidebarOtherDocsAuth"
+                                  style="right: -396px;">
+                                  X</button>
+          <SidebarEdit2 v-if="userIsAuthorized && sidebarOtherDocsAuth"/>
 					<ul>
 						<li><a href="res/docs/2018-AGM-Minutes.docx">2018 AGM Minutes</a></li>
 						<li><a href="res/docs/2017-AGM-Minutes.docx">2017 AGM Minutes</a></li>
@@ -43,6 +55,12 @@
 <div class="content">
 				<div class="post">
 					<h2 class="title">2020 League Executive</h2>
+          <button class="edit-btn" @click="post1EditCLick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="post1EditCLick" 
+                                  v-if="userIsAuthorized && post1Auth"
+                                  style="top: 44px; right: 4px;">
+                                  X</button>
+          <Post1 v-if="userIsAuthorized && post1Auth" style="top: 40px; right: 0px;"/>
 					<div class="entry">
 						<table border="0" cellspacing="0" class="admin_table">
 							<tbody><tr>
@@ -60,6 +78,12 @@
 				</div>
 				<div class="post">
 					<h2 class="title">2020 Executive Council - Team Representatives</h2>
+          <button class="edit-btn" @click="post2EditCLick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="post2EditCLick" 
+                                  v-if="userIsAuthorized && post2Auth"
+                                  style="top: 44px; right: 4px;">
+                                  X</button>
+          <Post2 v-if="userIsAuthorized && post2Auth" style="top: 40px; right: 0px;"/>
 					<div class="entry">
 						<table border="0" cellspacing="0" class="admin_table">
 							<tbody><tr>
@@ -108,13 +132,28 @@
 </template>
 
 <script>
+import SidebarEdit1 from '../components/admin/SidebarEdit1'
+import SidebarEdit2 from '../components/admin/SidebarEdit2'
+import Post1 from '../components/admin/Post1'
+import Post2 from '../components/admin/Post2'
+
 export default {
+  components: {
+    SidebarEdit1,
+    SidebarEdit2,
+    Post1,
+    Post2
+  },
   props: {
   },
   data () {
     return {
       users: [],
       userIsAuthorized: false,
+      sidebarLeagueRuleAuth: false,
+      sidebarOtherDocsAuth: false,
+      post1Auth: false,
+      post2Auth: false,
     }
   },
   methods: {
@@ -127,9 +166,38 @@ export default {
           this.userIsAuthorized = true; 
         }
       }
+    },
+    sidebarLeagueRuleEditClick() {
+      if(this.sidebarLeagueRuleAuth === true) {
+        this.sidebarLeagueRuleAuth = false;
+      } else if(this.sidebarLeagueRuleAuth === false) {
+        this.sidebarLeagueRuleAuth = true;
+      }
+    },
+    sidebarOtherDocsEditClick() {
+      if(this.sidebarOtherDocsAuth === true) {
+        this.sidebarOtherDocsAuth = false;
+      } else if(this.sidebarOtherDocsAuth === false) {
+        this.sidebarOtherDocsAuth = true;
+      }
+    },
+    post1EditCLick() {
+      if(this.post1Auth === true) {
+        this.post1Auth = false;
+      } else if(this.post1Auth === false) {
+        this.post1Auth = true;
+      }
+    },
+    post2EditCLick() {
+      if(this.post2Auth === true) {
+        this.post2Auth = false;
+      } else if(this.post2Auth === false) {
+        this.post2Auth = true;
+      }
     }
   },
   created() {
+    this.checkUserIsAuthorized()
   }
 }
 </script>
@@ -150,6 +218,7 @@ export default {
 }
 .admin .sidebar li {
   margin: 0;
+  position: relative;
 }
 .admin .sidebar h2, .sidebar h3 {
   padding: 10px;
@@ -200,6 +269,7 @@ export default {
   border: 1px solid #D2D4C9;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  position: relative;
 }
 .admin .post .title {
   text-transform: uppercase;
@@ -245,5 +315,17 @@ export default {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.admin .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>

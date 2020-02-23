@@ -12,6 +12,12 @@
                     <v-toolbar-title>MMSPL COMMUNITY</v-toolbar-title>
                     <v-spacer />
                   </v-toolbar>
+                  <button class="edit-btn" @click="communityPost1EditClick" v-if="userIsAuthorized">Edit</button>
+                  <button class="close-btn" @click="communityPost1EditClick" 
+                                          v-if="userIsAuthorized && communityPost1Auth"
+                                          style="top: 44px; right: 4px;">
+                                          X</button>
+                  <CommunityPost1Edit v-if="userIsAuthorized && communityPost1Auth"/>
                   <div class="entry">
                     <p style="text-align:center; font-weight:bold;">WE ARE LOOKING TO MAKE NETWORKING EASIER WITHIN THE MMSPL!</p>
                     <p style="text-align:center; font-weight:bold;">THE MMSPL IS NOW OFFERING LEAGUE MEMBERS TO PROMOTE THEIR BUSINESSES/SERVICES!!</p>
@@ -26,6 +32,12 @@
                     <v-toolbar-title>Sibra Kitchens</v-toolbar-title>
                     <v-spacer />
                   </v-toolbar>
+                  <button class="edit-btn" @click="communityPost2EditClick" v-if="userIsAuthorized">Edit</button>
+                  <button class="close-btn" @click="communityPost2EditClick" 
+                                          v-if="userIsAuthorized && communityPost2Auth"
+                                          style="top: 44px; right: 4px;">
+                                          X</button>
+                  <CommunityPost2Edit v-if="userIsAuthorized && communityPost2Auth"/>
                   <div class="entry">
                     <div style="float:right;">
                       <a href="../assets/docs/sibra.pdf" target="_blank">
@@ -43,6 +55,12 @@
                     <v-toolbar-title>Healthy Home Makeover Co Zzz Sleep</v-toolbar-title>
                     <v-spacer />
                   </v-toolbar>
+                  <button class="edit-btn" @click="communityPost3EditClick" v-if="userIsAuthorized">Edit</button>
+                  <button class="close-btn" @click="communityPost3EditClick" 
+                                          v-if="userIsAuthorized && communityPost3Auth"
+                                          style="top: 44px; right: 4px;">
+                                          X</button>
+                  <CommunityPost3Edit v-if="userIsAuthorized && communityPost3Auth"/>
                   <div class="entry">
                     <div style="float:right;">
                       <a href="../assets/images/healthy-home.pdf" target="_blank">
@@ -68,8 +86,60 @@
 </template>
 
 <script>
+import CommunityPost1Edit from '../components/community/CommunityPost1Edit'
+import CommunityPost2Edit from '../components/community/CommunityPost2Edit'
+import CommunityPost3Edit from '../components/community/CommunityPost3Edit'
+
 export default {
-    
+  components: {
+    CommunityPost1Edit,
+    CommunityPost2Edit,
+    CommunityPost3Edit,
+  },
+  data() {
+    return {
+      userIsAuthorized: false,
+      communityPost1Auth: false,
+      communityPost2Auth: false,
+      communityPost3Auth: false,
+    }
+  },
+  methods: {
+    checkUserIsAuthorized() {
+      const userAuth = localStorage.getItem("upwork_project_shaiket_login_pass");
+      if(userAuth) {
+        const authValue = JSON.parse(userAuth).login_auth_value;
+        console.log(authValue);
+        if(authValue == 'authorized') {
+          this.userIsAuthorized = true; 
+        }
+      }
+    },
+    communityPost1EditClick() {
+      if(this.communityPost1Auth === true) {
+        this.communityPost1Auth = false;
+      } else if(this.communityPost1Auth === false) {
+        this.communityPost1Auth = true;
+      }
+    },
+    communityPost2EditClick() {
+      if(this.communityPost2Auth === true) {
+        this.communityPost2Auth = false;
+      } else if(this.communityPost2Auth === false) {
+        this.communityPost2Auth = true;
+      }
+    },
+    communityPost3EditClick() {
+      if(this.communityPost3Auth === true) {
+        this.communityPost3Auth = false;
+      } else if(this.communityPost3Auth === false) {
+        this.communityPost3Auth = true;
+      }
+    },
+  },
+  created() {
+    this.checkUserIsAuthorized();
+  }
 }
 </script>
 
@@ -115,5 +185,17 @@ export default {
 .community header .v-toolbar__content {
   height: auto !important;
   padding: 8px 16px;
+}
+.community .edit-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>
