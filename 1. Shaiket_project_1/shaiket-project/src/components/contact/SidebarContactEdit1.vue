@@ -1,8 +1,16 @@
 <template>
   <div class="league-info-edit">
     <form @submit.prevent="onSubmit">
-      <label class="label">List Item</label>
-      <input class="input" type="text" v-model="itemName" id="itemName" placeholder="Ace Pools Moose"/>
+      <label class="label">Title</label>
+      <input class="input" type="text" v-model="title" id="title" placeholder="Mississauga Men's Senior Slo-Pitch"/>
+      <label class="label">Street</label>
+      <input class="input" type="text" v-model="street" id="" placeholder="XX HIGHWAY, MILKY WAY"/>
+      <label class="label">Post Box</label>
+      <input class="input" type="text" v-model="postBox" id="postBox" placeholder="PO BOX XXXX"/>
+      <label class="label">State</label>
+      <input class="input" type="text" v-model="state" id="state" placeholder="TEXAS"/>
+      <label class="label">Capital / Country</label>
+      <input class="input" type="text" v-model="capital" id="capital" placeholder="USA"/>
       <div class="btn-section">
         <button type="submit">Submit</button>
       </div>
@@ -10,13 +18,19 @@
     <table style="">
       <thead>
         <tr>
-          <th style="width: 35%;">Name</th>
-            <th style="width: 15%;">Action</th>
+          <th style="width: 22%;">Street</th>
+          <th style="width: 22%;">Post Box</th>
+          <th style="width: 22%;">State</th>
+          <th style="width: 22%;">Capital</th>
+            <th style="width: 12%;">Action</th>
           </tr>
         </thead>
         <tbody style="">
-          <tr >
-            <td style="width: 35%; padding: 2px;">{{  }}</td>
+          <tr v-for="(para, i) in address" :key="i">
+            <td style="width: 22%; padding: 2px;">{{ para.street }}</td>
+            <td style="width: 22%; padding: 2px;">{{ para.postBox }}</td>
+            <td style="width: 22%; padding: 2px;">{{ para.state }}</td>
+            <td style="width: 22%; padding: 2px;">{{ para.capital }}</td>
             <a href="#" class="delete-btn" @click="deleteSchedule(i)">Delete</a>
           </tr>
         </tbody>
@@ -28,27 +42,42 @@
 export default {
   data() {
     return {
-      itemName: null,
       title: null,
+      street: null,
+      postBox: null,
+      state: null,
+      capital: null,
+      address: []
     }
   },
   created() {
+    firebase.database().ref('contactMailAddress').on('value', (snapshot)=> {
+      this.address = snapshot.val();
+    });
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
-        itemName: this.itemName,
-        title: this.title
+      firebase.database().ref('contactMailAddress').push({
+        title: this.title,
+        street: this.street,
+        postBox: this.postBox,
+        state: this.state,
+        capital: this.capital
       })
       .then((data)=>{
+        document.querySelector('.delete-btn').click()
         console.log(data)
-        this.itemName = '',
-        this.title = ''
+        this.title = '',
+        this.street = '',
+        this.postBox = '',
+        this.state = '',
+        this.capital = ''
       })
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      console.log(id)
+      firebase.database().ref('contactMailAddress/' + id).remove();
     }
   }
 }
@@ -70,7 +99,7 @@ export default {
   display: inline-block;
   width: 20%;
   vertical-align: top;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   padding: 4px 0;
   margin: 2px 0;

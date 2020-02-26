@@ -16,12 +16,12 @@
                                     X</button>
             <SidebarContactEdit1 v-if="userIsAuthorized && sidebarContactAuth"/>
             <div class="contact-input-field">
-              <label class="field-label" for="contact_name">
-                Markham Men's Slo-Pitch League<br><br>
-                6579 Highway 7 <br>
-                PO Box 77073 <br>
-                Markham, ON <br>
-                L3P 0C8 <br>
+              <label class="field-label" v-for="(a,i) in address" :key="i">
+                {{ a.title }}<br><br>
+                {{ a.street }}<br>
+                {{ a.postBox }}<br>
+                {{ a.state }}<br>
+                {{ a.capital }}<br>
               </label>
             </div>
           </v-card>
@@ -85,8 +85,12 @@ export default {
   },
   data () {
     return {
+      contact_name: null,
+      contact_email: null,
+      contact_message: null,
       userIsAuthorized: false,
       sidebarContactAuth: false,
+      address: []
     }
   },
   methods: {
@@ -110,6 +114,9 @@ export default {
   },
   created() {
     this.checkUserIsAuthorized()
+    firebase.database().ref('contactMailAddress').on('value', (snapshot)=> {
+      this.address = snapshot.val();
+    });
   }
 }
 </script>

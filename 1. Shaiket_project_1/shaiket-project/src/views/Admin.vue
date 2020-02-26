@@ -5,28 +5,26 @@
       <ul class="sidebar-parent-ul">
         <li>
 			  	<h2>League Rules</h2>
-          <button class="edit-btn" @click="sidebarLeagueRuleEditClick" v-if="userIsAuthorized">Edit</button>
-          <button class="close-btn" @click="sidebarLeagueRuleEditClick" 
-                                  v-if="userIsAuthorized && sidebarLeagueRuleAuth"
+          <button class="edit-btn" @click="adminSidebar1EditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="adminSidebar1EditClick" 
+                                  v-if="userIsAuthorized && sidebar1AdminAuth"
                                   style="right: -396px;">
                                   X</button>
-          <SidebarEdit1 v-if="userIsAuthorized && sidebarLeagueRuleAuth"/>
+          <SidebarEdit1 v-if="userIsAuthorized && sidebar1AdminAuth"/>
           <ul>
-						<li><a href="res/docs/2019-constitution.pdf">2019 League Constitution</a></li>
-						<li><a href="res/docs/2019-house-rules.pdf">2019 MMSPL House Rules</a></li>
-						<li><a href="#" id="batstrigger">MMSPL Bat Policy</a></li>
-						<li><a href="res/docs/2018-spn-rulebook-v2.pdf" target="_blank">SPN Rule Book</a></li>
-						<li><a href="http://www.teamusa.org/USA-Softball/Play-ASA/Certified-ASA-Equipment.aspx" target="_blank">Certified ASA Equipment</a></li>
+						<li v-for="(l, i) in sidebarList1" :key="i" @click="adminSidebar1Click(i)" style="cursor: pointer;">
+              <a>{{ l.itemName }}</a>
+            </li>
 					</ul>
 				</li>
-        <li>
-					<h2>Other Documents</h2>
-          <button class="edit-btn" @click="sidebarOtherDocsEditClick" v-if="userIsAuthorized">Edit</button>
-          <button class="close-btn" @click="sidebarOtherDocsEditClick" 
-                                  v-if="userIsAuthorized && sidebarOtherDocsAuth"
+        <!-- <li>
+					<h2>Other</h2>
+          <button class="edit-btn" @click="adminSidebar2EditClick" v-if="userIsAuthorized">Edit</button>
+          <button class="close-btn" @click="adminSidebar2EditClick" 
+                                  v-if="userIsAuthorized && sidebar2AdminAuth"
                                   style="right: -396px;">
                                   X</button>
-          <SidebarEdit2 v-if="userIsAuthorized && sidebarOtherDocsAuth"/>
+          <SidebarEdit2 v-if="userIsAuthorized && sidebar2AdminAuth"/>
 					<ul>
 						<li><a href="res/docs/2018-AGM-Minutes.docx">2018 AGM Minutes</a></li>
 						<li><a href="res/docs/2017-AGM-Minutes.docx">2017 AGM Minutes</a></li>
@@ -48,12 +46,12 @@
 						<li><a href="res/docs/2009 MMSPL AGM Minutes.doc">2009 AGM Minutes</a></li>
 						<li><a href="res/docs/LCC Draft Recommendations-REVISED DRAFT-Oct 2009.pdf">2009 LLC Recommendation</a></li>
 					</ul>
-        </li>
+        </li> -->
       </ul>
     </div>
     <!-- Page content goes here -->
-<div class="content">
-				<div class="post">
+      <div class="content">
+				<div class="post" v-if="defaultPost">
 					<h2 class="title">2020 League Executive</h2>
           <button class="edit-btn" @click="post1EditCLick" v-if="userIsAuthorized">Edit</button>
           <button class="close-btn" @click="post1EditCLick" 
@@ -76,14 +74,8 @@
 						</tbody></table>					
 					</div>
 				</div>
-				<div class="post">
+				<div class="post" v-if="defaultPost">
 					<h2 class="title">2020 Executive Council - Team Representatives</h2>
-          <button class="edit-btn" @click="post2EditCLick" v-if="userIsAuthorized">Edit</button>
-          <button class="close-btn" @click="post2EditCLick" 
-                                  v-if="userIsAuthorized && post2Auth"
-                                  style="top: 44px; right: 4px;">
-                                  X</button>
-          <Post2 v-if="userIsAuthorized && post2Auth" style="top: 40px; right: 0px;"/>
 					<div class="entry">
 						<table border="0" cellspacing="0" class="admin_table">
 							<tbody><tr>
@@ -112,21 +104,32 @@
 							</tr>
 						</tbody></table>						
 					</div>
-				</div>
-                
-                <div id="batsrule" class="post" style="display:none">
-                    <h2 class="title">MMSPL Bat Policy</h2>
-                    <div class="entry">
-                        <p>Effective this year, if your current bat does not have the following imprints on it, then it will not be accepted into our games this season and going forward.</p>
+				</div> 
+				<div class="post" v-if="dynamicPost">
+          <h2 class="title" v-if="!dynamicPostData">This is a default title</h2>
+          <!-- <button class="edit-btn" @click="dynamicPost1EditCLick" 
+                                    v-if="userIsAuthorized && !dynamicPostData">Edit</button>
+          <div v-for="(info, key) in dynamicPostData" :key="key">
+            <h2 class="title">{{ info.itemName }}</h2> -->
+            <button class="edit-btn" @click="dynamicPost1EditCLick" v-if="userIsAuthorized">Edit</button>
+            <button class="close-btn" @click="dynamicPost1EditCLick" 
+                                    v-if="userIsAuthorized && dynamicPostAuth"
+                                    style="top: 44px; right: 4px;">
+                                    X</button>
+            <DynamicPost v-if="userIsAuthorized && dynamicPostAuth" style="top: 40px; right: 0px;"/>
+            <div class="entry" v-for="(info, key) in dynamicPostData" :key="key">
+              <h2 v-if="getSelectedListItem == info.itemName" class="title">{{ info.itemName }}</h2>
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info1 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info2 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info3 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info4 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info5 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info6 }}</p>					
+              <p v-if="getSelectedListItem == info.itemName">{{ info.info7 }}</p>					
+            </div>
 
-                        <p>The new bat rule requires all teams to line all bats in dugout intended for use in the game with the "thumbprint" clearly visible. The umpire will look at all bats, giving the go ahead for them to be used. No SPN approved "thumbprint" = illegal. If any bat is found before game, that bat is removed. If an illegal bat is brought into the game, that player is automatically out and his spot in the order becomes an out every time.</p>
-                        
-                        <p>Looking for a new bat? Ensure it follows up to date SPN guidelines and has either of the following imprints as indicated below or you will not be able to use your bat during any MMSPL league games.</p>
-                        <img src="res/img/2018-spn-bat-policy.png" width="658px">
-                    </div>
-                </div>
-                
-                
+          </div>
+				</div> 
 			</div>
   </div>
 </template>
@@ -136,13 +139,15 @@ import SidebarEdit1 from '../components/admin/SidebarEdit1'
 import SidebarEdit2 from '../components/admin/SidebarEdit2'
 import Post1 from '../components/admin/Post1'
 import Post2 from '../components/admin/Post2'
+import DynamicPost from '../components/admin/DynamicPost'
 
 export default {
   components: {
     SidebarEdit1,
     SidebarEdit2,
     Post1,
-    Post2
+    Post2,
+    DynamicPost
   },
   props: {
   },
@@ -150,10 +155,16 @@ export default {
     return {
       users: [],
       userIsAuthorized: false,
-      sidebarLeagueRuleAuth: false,
-      sidebarOtherDocsAuth: false,
+      sidebar1AdminAuth: false,
+      sidebar2AdminAuth: false,
       post1Auth: false,
       post2Auth: false,
+      dynamicPostAuth: false,
+      sidebarList1: [],
+      defaultPost: true,
+      dynamicPost: false,
+      dynamicPostData: [],
+      getSelectedListItem: null,
     }
   },
   methods: {
@@ -167,18 +178,18 @@ export default {
         }
       }
     },
-    sidebarLeagueRuleEditClick() {
-      if(this.sidebarLeagueRuleAuth === true) {
-        this.sidebarLeagueRuleAuth = false;
-      } else if(this.sidebarLeagueRuleAuth === false) {
-        this.sidebarLeagueRuleAuth = true;
+    adminSidebar1EditClick() {
+      if(this.sidebar1AdminAuth === true) {
+        this.sidebar1AdminAuth = false;
+      } else if(this.sidebar1AdminAuth === false) {
+        this.sidebar1AdminAuth = true;
       }
     },
-    sidebarOtherDocsEditClick() {
-      if(this.sidebarOtherDocsAuth === true) {
-        this.sidebarOtherDocsAuth = false;
-      } else if(this.sidebarOtherDocsAuth === false) {
-        this.sidebarOtherDocsAuth = true;
+    adminSidebar2EditClick() {
+      if(this.sidebar2AdminAuth === true) {
+        this.sidebar2AdminAuth = false;
+      } else if(this.sidebar2AdminAuth === false) {
+        this.sidebar2AdminAuth = true;
       }
     },
     post1EditCLick() {
@@ -194,10 +205,34 @@ export default {
       } else if(this.post2Auth === false) {
         this.post2Auth = true;
       }
+    },
+    dynamicPost1EditCLick() {
+      if(this.dynamicPostAuth === true) {
+        this.dynamicPostAuth = false;
+      } else if(this.dynamicPostAuth === false) {
+        this.dynamicPostAuth = true;
+      }
+    },
+    adminSidebar1Click(id) {
+      console.log(id)
+      firebase.database().ref('adminSidebar1List/' + id).on('value', (snapshot)=> {
+        const sidebarListSelectedName = snapshot.val();
+        this.getSelectedListItem = sidebarListSelectedName.itemName
+      });
+      if(this.defaultPost === true && this.dynamicPost === false) {
+        this.defaultPost = false;
+        this.dynamicPost = true;
+      }
     }
   },
   created() {
     this.checkUserIsAuthorized()
+    firebase.database().ref('adminSidebar1List').on('value', (snapshot)=> {
+      this.sidebarList1 = snapshot.val();
+    });
+    firebase.database().ref('adminDynamicPost').on('value', (snapshot)=> {
+      this.dynamicPostData = snapshot.val();
+    });
   }
 }
 </script>
@@ -208,6 +243,7 @@ export default {
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
+  min-height: 800px;
 }
 .admin .sidebar {
   font-size: 80%;

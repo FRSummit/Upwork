@@ -1,7 +1,13 @@
 <template>
   <div class="standings">
     <div class="content">
-      <v-card>
+      <button class="edit-btn" v-if="userIsAuthorized">Edit</button>
+      <!-- <button class="close-btn" @click="aboutPost1EditClick" 
+                              v-if="userIsAuthorized && aboutPost1Auth"
+                              style="top: 44px; right: 4px;">
+                              X</button>
+      <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
+      <v-card> -->
         <v-tabs v-model="tab" grow>
           <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
         </v-tabs>
@@ -32,6 +38,13 @@
                   </div>
                 </div>
                 <div class="post">
+                <!-- <button class="edit-btn" v-if="userIsAuthorized" style="right: 8px; left: unset;">Edit</button> -->
+                <!-- <button class="close-btn" @click="aboutPost1EditClick" 
+                                        v-if="userIsAuthorized && aboutPost1Auth"
+                                        style="top: 44px; right: 4px;">
+                                        X</button>
+                <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
+                <v-card> -->
                   <h2 class="title">2010 Regular Season Standings <a style="font-size:10pt;font-weight:normal;margin-left:10px;text-transform:none" href="standings-2010-may.html">Details</a></h2>
                   <div class="entry">
                     <table border="0" cellspacing="0" class="dataTable" style="table-layout:fixed; width: 100%;">
@@ -67,6 +80,13 @@
                   </div>						
                 </div>
                 <div class="post">
+                <!-- <button class="edit-btn" v-if="userIsAuthorized" style="right: 8px; left: unset;">Edit</button> -->
+                <!-- <button class="close-btn" @click="aboutPost1EditClick" 
+                                        v-if="userIsAuthorized && aboutPost1Auth"
+                                        style="top: 44px; right: 4px;">
+                                        X</button>
+                <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
+                <v-card> -->
                   <h2 class="title">2010 Charity Tournament <a style="font-size:10pt;font-weight:normal;margin-left:10px;text-transform:none" href="standings-2010-charity.html">Details</a></h2>
                   <div class="entry">
                     <table align="center" style="width:640px; margin: 0 auto;">
@@ -107,8 +127,24 @@ export default {
         '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009',
         '2008', '2007', '2006', '2005'
       ],
-      text: 'My text is here'
+      text: 'My text is here',
+      userIsAuthorized: false,
     }
+  },
+  methods: {
+    checkUserIsAuthorized() {
+      const userAuth = localStorage.getItem("upwork_project_shaiket_login_pass");
+      if(userAuth) {
+        const authValue = JSON.parse(userAuth).login_auth_value;
+        console.log(authValue);
+        if(authValue == 'authorized') {
+          this.userIsAuthorized = true; 
+        }
+      }
+    },
+  },
+  created() {
+    this.checkUserIsAuthorized();
   }
 }
 </script>
@@ -125,11 +161,13 @@ export default {
   width: 948px;
   padding: 20px 20px 0 0;
   text-align: left;
+  position: relative;
 }
 .standings .post {
   margin-bottom: 8px;
   background-color: #EBEBEB;
   border: 1px solid #D2D4C9;
+  position: relative;
 }
 .standings .post .title {
   text-transform: uppercase;
@@ -232,5 +270,18 @@ export default {
 .standings .v-tab:hover {
   background-color: #AA1111;
   color: #FFFFFF !important;
+}
+.standings .edit-btn {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  z-index: 5;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border: 2px solid #FFFFFF;
+  border-radius: 6px;
+  background: green;
 }
 </style>

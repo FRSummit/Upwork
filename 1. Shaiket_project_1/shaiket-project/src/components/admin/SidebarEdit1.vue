@@ -2,7 +2,7 @@
   <div class="league-info-edit">
     <form @submit.prevent="onSubmit">
       <label class="label">List Item</label>
-      <input class="input" type="text" v-model="itemName" id="itemName" placeholder="Ace Pools Moose"/>
+      <input class="input" type="text" v-model="itemName" id="itemName" placeholder="2019 League Constitution"/>
       <div class="btn-section">
         <button type="submit">Submit</button>
       </div>
@@ -15,8 +15,8 @@
           </tr>
         </thead>
         <tbody style="">
-          <tr  >
-            <td style="width: 35%; padding: 2px;">{{  }}</td>
+          <tr v-for="(l, i) in list" :key="i">
+            <td style="width: 35%; padding: 2px;">{{ l.itemName }}</td>
             <a href="#" class="delete-btn" @click="deleteSchedule(i)">Delete</a>
           </tr>
         </tbody>
@@ -29,26 +29,27 @@ export default {
   data() {
     return {
       itemName: null,
-      title: null,
+      list: [],
     }
   },
   created() {
+    firebase.database().ref('adminSidebar1List').on('value', (snapshot)=> {
+      this.list = snapshot.val();
+    });
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
-        itemName: this.itemName,
-        title: this.title
+      firebase.database().ref('adminSidebar1List').push({
+        itemName: this.itemName
       })
       .then((data)=>{
         console.log(data)
-        this.itemName = '',
-        this.title = ''
+        this.itemName = ''
       })
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      firebase.database().ref('adminSidebar1List/' + id).remove();
     }
   }
 }

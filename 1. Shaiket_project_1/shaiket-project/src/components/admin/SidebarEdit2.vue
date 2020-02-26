@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
+      firebase.database().ref('adminSidebar2List').push({
         itemName: this.itemName,
         title: this.title
       })
@@ -48,7 +48,7 @@ export default {
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      firebase.database().ref('adminSidebar2List/' + id).remove();
     }
   }
 }

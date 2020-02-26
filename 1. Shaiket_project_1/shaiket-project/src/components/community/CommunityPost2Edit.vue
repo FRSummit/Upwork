@@ -1,8 +1,16 @@
 <template>
   <div class="league-info-edit">
     <form @submit.prevent="onSubmit">
-      <label class="label">List Item</label>
-      <input class="input" type="text" v-model="itemName" id="itemName" placeholder="Ace Pools Moose"/>
+      <label class="label">Paragraph 1</label>
+      <textarea class="input" type="text" v-model="paragraph1" id="paragraph1" placeholder=""/>
+      <label class="label">Website Name</label>
+      <textarea class="input" type="text" v-model="paragraph2" id="paragraph2" placeholder=""/>
+      <label class="label">Website URL</label>
+      <input class="input" type="text" v-model="paragraph3" id="paragraph3" placeholder=""/>
+      <label class="label">Website Name</label>
+      <textarea class="input" type="text" v-model="paragraph4" id="paragraph4" placeholder=""/>
+      <label class="label">Website URL</label>
+      <input class="input" type="text" v-model="paragraph5" id="paragraph5" placeholder=""/>
       <div class="btn-section">
         <button type="submit">Submit</button>
       </div>
@@ -15,8 +23,8 @@
           </tr>
         </thead>
         <tbody style="">
-          <tr >
-            <td style="width: 35%; padding: 2px;">{{  }}</td>
+          <tr v-for="(para, i) in paregraphs" :key="i">
+            <td style="width: 98%; padding: 2px;">{{ para.paragraph1 }}</td>
             <a href="#" class="delete-btn" @click="deleteSchedule(i)">Delete</a>
           </tr>
         </tbody>
@@ -28,27 +36,41 @@
 export default {
   data() {
     return {
-      itemName: null,
-      title: null,
+      paragraph1: null,
+      paragraph2: null,
+      paragraph3: null,
+      paragraph4: null,
+      paragraph5: null,
+      paregraphs: []
     }
   },
   created() {
+    firebase.database().ref('communityPost2').on('value', (snapshot)=> {
+      this.paregraphs = snapshot.val();
+    });
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
-        itemName: this.itemName,
-        title: this.title
+      firebase.database().ref('communityPost2').push({
+        paragraph1: this.paragraph1,
+        paragraph2: this.paragraph2,
+        paragraph3: this.paragraph3,
+        paragraph4: this.paragraph4,
+        paragraph5: this.paragraph5
       })
       .then((data)=>{
         console.log(data)
-        this.itemName = '',
-        this.title = ''
+        this.paragraph1 = '',
+        this.paragraph2 = '',
+        this.paragraph3 = '',
+        this.paragraph4 = '',
+        this.paragraph5 = ''
       })
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      firebase.database().ref('communityPost2/' + id).remove();
+      window.location.reload()
     }
   }
 }
@@ -61,14 +83,14 @@ export default {
   top: 40px;
   right: 0px;
   z-index: 10;
-  width: 400px;
+  width: 100%;
   border: 2px solid #272727;
   border-radius: 6px;
   padding: 6px;
 }
 .league-info-edit .label {
   display: inline-block;
-  width: 20%;
+  width: 15%;
   vertical-align: top;
   font-size: 16px;
   font-weight: bold;
@@ -77,7 +99,7 @@ export default {
 }
 .league-info-edit .input {
   display: inline-block;
-  width: 70%;
+  width: 84%;
   border-radius: 6px;
   border: 2px solid #272727;
   padding: 4px;

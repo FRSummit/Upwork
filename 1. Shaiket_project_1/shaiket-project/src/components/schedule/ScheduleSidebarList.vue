@@ -6,16 +6,6 @@
       <div style="padding: 10px 6px;">
         <label class="label">Title</label>
         <input class="input" type="text" v-model="title" id="title" placeholder="ACE POOLS MOOSE 2019 SCHEDULE"/>
-       <!--  <label class="label">Date</label>
-        <input class="input" type="text" v-model="date" id="date" placeholder="Tue May 14"/>
-        <label class="label">Time</label>
-        <input class="input" type="text" v-model="time" id="time" placeholder="9:30 PM"/>
-        <label class="label">Park</label>
-        <input class="input" type="text" v-model="park" id="park" placeholder="Centennial North"/>
-        <label class="label">Home</label>
-        <input class="input" type="text" v-model="home" id="infhomeo1" placeholder="Markham Knights"/>
-        <label class="label">Visitor</label>
-        <input class="input" type="text" v-model="visitor" id="visitor" placeholder="Ace Pools Moose"/> -->
       </div>
       <div class="btn-section">
         <button type="submit">Submit</button>
