@@ -1,8 +1,30 @@
 <template>
   <div class="league-info-edit">
     <form @submit.prevent="onSubmit">
-      <label class="label">List Item</label>
-      <input class="input" type="text" v-model="itemName" id="itemName" placeholder="Ace Pools Moose"/>
+      <label class="label">Data 1</label>
+      <input class="input" type="text" v-model="dt1" id="dt1" placeholder=""/>
+      <input class="input" type="text" v-model="dt2" id="dt1" placeholder=""/>
+      <input class="input" type="text" v-model="dt3" id="dt1" placeholder=""/>
+      <label class="label">Data 2</label>
+      <input class="input" type="text" v-model="dt4" id="dt2" placeholder=""/>
+      <input class="input" type="text" v-model="dt5" id="dt2" placeholder=""/>
+      <input class="input" type="text" v-model="dt6" id="dt2" placeholder=""/>
+      <label class="label">Data 3</label>
+      <input class="input" type="text" v-model="dt7" id="dt3" placeholder=""/>
+      <input class="input" type="text" v-model="dt8" id="dt3" placeholder=""/>
+      <input class="input" type="text" v-model="dt9" id="dt3" placeholder=""/>
+      <label class="label">Data 4</label>
+      <input class="input" type="text" v-model="dt10" id="dt4" placeholder=""/>
+      <input class="input" type="text" v-model="dt11" id="dt4" placeholder=""/>
+      <input class="input" type="text" v-model="dt12" id="dt4" placeholder=""/>
+      <label class="label">Data 5</label>
+      <input class="input" type="text" v-model="dt13" id="dt5" placeholder=""/>
+      <input class="input" type="text" v-model="dt14" id="dt5" placeholder=""/>
+      <input class="input" type="text" v-model="dt15" id="dt5" placeholder=""/>
+      <label class="label">Data 6</label>
+      <input class="input" type="text" v-model="dt16" id="dt6" placeholder=""/>
+      <input class="input" type="text" v-model="dt17" id="dt6" placeholder=""/>
+      <input class="input" type="text" v-model="dt18" id="dt6" placeholder=""/>
       <div class="btn-section">
         <button type="submit">Submit</button>
       </div>
@@ -11,12 +33,16 @@
       <thead>
         <tr>
           <th style="width: 35%;">Name</th>
+          <th style="width: 35%;"></th>
+          <th style="width: 35%;"></th>
             <th style="width: 15%;">Action</th>
           </tr>
         </thead>
         <tbody style="">
-          <tr >
-            <td style="width: 35%; padding: 2px;">{{  }}</td>
+          <tr v-for="(i,j) in post" :key="j">
+            <td style="width: 35%; padding: 2px;">{{ i.dt1 }}</td>
+            <td style="width: 35%; padding: 2px;">{{ i.dt2 }}</td>
+            <td style="width: 35%; padding: 2px;">{{ i.dt3 }}</td>
             <a href="#" class="delete-btn" @click="deleteSchedule(i)">Delete</a>
           </tr>
         </tbody>
@@ -28,27 +54,61 @@
 export default {
   data() {
     return {
-      itemName: null,
-      title: null,
+      dt1: '',
+      dt2: '',
+      dt3: '',
+      dt4: '',
+      dt5: '',
+      dt6: '',
+      dt7: '',
+      dt8: '',
+      dt9: '',
+      dt10: '',
+      dt11: '',
+      dt12: '',
+      dt13: '',
+      dt14: '',
+      dt15: '',
+      dt16: '',
+      dt17: '',
+      dt18: '',
+      post: []
     }
   },
   created() {
+    firebase.database().ref('adminDefPost1').on('value', (snapshot)=> {
+      this.post = snapshot.val();
+    });
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
-        itemName: this.itemName,
-        title: this.title
+      firebase.database().ref('adminDefPost1').push({
+        dt1: this.dt1,
+        dt2: this.dt2,
+        dt3: this.dt3,
+        dt4: this.dt4,
+        dt5: this.dt5,
+        dt6: this.dt6,
+        dt7: this.dt7,
+        dt8: this.dt8,
+        dt9: this.dt9,
+        dt10: this.dt10,
+        dt11: this.dt11,
+        dt12: this.dt12,
+        dt13: this.dt13,
+        dt14: this.dt14,
+        dt15: this.dt15,
+        dt16: this.dt16,
+        dt17: this.dt17,
+        dt18: this.dt18,
       })
       .then((data)=>{
         console.log(data)
-        this.itemName = '',
-        this.title = ''
       })
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      firebase.database().ref('adminDefPost1/' + id).remove();
     }
   }
 }
@@ -61,7 +121,7 @@ export default {
   top: 0;
   right: -402px;
   z-index: 10;
-  width: 400px;
+  width: 90%;
   border: 2px solid #272727;
   border-radius: 6px;
   padding: 6px;
@@ -77,7 +137,7 @@ export default {
 }
 .league-info-edit .input {
   display: inline-block;
-  width: 70%;
+  width: 25%;
   border-radius: 6px;
   border: 2px solid #272727;
   padding: 4px;

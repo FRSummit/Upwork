@@ -18,21 +18,24 @@
         </li>
       </ul>
     </div>
+    <!-- Page content default post goes here -->
+    <div class="content" style="position: relative;">
+			<div class="post" v-if="defaultPost">
+				<h2 class="title">2019 Regular Season</h2>
+				<div class="entry">
+					<p>Click on your team's name in the left column to view your complete schedule for 2018</p>
+					Download Master Schedule: <a href="res/docs/master-schedule.csv">as .csv (for Excel)</a> | <a href="res/docs/master-schedule.ics">as .ics (for Calendar)</a>
+				</div>
+			</div>
+		<!-- </div> -->
     <!-- Page content goes here -->
-    <div class="content" style="position: relative;" v-for="(post, i) in scheduleDefPost" :key="i">
+    <!-- <div class="content" style="position: relative;" v-for="(post, i) in scheduleDefPost" :key="i">
       <button class="edit-btn" @click="sidebarScheduleDefPostEditClick" v-if="userIsAuthorized">Edit</button>
       <button class="close-btn" @click="sidebarScheduleDefPostEditClick" 
                                   v-if="userIsAuthorized && sidebarScheduleDefPostAuth"
                                   style="top: 44px; right: 24px;">
                                   X</button>
       <ScheduleEditDefaultPost v-if="sidebarScheduleDefPostAuth && sidebarScheduleDefPostAuth"/>
-			<!-- <div class="post" v-if="defaultPostAuthentication">
-				<h2 class="title">2019 Regular Season</h2>
-				<div class="entry">
-					<p>Click on your team's name in the left column to view your complete schedule for 2018</p>
-					Download Master Schedule: <a href="res/docs/master-schedule.csv">as .csv (for Excel)</a> | <a href="res/docs/master-schedule.ics">as .ics (for Calendar)</a>
-				</div>
-			</div> -->
 			<div class="post" v-if="defaultPostAuthentication">
 				<h2 class="title">{{ post.title1 }}</h2>
 				<div class="entry">
@@ -46,24 +49,11 @@
 					<p>{{ post.desc2 }}</p>
           <a :href="post.url2" target="_blank">{{ post.urlTitle2 }}</a>
 				</div>
-			</div>
-			<!-- <div class="post" v-if="defaultPostAuthentication">
-				<h2 class="title">2019 Charity Tournament</h2>
-				<div class="entry">
-					<p>The Charity Tournament is scheduled for May 28 - June 2, 2019.</p>
-          <a href="schedule-2019-charity.html">Full schedule and results.</a>
-				</div>
-			</div>				
-			<div class="post" v-if="defaultPostAuthentication">
-	  		<h2 class="title">2019 Year-End Tournament</h2>
-				<div class="entry">
-					<p>The Year-End Tournament is scheduled for September 12 - 15, 2019.</p>
-					<a href="schedule-2019-final.html">Full schedule and results.</a>
-				</div>
 			</div> -->
+      <!-- Table -->
       <v-card v-if="sidebarScheduleGetSelected">
         <div class="post">
-          <h2 class="title">2020 Registration List</h2>
+          <h2 class="title">Registration List</h2>
           <button class="close-btn" @click="addNewReg" 
                                     style="right: 6px; background-color: green; padding: 4px 8px;">
                                     Add New</button>
@@ -180,7 +170,8 @@ export default {
       regIds: [],
       getSidebarItemName: null,
       sidebarScheduleDefPostAuth: false,
-      scheduleDefPost: []
+      scheduleDefPost: [],
+      defaultPost: true,
     }
   },
   methods: {
@@ -209,28 +200,17 @@ export default {
       }
     },
     scheduleClick(id) {
-      // console.log(id)
-      if(this.defaultPostAuthentication === true && this.sidebarScheduleGetSelected === false) {
-        this.defaultPostAuthentication = false;
+      console.log(id)
+      this.defaultPost = false
+      // if(this.defaultPostAuthentication === true && this.sidebarScheduleGetSelected === false) {
+      //   this.defaultPostAuthentication = false;
         this.sidebarScheduleGetSelected = true;
-      }/* else if(this.defaultPostAuthentication === false && this.sidebarScheduleGetSelected === true) {
-        this.defaultPostAuthentication = true;
-        this.sidebarScheduleGetSelected = false;
-      }*/
+      // }
       firebase.database().ref('scheduleSidebarList/' + id).on('value', (snapshot)=> {
-        // this.schedules = snapshot.val();
-        // console.log('Sidebar : ')
-        // console.log(snapshot.val())
-        // console.log(snapshot.val().itemName)
         this.getSidebarItemName = snapshot.val().itemName
       });
       firebase.database().ref('scheduleSidebarRegList').on('value', (snapshot)=> {
         this.regResultList = snapshot.val();
-        /*console.log(this.regResultList['-M0kjxfV5O-Ifw-02QR_'])
-        this.regIds = [Object.keys(snapshot.val())]
-        for(let i=0; i<=[Object.keys(snapshot.val())].length; i++) {
-          console.log(this.regResultList[Object.keys(snapshot.val())[i]])
-        }*/
       });
     },
     closeRegForm() {

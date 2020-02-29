@@ -27,7 +27,7 @@
           <v-btn to="/contact" class="mr-2">Contact</v-btn>
           <v-btn to="/community" class="mr-2">My Community</v-btn>
           <v-btn class="mr-2" @click="logout" v-if="userIsAuthorized">Logout</v-btn>
-          <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn>
+          <!-- <v-btn to="/signup" class="mr-2" color="primary" v-if="!userIsAuthorized">Sign up</v-btn> -->
         </div>
 
       </div>

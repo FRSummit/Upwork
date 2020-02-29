@@ -1,19 +1,20 @@
 <template>
   <div class="standings">
     <div class="content">
-      <button class="edit-btn" v-if="userIsAuthorized">Edit</button>
-      <!-- <button class="close-btn" @click="aboutPost1EditClick" 
-                              v-if="userIsAuthorized && aboutPost1Auth"
-                              style="top: 44px; right: 4px;">
-                              X</button>
-      <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
-      <v-card> -->
-        <v-tabs v-model="tab" grow>
-          <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
+      <button class="edit-btn" v-if="userIsAuthorized" 
+                                @click="standingsTopYearEditClick">{{ EditOrClose}}</button>
+      <TopYearListForm v-if="userIsAuthorized && topYearEditFormAuth"/>
+      <v-card>
+        <v-tabs v-model="tab" grow v-if="!yearsListIsPresent">
+          <v-tab v-for="(item, i) in items" :key="i">{{ item }}</v-tab>
+        </v-tabs>
+        <v-tabs v-model="tab" grow v-if="yearsListIsPresent">
+          <v-tab class="my_tab" v-for="(item, i) in yearsList" :key="i" @click="yearMenuClick(item.year)">{{ item.year }}</v-tab>
         </v-tabs>
 
-        <v-tabs-items v-model="tab" class="v-tab-items">
-          <v-tab-item v-for="item in items" :key="item" class="v-tab-item">
+        <!-- Default Post -->
+        <v-tabs-items v-model="tab" class="v-tab-items" v-if="!dynamicPost">
+          <v-tab-item v-for="(item, i) in items" :key="i" class="v-tab-item">
             <v-card class="v-card">
               <v-card v-if="item == '2020'">
                 <div class="post">
@@ -38,17 +39,11 @@
                   </div>
                 </div>
                 <div class="post">
-                <!-- <button class="edit-btn" v-if="userIsAuthorized" style="right: 8px; left: unset;">Edit</button> -->
-                <!-- <button class="close-btn" @click="aboutPost1EditClick" 
-                                        v-if="userIsAuthorized && aboutPost1Auth"
-                                        style="top: 44px; right: 4px;">
-                                        X</button>
-                <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
-                <v-card> -->
                   <h2 class="title">2010 Regular Season Standings <a style="font-size:10pt;font-weight:normal;margin-left:10px;text-transform:none" href="standings-2010-may.html">Details</a></h2>
                   <div class="entry">
                     <table border="0" cellspacing="0" class="dataTable" style="table-layout:fixed; width: 100%;">
-                      <tbody><tr class="headerRow"><td align="right" style="width:2em">&nbsp;</td><td style="width:40%">Team</td><td align="right">P</td><td align="right">W</td><td align="right">L</td><td align="right">T</td><td align="right">D</td><td align="right">+ / -</td><td align="right">GP</td></tr>
+                      <tbody>
+                        <tr class="headerRow"><td align="right" style="width:2em">&nbsp;</td><td style="width:40%">Team</td><td align="right">P</td><td align="right">W</td><td align="right">L</td><td align="right">T</td><td align="right">D</td><td align="right">+ / -</td><td align="right">GP</td></tr>
                       <tr class="hiliteRow"><td align="right">1</td><td>EM Automotive Sox</td><td align="right">50</td><td align="right">23</td><td align="right">3</td><td align="right">4</td><td align="right">0</td><td align="right">126</td><td align="right">30</td></tr>
                       <tr class="oddRow"><td align="right">2</td><td>Red Hot Dawgs</td><td align="right">42</td><td align="right">18</td><td align="right">6</td><td align="right">6</td><td align="right">0</td><td align="right">90</td><td align="right">30</td></tr>
                       <tr class="evenRow"><td align="right">3</td><td>Aviva Beavers</td><td align="right">42</td><td align="right">19</td><td align="right">7</td><td align="right">4</td><td align="right">0</td><td align="right">121</td><td align="right">30</td></tr>
@@ -80,13 +75,6 @@
                   </div>						
                 </div>
                 <div class="post">
-                <!-- <button class="edit-btn" v-if="userIsAuthorized" style="right: 8px; left: unset;">Edit</button> -->
-                <!-- <button class="close-btn" @click="aboutPost1EditClick" 
-                                        v-if="userIsAuthorized && aboutPost1Auth"
-                                        style="top: 44px; right: 4px;">
-                                        X</button>
-                <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/>
-                <v-card> -->
                   <h2 class="title">2010 Charity Tournament <a style="font-size:10pt;font-weight:normal;margin-left:10px;text-transform:none" href="standings-2010-charity.html">Details</a></h2>
                   <div class="entry">
                     <table align="center" style="width:640px; margin: 0 auto;">
@@ -113,13 +101,105 @@
             </v-card>
           </v-tab-item>
         </v-tabs-items>
+
+
+        <!-- Dynamic Post -->
+        <v-tabs-items v-model="tab" class="v-tab-items" v-if="dynamicPost">
+          <v-tab-item v-for="(item, i) in dynamicPost" :key="i" class="v-tab-item">
+            <v-card class="v-card">
+              <v-card v-if="item.postYear == firstPost || item.postYear == selectedPostYear">
+                <div class="post">
+                  <h2 class="title">{{item.postYear}} {{ item.post1Title }}</h2>
+                  <div class="entry">
+                    <table align="center" style="width:640px; margin: 0 auto;">
+                      <tbody><tr>
+                        <td>
+                          <p class="pictureframe">
+                            <img :src="item.post1ImgURL" width="310" height="185" alt="Champions">
+                            <span>{{ item.post1ImgName }}</span>
+                          </p>
+                        </td>
+                        <td>
+                          <p class="pictureframe">
+                            <img :src="item.post1ImgURL2" width="310" height="185" alt="Finalists">
+                            <span>{{ item.post1ImgName2 }}</span>
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody></table>
+                  </div>
+                </div>
+                <div class="post">
+                <button class="edit-btn" v-if="userIsAuthorized" 
+                                @click="dynamicPostRegClick(item.postYear)"
+                                style="right: 6px; left: unset;">{{ regEditOrClose }}</button>
+                  <StandingPostRegForm v-if="userIsAuthorized && regFormAuth" :sendYear="sendYearToForm"/>
+                  <h2 class="title">{{item.postYear}} Regular Season Standings</h2>
+                  <div class="entry">
+                    <table border="0" cellspacing="0" class="dataTable" style="table-layout:fixed; width: 100%;">
+                      <thead>
+                        <tr class="headerRow"><td align="right" style="width:2em">&nbsp;</td><td style="width:40%">Team</td><td align="right">P</td><td align="right">W</td><td align="right">L</td><td align="right">T</td><td align="right">D</td><td align="right">+ / -</td><td align="right">GP</td></tr>
+                      </thead>
+                      <tbody>
+                        <tr class="" v-for="(i, j) in regData" :key="j">
+                          <td align="right" style="width:2em" v-if="getYearFromTopList === i.year">&nbsp;</td>
+                          <td style="width:40%" v-if="getYearFromTopList === i.year">{{i.teamName}}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.p }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.w }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.l }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.t }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.d }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.posmin }}</td>
+                          <td align="right" v-if="getYearFromTopList === i.year">{{ i.gp }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>					
+                </div>
+                <div class="post">
+                  <h2 class="title">{{item.postYear}} {{ item.post3Title }}</h2>
+                  <div class="entry">
+                    <table align="center" style="width:640px; margin: 0 auto;">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <p class="pictureframe">
+                              <img :src="item.post3ImgURL3" width="310" height="185" alt="Champions">
+                              <span>{{ item.post3ImgName3 }}</span>
+                            </p>
+                          </td>
+                          <td>
+                            <p class="pictureframe">
+                              <img :src="item.post3ImgURL4" width="310" height="185" alt="Finalists">
+                              <span>{{ item.post3ImgName4 }}</span>
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </v-card>
+            </v-card>
+          </v-tab-item>
+        </v-tabs-items>
+        <StandingPostContentEdit v-if="userIsAuthorized && topYearEditFormAuth"/>
       </v-card>
 		</div>
   </div>
 </template>
 
 <script>
+import TopYearListForm from '../components/standings/StandingTopYearList'
+import StandingPostContentEdit from '../components/standings/StandingPostContentEdit'
+import StandingPostRegForm from '../components/standings/StandingPostRegForm'
+
 export default {
+  components: {
+    TopYearListForm,
+    StandingPostContentEdit,
+    StandingPostRegForm
+  },
   data() {
     return {
       tab: null,
@@ -129,6 +209,18 @@ export default {
       ],
       text: 'My text is here',
       userIsAuthorized: false,
+      topYearEditFormAuth: false,
+      EditOrClose: 'Edit',
+      yearsList: [],
+      firstPost: null,
+      selectedPostYear: null,
+      yearsListIsPresent: false,
+      dynamicPost: [],
+      regEditOrClose: 'Edit',
+      regFormAuth: false,
+      sendYearToForm: null,
+      regData: [],
+      getYearFromTopList: null
     }
   },
   methods: {
@@ -142,9 +234,51 @@ export default {
         }
       }
     },
+    standingsTopYearEditClick() {
+      if(this.topYearEditFormAuth === false) {
+        this.topYearEditFormAuth = true
+        this.EditOrClose = 'Close'
+      } else if(this.topYearEditFormAuth === true) {
+        this.topYearEditFormAuth = false
+        this.EditOrClose = 'Edit'
+      }
+    },
+    yearMenuClick(year) {
+      console.log(year)
+      this.selectedPostYear = year 
+      this.getYearFromTopList = year 
+    },
+    dynamicPostRegClick(year) {
+      console.log('wo: ' + year)
+      this.sendYearToForm = year;
+      if(this.regFormAuth === false) {
+        this.regFormAuth = true
+        this.regEditOrClose = 'Close'
+      } else if(this.regFormAuth === true) {
+        this.regFormAuth = false
+        this.regEditOrClose = 'Edit'
+      }
+    },
   },
   created() {
     this.checkUserIsAuthorized();
+    firebase.database().ref('standingYearList').on('value', (snapshot)=> {
+      this.yearsList = snapshot.val();
+      this.firstPost = this.yearsList[(Object.keys(this.yearsList)[0])].year
+      if(this.yearsList) {
+        this.yearsListIsPresent = true;
+      }
+    });
+    firebase.database().ref('standingYearPost').on('value', (snapshot)=> {
+      this.dynamicPost = snapshot.val();
+    });
+    firebase.database().ref('standingPostRegList').on('value', (snapshot)=> {
+      this.regData = snapshot.val();
+    });
+    this.getYearFromTopList = document.querySelector('.my_tab.v-tab--active').innerHTML
+  },
+  mounted() {
+    this.getYearFromTopList = document.querySelector('.my_tab.v-tab--active').innerHTML
   }
 }
 </script>
@@ -155,6 +289,7 @@ export default {
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
+  min-height: 500px;
 }
 .standings .content {
   float: right;
@@ -283,5 +418,11 @@ export default {
   border: 2px solid #FFFFFF;
   border-radius: 6px;
   background: green;
+}
+tr:nth-child(even), .evenRow {
+  background-color: #D4D4D4 !important;
+}
+tr:nth-child(odd), .evenRow {
+  background-color: #FFF !important;
 }
 </style>

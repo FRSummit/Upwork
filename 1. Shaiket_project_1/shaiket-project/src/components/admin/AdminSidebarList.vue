@@ -43,13 +43,13 @@ export default {
     }
   },
   created() {
-    firebase.database().ref('scheduleSidebarList').on('value', (snapshot)=> {
+    firebase.database().ref('adminSidebarList').on('value', (snapshot)=> {
       this.schedules = snapshot.val();
     });
   },
   methods: {
     onSubmit() {
-      firebase.database().ref('scheduleSidebarList').push({
+      firebase.database().ref('adminSidebarList').push({
         itemName: this.itemName,
         title: this.title
         // date: this.date,
@@ -71,7 +71,7 @@ export default {
       .catch((error)=>console.log(error))
     },
     deleteSchedule(id) {
-      firebase.database().ref('scheduleSidebarList/' + id).remove();
+      firebase.database().ref('adminSidebarList/' + id).remove();
     }
   }
 }

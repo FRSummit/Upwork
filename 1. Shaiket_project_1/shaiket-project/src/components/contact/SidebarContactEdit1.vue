@@ -65,7 +65,7 @@ export default {
         capital: this.capital
       })
       .then((data)=>{
-        document.querySelector('.delete-btn').click()
+        // document.querySelector('.delete-btn').click()
         console.log(data)
         this.title = '',
         this.street = '',

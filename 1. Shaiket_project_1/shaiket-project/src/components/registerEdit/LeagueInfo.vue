@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      // document.querySelector('.delete-btn').click()
       firebase.database().ref('registerLeagueInfo').push({
         info1: this.info1,
         info2: this.info2,

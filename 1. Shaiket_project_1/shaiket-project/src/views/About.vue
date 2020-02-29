@@ -80,9 +80,9 @@
         </div>
         <div class="entry" v-if="aboutPost3DataAuth">
           <div v-for="(post, i) in aboutPost3Data" :key="i">
-            <div style="text-align:center;">
+            <!-- <div style="text-align:center;">
                 <img src="../assets/images/MMSP-LOGO-50-YRS.png" width="406" style="padding-bottom: 10px">
-            </div>
+            </div> -->
             <p>{{ post.title }}</p>
             <p>{{ post.paragraph1 }}</p>
             <p>{{ post.paragraph2 }}</p>
