@@ -97,6 +97,7 @@
             <select id="cars" class="input" v-model="itemName">
               <option v-for="(schedule, i) in schedules" :key="i">{{ schedule.itemName }}</option>
             </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 8%; top: 16px;">
             <div style="padding: 10px 6px;">
               <label class="label">Title</label>
               <input class="input" type="text" v-model="title" id="title" placeholder="ACE POOLS MOOSE 2019 SCHEDULE"/>

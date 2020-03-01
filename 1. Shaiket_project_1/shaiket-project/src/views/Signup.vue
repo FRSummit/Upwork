@@ -47,6 +47,10 @@
                     <div class="phone-field">
                       <label class="field-label" for="phone">Role</label>
                       <v-col class="field-input" style="padding: 0px;">
+                        
+        <!-- <select class="input select-option" v-model="listItem" style="width: 42%;">
+        <option v-for="(i, j) in roleItems" :key="j">{{ i.role }} </option>
+        </select> -->
                         <v-select :items="items" placeholder="Role" dense  v-model="role" id="role" name="role" type="text"></v-select>
                       </v-col>
                       <!-- <span>{{ phoneFieldEmpty }}</span> -->
@@ -96,6 +100,7 @@ export default {
     //   phoneFieldEmpty: '',
     //   passwordFieldEmpty: '',
     items: ['Admin', 'User'],
+    roleItems: [{role: 'Admin'}, {role: 'User'}],
     }
   },
   methods: {

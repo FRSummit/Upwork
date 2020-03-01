@@ -7,7 +7,8 @@
         <select class="input select-option" v-model="year">
         <option v-for="(i, j) in yearsList" :key="j">{{ i.year }} </option>
         </select>
-        <span class="select-arrow">V</span>
+      <img src="../../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 13%; top: 12px;">
+        <!-- <span class="select-arrow">V</span> -->
       </div>
       <!-- Post 1 ----------------------------------------------------------------------->
       <h4 style="text-align: center; margin: 10px; background: #dedede;">Post 1</h4>
@@ -44,7 +45,7 @@
         </div>
       </div>
       <!-- Image preview -->
-      <div class="name-field" style="height: 100px;">
+      <div class="name-field">
         <div v-if="imageData!=null" style="display: inline-block;">
           <img class="preview" :src="picture" style="height: 100px; margin: 0 2px">
         </div>
@@ -91,7 +92,7 @@
         </div>
       </div>
       <!-- Image preview -->
-      <div class="name-field" style="height: 100px;">
+      <div class="name-field">
         <div v-if="imageData3 != null" style="display: inline-block;">
           <img class="preview" :src="picture3" style="height: 100px; margin: 0 2px">
         </div>

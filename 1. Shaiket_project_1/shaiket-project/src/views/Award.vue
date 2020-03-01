@@ -2,19 +2,21 @@
   <div class="award">
     <div class="content">
       
-    <button class="edit-btn" v-if="userIsAuthorized">Edit</button>
-    <!-- <button class="close-btn" @click="aboutPost1EditClick" 
-                            v-if="userIsAuthorized && aboutPost1Auth"
-                            style="top: 44px; right: 4px;">
-                            X</button>
-    <AboutPost1Edit v-if="userIsAuthorized && aboutPost1Auth"/> -->
-      
+    <button class="edit-btn" v-if="userIsAuthorized" 
+                            @click="awardTopYearEditClick">{{ EditOrClose}}</button>
+    <AwardMenuItem v-if="userIsAuthorized && AwardTopMenuAuth"/>
     <v-card>
-      <v-tabs v-model="tab" grow>
-        <v-tab v-for="item in items" :key="item">{{ item }}</v-tab>
+      <AwardMenuItemPost v-if="userIsAuthorized && AwardTopMenuAuth"/>
+      <v-tabs v-model="tab" grow v-if="!topListItemIsPresent">
+        <v-tab v-for="(item, i) in items" :key="i">{{ item }}</v-tab>
+      </v-tabs>
+      <v-tabs v-model="tab" grow v-if="topListItemIsPresent">
+        <v-tab v-for="(item, i) in topListNames" :key="i" @click="menuItemClick(item.title)">{{ item.title }}</v-tab>
       </v-tabs>
 
-      <v-tabs-items v-model="tab" class="v-tab-items">
+<!-- Default -->
+      <v-tabs-items v-model="tab" class="v-tab-items" v-if="!topListItemIsPresent">
+        <h1>Default</h1>
         <v-tab-item v-for="item in items" :key="item" class="v-tab-item">
           <v-card class="v-card">
             <v-card v-if="item == 'Honorary Members'">
@@ -58,6 +60,59 @@
           </v-card>
         </v-tab-item>
       </v-tabs-items>
+
+<!-- Dynamic -->
+      <v-tabs-items v-model="tab" class="v-tab-items" v-if="topListItemIsPresent">
+        <h1>Dynamic</h1>
+        <v-tab-item v-for="(item, i) in dynamicPosts" :key="i" class="v-tab-item">
+          <v-card class="v-card">
+            <v-card v-if="item.listItem == firstPost || item.listItem == selectedPostByClick">
+              <div class="post">
+                <h2 class="title">{{ item.title }}</h2>
+                <div class="entry" style="display: inline-block; width: 60%; vertical-align: top;">
+                  <p>{{ item.description1 }}</p>
+                  <p>{{ item.description2 }}</p>
+                  <p>{{ item.description3 }}</p>
+                  <p>{{ item.description4 }}</p>
+                  <div class="trophy-list" style="position: relative;">
+                    <button class="edit-btn" v-if="userIsAuthorized" 
+                                        @click="dynamicPostRegClick()"
+                                        style="top: 2px; right: 6px; left: unset;">{{ trophyEditOrClose }}</button>
+                    <TrophyAddForm v-if="userIsAuthorized && regFormAuth"/>
+                    <table border="0" cellspacing="0" class="dataTable" style="table-layout:fixed; width: 100%;">
+                      <thead style="background-color: #333333; color: #FFF;">
+                        <tr class="headerRow">
+                          <td style="width: 20%; padding: 4px 6px;">Year</td>
+                          <td style="padding: 4px 6px;">Champion</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(i, j) in awards" :key="j">
+                          <td style="width: 20%;padding: 2px 6px;" v-if="item.listItem === i.listItem">{{ i.year }}</td>
+                          <td style="padding: 2px 6px;" v-if="item.listItem === i.listItem">{{ i.champion }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="award-img-sec" style="display: inline-block; width: 38%; font-size: 12px; color: #FFF">
+                  <div style="margin: 10px; background: #272727; padding: 8px; text-align: center;">
+                    <img :src="item.imgURL" alt="" style="width: 100%;">
+                    <p style=" font-size: 14px; padding: 4px; font-weight: bold;">{{ item.imgDescription }}</p>
+                    <hr style="width: 80%; margin: 0 auto;"/>
+                    <p style="padding: 4px;">{{ item.specialWords }}</p>
+                    <p style="padding: 2px;">{{ item.address1 }}</p>
+                    <p style="padding: 2px;">{{ item.address2 }}</p>
+                    <p style="padding: 2px;">{{ item.address3 }}</p>
+                    <p style="padding: 2px;">TEL {{ item.phone1 }}</p>
+                    <p style="padding: 2px;">TEL {{ item.phone2 }}</p>
+                  </div>
+                </div>
+              </div>
+            </v-card>
+          </v-card>
+        </v-tab-item>
+      </v-tabs-items>
     </v-card>
 
 		</div>
@@ -65,14 +120,34 @@
 </template>
 
 <script>
+import AwardMenuItem from '../components/award/AwardMenuItem'
+import AwardMenuItemPost from '../components/award/AwardMenuPost'
+import TrophyAddForm from '../components/award/TrophyAddForm'
+
 export default {
+  components: {
+    AwardMenuItem,
+    AwardMenuItemPost,
+    TrophyAddForm
+  },
   data() {
     return {
       tab: null,
       items: [
         'Honorary Members', 'McGregor Trophy', 'Kirkby Trophy', 'MacDonald Cup', 'President\'s Trophy', 'Higgins / Sale Award', 'Steve Bull'
       ],
-      text: 'My text is here'
+      text: 'My text is here',
+      EditOrClose: 'Edit',
+      AwardTopMenuAuth: false,
+      topListItemIsPresent: false,
+      topListNames: [],
+      dynamicPosts:[],
+      firstPost: null,
+      selectedPostByClick: null,
+      trophyEditOrClose: 'Edit',
+      regFormAuth: false,
+      dynamicForm: false,
+      awards: [],
     }
   },
   methods: {
@@ -86,9 +161,44 @@ export default {
         }
       }
     },
+    awardTopYearEditClick() {
+      if(this.AwardTopMenuAuth === false) {
+        this.AwardTopMenuAuth = true
+        this.EditOrClose = 'Close'
+      } else if(this.AwardTopMenuAuth === true) {
+        this.AwardTopMenuAuth = false
+        this.EditOrClose = 'Edit'
+      }
+    },
+    menuItemClick(name) {
+      this.selectedPostByClick = name 
+    },
+    dynamicPostRegClick() {
+      if(this.regFormAuth === false) {
+        this.regFormAuth = true
+        this.trophyEditOrClose = 'Close'
+      } else if(this.regFormAuth === true) {
+        this.regFormAuth = false
+        this.trophyEditOrClose = 'Edit'
+      }
+    }
   },
   created() {
     this.checkUserIsAuthorized();
+    firebase.database().ref('awardMenuItem').on('value', (snapshot)=> {
+      this.topListNames = snapshot.val();
+      console.log(this.topListNames[(Object.keys(this.topListNames)[0])].title)
+      this.firstPost = this.topListNames[(Object.keys(this.topListNames)[0])].title
+      if(this.topListNames) {
+        this.topListItemIsPresent = true;
+      }
+    });
+    firebase.database().ref('awardMenuPost').on('value', (snapshot)=> {
+      this.dynamicPosts = snapshot.val();
+    });
+    firebase.database().ref('awardChampionList').on('value', (snapshot)=> {
+      this.awards = snapshot.val();
+    });
   }
 }
 </script>
@@ -99,6 +209,7 @@ export default {
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
+  min-height: 800px;
 }
 .award .content {
   float: right;
@@ -205,5 +316,11 @@ export default {
   border-radius: 6px;
   background: green;
   z-index: 5;
+}
+tbody tr:nth-child(odd), .oddRow {
+  background-color: #FFFFFF;
+}
+tbody tr:nth-child(even), .evenRow {
+  background-color: #D4D4D4;
 }
 </style>

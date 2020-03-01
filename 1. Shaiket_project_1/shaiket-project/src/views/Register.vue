@@ -103,7 +103,14 @@
                                   <div class="personal-input-field">
                                     <label class="field-label" for="heardAboutLeague" style="width: 40%;">I heard about this league</label>
                                     <v-col class="field-input" style="padding: 0px; width: 58%">
-                                      <v-select :items="itemsHearAboutLeague" placeholder="How I heard about this league" dense  v-model="heardAboutLeague" id="heardAboutLeague" name="heardAboutLeague" type="text"></v-select>
+                                      <!-- <v-select :items="itemsHearAboutLeague" placeholder="How I heard about this league" dense  v-model="heardAboutLeague" id="heardAboutLeague" name="heardAboutLeague" type="text"></v-select> -->
+                        
+      <select class="field-input" v-model="heardAboutLeague" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsHearAboutLeague" :key="j">{{ i.hearBy }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
+                                    
                                     </v-col>
                                   </div>
                                 </v-card>
@@ -120,19 +127,41 @@
                                   <div class="playing-experience-input-field">
                                     <label class="field-label" for="SPN_SPO_NSA_Category">SPN/SPO/NSA Category</label>
                                     <v-col class="field-input" style="padding: 0px;">
-                                      <v-select :items="itemsSPN_SPO_NSA_Category" placeholder="SPN/SPO/NSA Category" dense  v-model="SPN_SPO_NSA_Category" id="SPN_SPO_NSA_Category" name="SPN_SPO_NSA_Category" type="text"></v-select>
+                                      <!-- <v-select :items="itemsSPN_SPO_NSA_Category" placeholder="SPN/SPO/NSA Category" dense  v-model="SPN_SPO_NSA_Category" id="SPN_SPO_NSA_Category" name="SPN_SPO_NSA_Category" type="text"></v-select> -->
+                                    
+                                             
+      <select class="field-input" v-model="SPN_SPO_NSA_Category" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsSPN_SPO_NSA_Category" :key="j">{{ i.category }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
+                                    
                                     </v-col>
                                   </div>
                                   <div class="playing-experience-input-field">
                                     <label class="field-label" for="preferredPosition">Preferred Position</label>
                                     <v-col class="field-input" style="padding: 0px;">
-                                      <v-select :items="itemsPreferredPosition" placeholder="Preferred Position" dense  v-model="preferredPosition" id="preferredPosition" name="preferredPosition" type="text"></v-select>
+                                      <!-- <v-select :items="itemsPreferredPosition" placeholder="Preferred Position" dense  v-model="preferredPosition" id="preferredPosition" name="preferredPosition" type="text"></v-select> -->
+                                                                 
+      <select class="field-input" v-model="preferredPosition" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsPreferredPosition" :key="j">{{ i.position }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
+                                    
                                     </v-col>
                                   </div>
                                   <div class="playing-experience-input-field">
                                     <label class="field-label" for="yearsOfExperience">Years of Experience</label>
                                     <v-col class="field-input" style="padding: 0px;">
-                                      <v-select :items="itemsYearsOfExperience" placeholder="Years of Experience" dense  v-model="yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" type="text"></v-select>
+                                      <!-- <v-select :items="itemsYearsOfExperience" placeholder="Years of Experience" dense  v-model="yearsOfExperience" id="yearsOfExperience" name="yearsOfExperience" type="text"></v-select> -->
+                                                                                  
+      <select class="field-input" v-model="yearsOfExperience" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsYearsOfExperience" :key="j">{{ i.exp }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
+                                    
                                     </v-col>
                                   </div>
                                   <div class="playing-experience-input-field">
@@ -150,13 +179,26 @@
                                   <div class="pitch-experience-input-field">
                                     <label class="field-label" for="ableToPitch">I am able to Pitch</label>
                                     <v-col class="field-input" style="padding: 0px;">
-                                      <v-select :items="itemsAbleToPitch" placeholder="Select Pitch ability" dense  v-model="ableToPitch" id="ableToPitch" name="ableToPitch" type="text"></v-select>
+                                      <!-- <v-select :items="itemsAbleToPitch" placeholder="Select Pitch ability" dense  v-model="ableToPitch" id="ableToPitch" name="ableToPitch" type="text"></v-select> -->
+                                                                                             
+      <select class="field-input" v-model="ableToPitch" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsAbleToPitch" :key="j">{{ i.ability }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
                                     </v-col>
                                   </div>
                                   <div class="pitch-experience-input-field">
                                     <label class="field-label" for="yearsPitched">Years Pitched</label>
                                     <v-col class="field-input" style="padding: 0px;">
-                                      <v-select :items="itemsYearsPitched" placeholder="Years Pitched" dense  v-model="yearsPitched" id="yearsPitched" name="yearsPitched" type="text"></v-select>
+                                      <!-- <v-select :items="itemsYearsPitched" placeholder="Years Pitched" dense  v-model="yearsPitched" id="yearsPitched" name="yearsPitched" type="text"></v-select> -->
+                                    
+                                                                                            
+      <select class="field-input" v-model="yearsPitched" 
+              style="width: 100%; border-bottom: 1px solid #787878; margin: 10px 0;">
+        <option v-for="(i, j) in itemsYearsPitched" :key="j">{{ i.yrsPit }} </option>
+      </select>
+      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 16px; top: 16px;">
                                     </v-col>
                                   </div>
                                   <div class="pitch-experience-input-field">
@@ -188,15 +230,19 @@
                         <thead>
                           <tr>
                             <th class="text-left">Player</th>
-                            <th class="text-left">Note</th>
-                            <th class="text-left">Note</th>
+                            <th class="text-left">Phone (Work)</th>
+                            <th class="text-left">Experience</th>
+                            <th v-if="userIsAuthorized" class="text-left">Acction</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="item in regList" :key="item.name">
+                          <tr v-for="(item, key) in regList" :key="key">
                             <td>{{ item.fullName }}</td>
-                            <td>{{ item.homeNumber }}</td>
                             <td>{{ item.phone }}</td>
+                            <td>{{ item.yearsOfExperience }}</td>
+                            <td v-if="userIsAuthorized">
+                              <a href="#" class="delete-btn" @click="deletePlayer(key)" style="color: red; text-decoration: unset;">Delete</a>
+                            </td>
                           </tr>
                         </tbody>
                       </template>
@@ -250,12 +296,12 @@ export default {
       yearsPitched: '',
       commentOnPitchingExperience: '',
       // Selection Items
-      itemsHearAboutLeague: ['Internet search', 'Family League Member', 'Friend', 'Facebook', 'Ads Within Community', 'Online Ad'],
-      itemsSPN_SPO_NSA_Category: ['Not Sure', 'A', 'B', 'C', 'D', 'E / Rec'],
-      itemsPreferredPosition: ['No Preference', 'Infield', 'Outfield'],
-      itemsYearsOfExperience: ['0-3', '4-6', '7-9', '10 +'],
-      itemsAbleToPitch: ['No', 'On an occasional basis', 'As my primary position'],
-      itemsYearsPitched: ['0-3', '4-6', '7-9', '10 +'],
+      itemsHearAboutLeague: [{hearBy: 'Internet search'}, {hearBy: 'Family League Member'}, {hearBy: 'Friend'}, {hearBy: 'Facebook'}, {hearBy: 'Ads Within Community'}, {hearBy: 'Online Ad'}],
+      itemsSPN_SPO_NSA_Category: [{category: 'Not Sure'}, {category: 'A'}, {category: 'B'}, {category: 'C'}, {category: 'D'}, {category: 'E / Rec'}],
+      itemsPreferredPosition: [{position: 'No Preference'}, {position: 'Infield'}, {position: 'Outfield'}],
+      itemsYearsOfExperience: [{exp: '0-3'}, {exp: '4-6'}, {exp: '7-9'}, {exp: '10 +'}],
+      itemsAbleToPitch: [{ability: 'No'}, {ability: 'On an occasional basis'}, {ability: 'As my primary position'}],
+      itemsYearsPitched: [{yrsPit: '0-3'}, {yrsPit: '4-6'}, {yrsPit: '7-9'}, {yrsPit: '10 +'}],
       tab: null,
       items: [
         'Registration Form', '2020 Registration List',
@@ -298,6 +344,9 @@ export default {
           this.userIsAuthorized = true; 
         }
       }
+    },
+    deletePlayer(id) {
+      firebase.database().ref('registerLeagueRegistrationList/' + id).remove();
     },
     onSubmit() {
       const register = {
