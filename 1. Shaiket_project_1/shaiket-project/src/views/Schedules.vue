@@ -80,7 +80,7 @@
                     <td v-if="getSidebarItemName === list.itemName">{{ list.home }}</td>
                     <td v-if="getSidebarItemName === list.itemName">{{ list.visitor }}</td>
                     <td v-if="getSidebarItemName === list.itemName">
-                      <a href="#" class="delete-btn" @click="deleteRegistration(i)">Delete</a>
+                      <a href="#" class="delete-btn" @click="deleteRegistration(i)"  v-if="userIsAuthorized">Delete</a>
                     </td>
                   </tr>
                 </tbody>
