@@ -2,8 +2,16 @@
   <div class="league-info-edit">
     <h3 style="text-align: center; margin-bottom: 10px; background: #dedede; color: #272727;">{{ sendYear }} Form</h3>
     <form @submit.prevent="onSubmit">
-      <label class="label">Year</label>
-      <input class="input" type="text" v-model="year"/>
+      <div class="name-field" style="position: relative;">
+        <label class="label">Year</label>
+        <select class="input select-option" v-model="year" style="width: 48%;">
+        <option v-for="(i, j) in itemList" :key="j">{{ i.year }} </option>
+        </select>
+      <img src="../../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 35%; top: 11px;">
+        <!-- <span class="select-arrow">V</span> -->
+      </div>
+      <!-- <label class="label">Year</label>
+      <input class="input" type="text" v-model="year"/> -->
       <label class="label">Team Name</label>
       <input class="input" type="text" v-model="teamName" id="" placeholder=""/>
       <label class="label">P</label>
@@ -73,11 +81,15 @@ export default {
       posmin: null,
       gp: null,
       address: [],
+      itemList: [],
     }
   },
   created() {
     firebase.database().ref('standingPostRegList').on('value', (snapshot)=> {
       this.address = snapshot.val();
+    });
+    firebase.database().ref('standingYearList').on('value', (snapshot)=> {
+      this.itemList = snapshot.val();
     });
     console.log('prop: ' + this.sendYear)
   },

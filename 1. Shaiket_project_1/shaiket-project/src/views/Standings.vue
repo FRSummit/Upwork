@@ -375,6 +375,7 @@ export default {
   color: #FFFFFF;
   padding-top: 10px;
   font-weight: bold;
+  height: 40px;
 }
 .standings .headerRow {
   background-color: #333333 !important;

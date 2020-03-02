@@ -47,10 +47,10 @@ html {
   background-color: red !important;
 }
 body {
-  /* background-image: url("./assets/images/gradient.png") !important; */
-  background-image: url("./assets/images/back5.webp") !important;
+  /* background-image: url("./assets/images/back5.webp") !important; */
+  background-image: url("./assets/images/baseball_back2.jpg") !important;
   background-repeat: repeat;
-  /* background-repeat: repeat-x; */
+  /* background-size: cover; */
 }
 #nav {
   padding: 30px;

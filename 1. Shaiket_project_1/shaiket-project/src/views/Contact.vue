@@ -127,6 +127,7 @@ export default {
   border-radius: 4px; 
   overflow: hidden;
   padding-bottom: 10px;
+  height: 500px;
 }
 .contact .sidebar {
   font-size: 80%;

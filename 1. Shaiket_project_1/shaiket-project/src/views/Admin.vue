@@ -5,7 +5,7 @@
       <ul class="sidebar-parent-ul">
         <li class="sidebar-parent-li">
           <h2 class="sidebar-text-important-dates">By Team</h2>
-          <button class="edit-btn" @click="sidebarSchedule" v-if="userIsAuthorized">Edit</button>
+          <button class="edit-btn sidebar-edit" @click="sidebarSchedule" v-if="userIsAuthorized">{{ sidebarEditOrClose }}</button>
           <button class="close-btn" @click="sidebarSchedule" 
                                   v-if="userIsAuthorized && adminScheduleAuthorization">
                                   X</button>
@@ -20,12 +20,38 @@
     </div>
     <!-- Page content default post goes here -->
     <div class="content" style="position: relative;">
-			<div class="post" v-if="defaultPost">
+			<!-- <div class="post" v-if="defaultPost">
 				<h2 class="title">2019 Regular Season</h2>
 				<div class="entry">
 					<p>Click on your team's name in the left column to view your complete schedule for 2018</p>
 					Download Master Schedule: <a href="res/docs/master-schedule.csv">as .csv (for Excel)</a> | <a href="res/docs/master-schedule.ics">as .ics (for Calendar)</a>
 				</div>
+			</div> -->
+			<div class="post" v-if="defaultPost" style="position: relative;">
+        <button class="edit-btn bat-policy" @click="batPolicyEditClick" v-if="userIsAuthorized">{{ batPolicyEditOrClose }}</button>
+        <BatPolicyForm v-if="userIsAuthorized && batPolicyAuth"/>
+        <div v-if="!batPolicyData">
+          <h2 class="title">Bat Policy static</h2>
+          <div class="entry">
+            <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
+            <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
+            <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
+            <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
+            <img src="../assets/images/2009-finals-finalists.jpg" style="width: 100%">
+          </div>
+        </div>
+        <div v-if="batPolicyData">
+          <div v-for="(i, j) in batPolicyData" :key="j">
+            <h2 class="title">{{ i.title }}</h2>
+            <div class="entry">
+              <p>{{ i.summery1 }}</p>
+              <p>{{ i.summery2 }}</p>
+              <p>{{ i.summery3 }}</p>
+              <p>{{ i.summery4 }}</p>
+              <img src="../assets/images/2009-finals-finalists.jpg" style="width: 100%">
+            </div>
+          </div>
+        </div>
 			</div>
 		<!-- </div> -->
     <!-- Page content goes here -->
@@ -53,8 +79,8 @@
       <!-- Table -->
       <v-card v-if="sidebarScheduleGetSelected">
         <div class="post">
-          <h2 class="title">Registration List</h2>
-          <button class="close-btn" @click="addNewReg" 
+          <h2 class="title">Admin Pannel Information</h2>
+          <button class="close-btn" @click="addNewReg" v-if="userIsAuthorized"
                                     style="right: 6px; background-color: green; padding: 4px 8px;">
                                     Add New</button>
           <div class="entry" style="padding: 12px; background: #FDFDFD;">
@@ -144,13 +170,15 @@
 <script>
 import AdminSidebarList from '../components/admin/AdminSidebarList'
 import AdminEditDefaultPost from '../components/admin/AdminEditDefaultPost'
+import BatPolicyForm from '../components/admin/BatPolicyForm'
 
 export default {
   props: {
   },
   components: {
     AdminSidebarList,
-    AdminEditDefaultPost
+    AdminEditDefaultPost,
+    BatPolicyForm
   },
   data () {
     return {
@@ -174,6 +202,10 @@ export default {
       sidebarScheduleDefPostAuth: false,
       scheduleDefPost: [],
       defaultPost: true,
+      sidebarEditOrClose: 'Edit',
+      batPolicyEditOrClose: 'Edit',
+      batPolicyAuth: false,
+      batPolicyData: []
     }
   },
   methods: {
@@ -190,8 +222,12 @@ export default {
     sidebarSchedule() {
       if(this.adminScheduleAuthorization === true) {
         this.adminScheduleAuthorization = false;
+        this.sidebarEditOrClose = 'Edit'
+        document.querySelector('.sidebar-edit').style.background = 'green'
       } else if(this.adminScheduleAuthorization === false) {
         this.adminScheduleAuthorization = true;
+        this.sidebarEditOrClose = 'Close'
+        document.querySelector('.sidebar-edit').style.background = 'red'
       }
     },
     sidebarScheduleDefPostEditClick() {
@@ -252,6 +288,17 @@ export default {
     },
     deleteSchedule(id) {
       firebase.database().ref('adminSidebarRegList/' + id).remove();
+    },
+    batPolicyEditClick() {
+      if(this.batPolicyAuth === false) {
+        this.batPolicyAuth = true
+        this.batPolicyEditOrClose = 'Close'
+        document.querySelector('.bat-policy').style.background = 'red'
+      } else if(this.batPolicyAuth === true) {
+        this.batPolicyAuth = false
+        this.batPolicyEditOrClose = 'Edit'
+        document.querySelector('.bat-policy').style.background = 'green'
+      }
     }
   },
   created() {
@@ -261,6 +308,9 @@ export default {
     });
     firebase.database().ref('adminDefaultPost').on('value', (snapshot)=> {
       this.scheduleDefPost = snapshot.val();
+    });
+    firebase.database().ref('adminBatPolicy').on('value', (snapshot)=> {
+      this.batPolicyData = snapshot.val();
     });
   }
 }

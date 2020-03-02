@@ -54,7 +54,7 @@
       <v-card v-if="sidebarScheduleGetSelected">
         <div class="post">
           <h2 class="title">Registration List</h2>
-          <button class="close-btn" @click="addNewReg" 
+          <button class="close-btn" @click="addNewReg" v-if="userIsAuthorized"
                                     style="right: 6px; background-color: green; padding: 4px 8px;">
                                     Add New</button>
           <div class="entry" style="padding: 12px; background: #FDFDFD;">
