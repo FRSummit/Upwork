@@ -68,7 +68,7 @@
                     <th class="text-left">Park</th>
                     <th class="text-left">Home</th>
                     <th class="text-left">Visitor</th>
-                    <th class="text-left">Action</th>
+                    <th class="text-left" v-if="userIsAuthorized">Action</th>
                   </tr>
                 </thead>
                 <tbody>
