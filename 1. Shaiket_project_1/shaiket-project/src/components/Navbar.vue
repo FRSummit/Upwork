@@ -80,7 +80,7 @@ export default {
   margin: 0 auto;
   height: 190px;
   /* background-image: url("../assets/images/gradient.png") !important; */
-  /* background-image: url("../assets/images/back4.webp") !important; */
+  background-image: url("../assets/images/baseball_2.jpg") !important;
   background-repeat: repeat-x;
   background-image: transparent;
   padding: 5px 4px;

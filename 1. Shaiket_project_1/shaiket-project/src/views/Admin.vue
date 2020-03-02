@@ -37,7 +37,7 @@
             <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
             <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
             <p>Click on your team's name in the left column to view your complete schedule for 2018 Click on your team's name in the left column to view your complete schedule for 2018</p>
-            <img src="../assets/images/2009-finals-finalists.jpg" style="width: 100%">
+            <img src="../assets/images/baseball_1.jpg" style="width: 100%">
           </div>
         </div>
         <div v-if="batPolicyData">
@@ -48,7 +48,7 @@
               <p>{{ i.summery2 }}</p>
               <p>{{ i.summery3 }}</p>
               <p>{{ i.summery4 }}</p>
-              <img src="../assets/images/2009-finals-finalists.jpg" style="width: 100%">
+              <img :src="i.imgURL" style="width: 100%">
             </div>
           </div>
         </div>
@@ -83,12 +83,24 @@
           <button class="close-btn" @click="addNewReg" v-if="userIsAuthorized"
                                     style="right: 6px; background-color: green; padding: 4px 8px;">
                                     Add New</button>
-          <div class="entry" style="padding: 12px; background: #FDFDFD;">
-            <v-simple-table dark>
+          <!-- <div class="entry" style="padding: 12px; background: #FDFDFD;"> -->
+            <div class="entry">
+              <div v-for="(list, i) in regResultList" :key="i">
+                <h3 class="title" v-if="getSidebarItemName === list.itemName">{{ list.title }}</h3>
+                <p class="dynamic-para-post" v-if="getSidebarItemName === list.itemName">{{ list.date }}</p>
+                <p class="dynamic-para-post" v-if="getSidebarItemName === list.itemName">{{ list.time }}</p>
+                <p class="dynamic-para-post" v-if="getSidebarItemName === list.itemName">{{ list.park }}</p>
+                <p class="dynamic-para-post" v-if="getSidebarItemName === list.itemName">{{ list.home }}</p>
+                <p class="dynamic-para-post" v-if="getSidebarItemName === list.itemName">{{ list.visitor }}</p>
+                <!-- <p v-if="getSidebarItemName === list.itemName">
+                  <a href="#" class="delete-btn" @click="deleteRegistration(i)">Delete</a>
+                </p> -->
+              </div>
+            </div>
+            <!-- <v-simple-table dark>
               <template v-slot:default>
                 <thead>
                   <tr>
-                    <!-- <th class="text-left">Name</th> -->
                     <th class="text-left">Date</th>
                     <th class="text-left">Time</th>
                     <th class="text-left">Park</th>
@@ -99,7 +111,6 @@
                 </thead>
                 <tbody>
                   <tr v-for="(list, i) in regResultList" :key="i">
-                    <!-- <td v-if="getSidebarItemName === list.itemName">{{ list.itemName }}</td> -->
                     <td v-if="getSidebarItemName === list.itemName">{{ list.date }}</td>
                     <td v-if="getSidebarItemName === list.itemName">{{ list.time }}</td>
                     <td v-if="getSidebarItemName === list.itemName">{{ list.park }}</td>
@@ -111,33 +122,32 @@
                   </tr>
                 </tbody>
               </template>
-            </v-simple-table>
-          </div>
+            </v-simple-table> -->
+          <!-- </div> -->
         </div>
         <div class="league-info-edit-sbar" v-if="regFormAuth">
           <button class="close-btn" @click="closeRegForm" 
                                     style="right: 2px; top: 2px; background-color: red; padding: 4px 8px;">
                                     X</button>
           <form @submit.prevent="onSubmitRegForm">
-            <label class="label">Item Selection</label>
-            <select id="cars" class="input" v-model="itemName">
+            <label class="label" style="width: 20%;">Item Selection</label>
+            <select id="cars" class="input" v-model="itemName" style="width:70%;">
               <option v-for="(schedule, i) in schedules" :key="i">{{ schedule.itemName }}</option>
             </select>
-            
-      <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 8%; top: 16px;">
+            <img src="../assets/images/drop-down.png" style="width: 12px;position: absolute; right: 8%; top: 16px;">
             <div style="padding: 10px 6px;">
               <label class="label">Title</label>
-              <input class="input" type="text" v-model="title" id="title" placeholder="ACE POOLS MOOSE 2019 SCHEDULE"/>
-              <label class="label">Date</label>
-              <input class="input" type="text" v-model="date" id="date" placeholder="Tue May 14"/>
-              <label class="label">Time</label>
-              <input class="input" type="text" v-model="time" id="time" placeholder="9:30 PM"/>
-              <label class="label">Park</label>
-              <input class="input" type="text" v-model="park" id="park" placeholder="Centennial North"/>
-              <label class="label">Home</label>
-              <input class="input" type="text" v-model="home" id="infhomeo1" placeholder="Markham Knights"/>
-              <label class="label">Visitor</label>
-              <input class="input" type="text" v-model="visitor" id="visitor" placeholder="Ace Pools Moose"/>
+              <input class="input" type="text" v-model="title" id="title" placeholder="Give a title"/>
+              <label class="label">Summery</label>
+              <textarea class="input" type="text" v-model="date" id="date" placeholder="Write some summery or documents"/>
+              <label class="label">Summery</label>
+              <textarea class="input" type="text" v-model="time" id="time" placeholder="Write some summery or documents"/>
+              <label class="label">Summery</label>
+              <textarea class="input" type="text" v-model="park" id="park" placeholder="Write some summery or documents"/>
+              <label class="label">Summery</label>
+              <textarea class="input" type="text" v-model="home" id="infhomeo1" placeholder="Write some summery or documents"/>
+              <label class="label">Summery</label>
+              <textarea class="input" type="text" v-model="visitor" id="visitor" placeholder="Write some summery or documents"/>
             </div>
             <div class="btn-section">
               <button type="submit">Submit</button>
@@ -145,21 +155,19 @@
           </form>
           <table>
             <thead>
-              <tr style="font-size: 14px;">
-                <th style="width: 35%;">List Name</th>
-                <th style="width: 35%;">Title</th>
-                <th style="width: 35%;">Date</th>
-                  <th style="width: 15%;">Action</th>
-                </tr>
-              </thead>
-              <tbody style="">
-                <tr v-for="(schedule, i) in regResultList" :key="i" style="font-size: 12px;">
-                  <td style="width: 35%; padding: 2px;">{{ schedule.itemName }}</td>
-                  <td style="width: 35%; padding: 2px;">{{ schedule.title }}</td>
-                  <td style="width: 35%; padding: 2px;">{{ schedule.date }}</td>
-                  <a href="#" class="delete-btn" @click="deleteSchedule(i)">Delete</a>
-                </tr>
-              </tbody>
+              <tr style="font-size: 14px; position: relative">
+                <th style="width: 40%;">List Name</th>
+                <th style="width: 45%;">Title</th>
+                <th style="width: 15%; position: absolute; right: 0;">Action</th>
+              </tr>
+            </thead>
+            <tbody style="">
+              <tr v-for="(schedule, i) in regResultList" :key="i" style="font-size: 12px; position: relative">
+                <td style="width: 40%; padding: 2px;">{{ schedule.itemName }}</td>
+                <td style="width: 45%; padding: 2px;">{{ schedule.title }}</td>
+                <a href="#" class="delete-btn" @click="deleteSchedule(i)" style="width: 15%; position: absolute; right: 4px;">Delete</a>
+              </tr>
+            </tbody>
           </table>
         </div>
       </v-card>
@@ -254,11 +262,14 @@ export default {
     closeRegForm() {
       if(this.regFormAuth === true) {
         this.regFormAuth = false;
+        // document.querySelector('.schedules').style.height = '1000px'
+        // window.location.reload()
       }
     },
     addNewReg() {
       if(this.regFormAuth === false) {
         this.regFormAuth = true;
+        // document.querySelector('.schedules').style.height = '2000px'
       }
     },
     onSubmitRegForm() {
@@ -454,7 +465,7 @@ export default {
 }
 .league-info-edit-sbar .label {
   display: inline-block;
-  width: 20%;
+  width: 15%;
   vertical-align: top;
   font-size: 16px;
   font-weight: bold;
@@ -463,7 +474,7 @@ export default {
 }
 .league-info-edit-sbar .input {
   display: inline-block;
-  width: 70%;
+  width: 85%;
   border-radius: 6px;
   border: 2px solid #272727;
   padding: 4px;
@@ -493,5 +504,15 @@ export default {
   background-color: red;
   width: 15%;
   vertical-align: middle;
+}
+.dynamic-para-post {
+  background: #FFF;
+  border-left: 2px solid #787;
+  border-right: 2px solid #787;
+  padding: 0 6px 10px;
+  margin-bottom: 0 !important;
+}
+.dynamic-para-post:last-child {
+  border-bottom: 2px solid #787;
 }
 </style>

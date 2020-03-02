@@ -13,6 +13,27 @@
       <textarea class="input" type="text" v-model="summery4" placeholder="Write some summery"/>
       <div style="padding: 10px 6px;">
       </div>
+      <!-- image upload field -->
+      <div class="name-field">
+        <label class="field-label label" style="width: auto">Upload an image:</label>
+        <input class="field-input" @change="previewImage" type="file" accept="image/*" style="width: 30%"/>
+        <div style="display: inline-block;">
+          <p class="label" style="width: 100%; padding:0; margin: 0;">Progress: {{uploadValue.toFixed()+"%"}}
+            <progress id="progress" :value="uploadValue" max="100" ></progress>  
+          </p>
+        </div>
+        <div v-if="imageData!=null">
+          <!-- <img class="preview" :src="picture" style="height: 100px;"> -->
+          <span @click="onUpload" class="img-up-btn">Upload</span>
+        </div>
+      </div>
+      <!-- Image preview -->
+      <div class="name-field">
+        <div v-if="imageData!=null" style="display: inline-block; height: 100px;">
+          <img class="preview" :src="picture" style="height: 100px; margin: 0 2px">
+        </div>
+      </div>
+
       <div class="btn-section">
         <button type="submit">Submit</button>
       </div>
@@ -43,7 +64,10 @@ export default {
       summery2: null,
       summery3: null,
       summery4: null,
-      schedules: []
+      schedules: [],
+      imageData: null,
+      picture: null,
+      uploadValue: 0,//
     }
   },
   created() {
@@ -58,7 +82,8 @@ export default {
         summery1: this.summery1,
         summery2: this.summery2,
         summery3: this.summery3,
-        summery4: this.summery4
+        summery4: this.summery4,
+        imgURL: this.picture,
       })
       .then((data)=>{
         console.log(data)
@@ -72,7 +97,29 @@ export default {
     },
     deleteSchedule(id) {
       firebase.database().ref('adminBatPolicy/' + id).remove();
-    }
+    },
+    // Image 1
+    previewImage(event) {
+      this.uploadValue=0;
+      this.picture=null;
+      this.imageData = event.target.files[0];
+    },
+    onUpload(){
+      this.picture=null;
+      const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      storageRef.on(`state_changed`, snapshot => {
+        this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+      },
+      error=>{console.log(error.message)},
+      () => {
+        this.uploadValue=100;
+        storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+          this.picture = url;
+        });
+        console.log('This is the link : ' + storageRef.snapshot.ref.getDownloadURL());
+        console.log(storageRef.snapshot.ref.getDownloadURL().url);
+      });
+    },
   }
 }
 </script>
@@ -130,5 +177,15 @@ export default {
   background-color: red;
   width: 15%;
   vertical-align: middle;
+}
+.img-up-btn {
+  border: 2px solid #272727;
+  border-radius: 6px;
+  background: #272727;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 </style>
