@@ -207,7 +207,8 @@ export default {
 .award {
   background-color: #fff; 
   border-radius: 4px; 
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
   min-height: 800px;
 }

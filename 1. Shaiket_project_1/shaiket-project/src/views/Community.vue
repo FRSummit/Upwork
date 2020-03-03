@@ -212,8 +212,9 @@ export default {
 <style stcope>
 .community {
   background-color: #fff; 
-  border-radius: 4px; 
-  overflow: hidden;
+  border-radius: 4px;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
 }
 .community .content {

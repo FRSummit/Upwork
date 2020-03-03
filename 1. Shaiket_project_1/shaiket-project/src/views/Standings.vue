@@ -286,8 +286,9 @@ export default {
 <style scoped>
 .standings {
   background-color: #fff; 
-  border-radius: 4px; 
-  overflow: hidden;
+  border-radius: 4px;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
   min-height: 500px;
 }

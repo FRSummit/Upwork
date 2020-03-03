@@ -232,7 +232,7 @@
                             <th class="text-left">Player</th>
                             <th class="text-left">Phone (Work)</th>
                             <th class="text-left">Experience</th>
-                            <th v-if="userIsAuthorized" class="text-left">Acction</th>
+                            <th v-if="userIsAuthorized" class="text-left">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -460,7 +460,8 @@ export default {
 .register {
   background-color: #fff; 
   border-radius: 4px; 
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
 }
 .register .sidebar {

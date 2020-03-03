@@ -195,7 +195,8 @@ export default {
 .about {
   background-color: #fff; 
   border-radius: 4px; 
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
 }
 .about .content {

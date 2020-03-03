@@ -269,7 +269,8 @@ export default {
 .schedules {
   background-color: #fff; 
   border-radius: 4px; 
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: overlay;
   padding-bottom: 10px;
 }
 .schedules .sidebar {

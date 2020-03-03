@@ -71,6 +71,39 @@
         </div>
       </div>
     </div>
+    <div class="content" v-if="userIsAuthorized">
+      <div class="post">
+              <v-card>
+                <div class="post">
+                  <h2 class="title">Mails / Messages</h2>
+                  <div class="entry" style="padding: 12px; background: #FDFDFD;">
+                    <v-simple-table dark>
+                      <template v-slot:default>
+                        <thead>
+                          <tr>
+                            <th class="text-left">Name</th>
+                            <th class="text-left">Email</th>
+                            <th class="text-left">Message</th>
+                            <th v-if="userIsAuthorized" class="text-left">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="(item, i) in messages" :key="i">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.email }}</td>
+                            <td>{{ item.message }}</td>
+                            <td v-if="userIsAuthorized">
+                              <a href="#" class="delete-btn" @click="deletePlayer(i)" style="color: red; text-decoration: unset;">Delete</a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </v-simple-table>
+                  </div>
+                </div>
+              </v-card>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,7 +123,8 @@ export default {
       contact_message: null,
       userIsAuthorized: false,
       sidebarContactAuth: false,
-      address: []
+      address: [],
+      messages: []
     }
   },
   methods: {
@@ -111,11 +145,39 @@ export default {
         this.sidebarContactAuth = true;
       }
     },
+    onSubmit() {
+      if((this.contact_name === '' || this.contact_name === null)
+          && (this.contact_email === '' || this.contact_email === null)
+          && (this.contact_message === '' || this.contact_message === null)) {
+        document.getElementById('contact_name').placeholder = 'Name shouldn\'t be empty'
+        document.getElementById('contact_email').placeholder = 'Email shouldn\'t be empty'
+        document.getElementById('contact_message').placeholder = 'Message shouldn\'t be empty'
+      } else {
+        firebase.database().ref('contact-message').push({
+          name: this.contact_name,
+          email: this.contact_email,
+          message: this.contact_message
+        })
+        .then((data)=>{
+          console.log(data)
+          this.contact_name = '',
+          this.contact_email = '',
+          this.contact_message = ''
+        })
+        .catch((error)=>console.log(error))
+      }
+    },
+    deletePlayer(id) {
+      firebase.database().ref('contact-message/' + id).remove();
+    }
   },
   created() {
     this.checkUserIsAuthorized()
     firebase.database().ref('contactMailAddress').on('value', (snapshot)=> {
       this.address = snapshot.val();
+    });
+    firebase.database().ref('contact-message').on('value', (snapshot)=> {
+      this.messages = snapshot.val();
     });
   }
 }
@@ -125,7 +187,7 @@ export default {
 .contact {
   background-color: #fff; 
   border-radius: 4px; 
-  overflow: hidden;
+  overflow: overlay;
   padding-bottom: 10px;
   height: 500px;
 }
