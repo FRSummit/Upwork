@@ -27,7 +27,7 @@
             <div v-if="imageData!=null">
                 <img class="preview" :src="picture" style="width: 200px;">
                 <br>
-            <button @click="onUpload" class="img-up-btn">Upload</button>
+            <span @click="onUpload" class="img-up-btn">Upload</span>
             </div>
           </div>
           <div class="name-field">
@@ -263,10 +263,13 @@ table {
   vertical-align: middle;
 }
 .img-up-btn {
-  background-color: #272727 !important;
-  font-weight: bold;
-  color: #FFFFFF;
-  padding: 4px 10px;
+  border: 2px solid #272727;
   border-radius: 6px;
+  background: #272727;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
 }
 </style>
